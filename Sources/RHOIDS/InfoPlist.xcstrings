@@ -1,0 +1,172 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSAlarmKitUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يستخدم RHOIDS تطبيق AlarmKit لإطلاق منبّه بملء الشاشة عند انتهاء المؤقت، حتى إذا كنت في تطبيق آخر أو كان الوضع الصامت مفعّلاً."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS verwendet AlarmKit, um am Ende deines Timers einen Vollbildalarm auszulösen – auch wenn du in einer anderen App bist oder der Lautlos-Modus aktiviert ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS uses AlarmKit to fire a full-screen alarm at the end of your timer, even if you're in another app or have Silent mode on."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS usa AlarmKit para activar una alarma a pantalla completa al finalizar tu temporizador, incluso si estás en otra app o tienes el modo silencio activado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS utilise AlarmKit pour déclencher une alarme plein écran à la fin de votre minuteur, même si vous êtes dans une autre application ou si le mode silencieux est activé."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS, टाइमर खत्म होने पर पूरी स्क्रीन पर अलार्म बजाने के लिए AlarmKit का उपयोग करता है, भले ही आप किसी दूसरी ऐप में हों या साइलेंट मोड चालू हो।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS usa AlarmKit per attivare una sveglia a schermo intero al termine del timer, anche se sei in un'altra app o hai attivato la modalità silenziosa."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDSは、他のアプリを使用中でもサイレントモードがオンでも、タイマー終了時にフルスクリーンアラームを鳴らすためにAlarmKitを使用します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS는 다른 앱을 사용 중이거나 무음 모드가 켜져 있어도 타이머 종료 시 전체 화면 알람을 울리기 위해 AlarmKit을 사용합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O RHOIDS usa o AlarmKit para disparar um alarme em tela cheia ao final do seu timer, mesmo que você esteja em outro app ou com o modo silencioso ativado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS использует AlarmKit, чтобы включить полноэкранный будильник по окончании таймера, даже если вы находитесь в другом приложении или включён беззвучный режим."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS, siz başka bir uygulamadayken veya Sessiz mod açıkken bile zamanlayıcınızın sonunda tam ekran alarm çalması için AlarmKit'i kullanır."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS 使用 AlarmKit,在计时结束时触发全屏闹钟,即使你正在使用其他应用或已开启静音模式。"
+          }
+        }
+      }
+    },
+    "NSUserNotificationsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يستخدم RHOIDS الإشعارات لتنبيهك عند انتهاء وقتك في الحمام."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS verwendet Mitteilungen, um dich zu benachrichtigen, wenn deine Zeit im Bad abgelaufen ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS uses notifications to alert you when your bathroom time is up."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS usa notificaciones para avisarte cuando se acabe tu tiempo en el baño."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS utilise les notifications pour vous avertir lorsque votre temps aux toilettes est écoulé."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS नोटिफिकेशन का उपयोग यह बताने के लिए करता है कि आपका बाथरूम का समय कब समाप्त हुआ है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS usa le notifiche per avvisarti quando il tuo tempo in bagno è terminato."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDSは、トイレの時間が終わったことをお知らせするために通知を使用します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS는 화장실 시간이 끝났을 때 알려드리기 위해 알림을 사용합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O RHOIDS usa notificações para avisar você quando o seu tempo no banheiro acabar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS использует уведомления, чтобы сообщить вам, когда ваше время в туалете истекло."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS, tuvalet süreniz dolduğunda sizi uyarmak için bildirimleri kullanır."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS 使用通知在如厕时间结束时提醒你。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

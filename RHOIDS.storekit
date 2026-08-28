@@ -1,0 +1,145 @@
+{
+  "identifier" : "RHOIDS",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "tip_001",
+      "localizations" : [
+        {
+          "description" : "Support RHOIDS with a coffee-sized tip.",
+          "displayName" : "Coffee Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.wesley.RHOIDS.tip.coffee",
+      "referenceName" : "Coffee Tip ($0.99)",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "tip_002",
+      "localizations" : [
+        {
+          "description" : "Support RHOIDS with a lunch-sized tip.",
+          "displayName" : "Lunch Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.wesley.RHOIDS.tip.lunch",
+      "referenceName" : "Lunch Tip ($2.99)",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "tip_003",
+      "localizations" : [
+        {
+          "description" : "Send a high-five tip for RHOIDS.",
+          "displayName" : "High Five Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.wesley.RHOIDS.tip.highfive",
+      "referenceName" : "High Five Tip ($4.99)",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : false,
+      "internalID" : "tip_004",
+      "localizations" : [
+        {
+          "description" : "Send a generous tip for RHOIDS.",
+          "displayName" : "Generous Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.wesley.RHOIDS.tip.generous",
+      "referenceName" : "Generous Tip ($6.99)",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "tip_005",
+      "localizations" : [
+        {
+          "description" : "Send an amazing tip for RHOIDS.",
+          "displayName" : "Amazing Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.wesley.RHOIDS.tip.amazing",
+      "referenceName" : "Amazing Tip ($9.99)",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "RHOIDS",
+    "_developerTeamID" : "",
+    "_failTransactionsEnabled" : false,
+    "_lastVerificationError" : "",
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

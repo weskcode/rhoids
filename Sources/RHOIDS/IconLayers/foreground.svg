@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#22C55E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ring track (full circle, white at 10%) -->
+  <circle cx="512" cy="512" r="300" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="44"/>
+
+  <!-- Timer ring arc: 75% coverage (270°) — a timer with the first quarter
+       elapsed clockwise. Gap spans the top-right quadrant (12 → 3 o'clock).
+       Start: 3 o'clock (812, 512), sweeping clockwise through 6 and 9,
+       End:   12 o'clock (512, 212).
+       large-arc-flag=1 (long path), sweep-flag=1 (clockwise). -->
+  <path
+    d="M 812,512 A 300,300 0 1,1 512,212"
+    fill="none"
+    stroke="url(#ringGrad)"
+    stroke-width="44"
+    stroke-linecap="round"/>
+
+  <!-- Letter R — centered on the glyph's bounding box, not its advance width.
+       text-anchor="middle" centers by advance width, which lands the R's
+       visual box ~9px right of center; the shipped PNGs are corrected so the
+       glyph bbox center sits exactly at (512, 512). If re-rendering from this
+       SVG, re-measure and re-center the bbox. -->
+  <text x="512" y="624"
+    font-family="SF Pro Rounded, -apple-system, Helvetica Neue, sans-serif"
+    font-weight="800"
+    font-size="320"
+    fill="white"
+    text-anchor="middle">R</text>
+</svg>

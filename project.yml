@@ -1,0 +1,388 @@
+name: RHOIDS
+options:
+  bundleIdPrefix: com.wesley
+  developmentLanguage: en
+  knownRegions: [en, es, zh-Hans, ja, de, ko, fr, pt-BR, it, ru, ar, hi, tr]
+  deploymentTarget:
+    iOS: 26.4
+    watchOS: 11.5
+  swiftVersion: 6.0
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    IPHONEOS_DEPLOYMENT_TARGET: 26.4
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: HD39MR492X
+    CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    VERSIONING_SYSTEM: apple-generic
+    MARKETING_VERSION: 1.1.1
+    CURRENT_PROJECT_VERSION: 4
+packages:
+  RHOIDSShared:
+    path: Sources/RHOIDSShared
+appIcon: AppIcon
+schemes:
+  RHOIDS:
+    build:
+      targets:
+        RHOIDS: all
+        RHOIDSWidget: all
+        RHOIDSWatch: all
+        RHOIDSWatchWidget: all
+    run:
+      config: Debug
+      storeKitConfiguration: RHOIDS.storekit
+      commandLineArguments:
+        IDEPreferLogStreaming: true
+    test:
+      config: Debug
+      targets:
+        - RHOIDSTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+      postActions:
+        - name: Prepare Next Build Number
+          settingsTarget: RHOIDS
+          script: |
+            sh "$PROJECT_DIR/scripts/increment_build_number.sh"
+  RHOIDSWatchTests:
+    build:
+      targets:
+        RHOIDSWatch: all
+        RHOIDSWatchWidget: all
+        RHOIDSWatchTests: [test]
+    test:
+      config: Debug
+      targets:
+        - RHOIDSWatchTests
+targets:
+  RHOIDS:
+    type: application
+    platform: iOS
+    bundleId: com.wesley.RHOIDS
+    sources:
+      - path: Sources/RHOIDS
+        excludes:
+          - "*.plist"
+          - "*.entitlements"
+          - "InfoPlist.xcstrings"
+          - Resources
+          - "* 2.*"
+          - "**/* 2.*"
+      - path: Sources/Shared
+        excludes:
+          - "* 2.*"
+      - path: Sources/Connectivity
+        excludes:
+          - "* 2.*"
+      - path: Sources/RHOIDS/Assets.xcassets
+      - path: Sources/RHOIDS/Resources/Sounds
+        buildPhase: resources
+      - path: Sources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Sources/RHOIDS/InfoPlist.xcstrings
+        buildPhase: resources
+    info:
+      path: Sources/RHOIDS/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS
+        CFBundleIconName: AppIcon
+        NSUserNotificationsUsageDescription: "RHOIDS uses notifications to alert you when your bathroom time is up."
+        NSAlarmKitUsageDescription: "RHOIDS uses AlarmKit to fire a full-screen alarm at the end of your timer, even if you're in another app or have Silent mode on."
+        NSSupportsLiveActivities: true
+        ITSAppUsesNonExemptEncryption: false
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen:
+          UIColorName: ""
+          UIImageRespectsSafeAreaInsets: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        "UISupportedInterfaceOrientations~ipad":
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        CFBundleURLTypes:
+          - CFBundleURLName: com.wesley.rhoids
+            CFBundleURLSchemes:
+              - rhoids
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDS/RHOIDS.entitlements
+        TARGETED_DEVICE_FAMILY: 1
+    dependencies:
+      - target: RHOIDSWidget
+        embed: true
+      - target: RHOIDSDeviceActivityMonitor
+        embed: true
+      - target: RHOIDSShieldConfiguration
+        embed: true
+      - target: RHOIDSShieldAction
+        embed: true
+      - package: RHOIDSShared
+  RHOIDSWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/RHOIDSWidget
+        excludes:
+          - "* 2.*"
+          - "**/* 2.*"
+        files:
+          - RHOIDSWidgetBundle.swift
+      - path: Sources/RHOIDSWidget/Widgets
+        excludes:
+          - "* 2.*"
+        files:
+          - HomeScreenWidget.swift
+          - LockScreenWidget.swift
+          - WidgetRing.swift
+          - WidgetIconArc.swift
+          - WidgetMediumIdleView.swift
+          - WidgetMediumRunningView.swift
+      - path: Sources/RHOIDSWidget/LiveActivity
+        files:
+          - RHOIDSLiveActivityWidget.swift
+      - path: Sources/RHOIDSWidget/Shared
+        files:
+          - RHOIDSEntry.swift
+          - RHOIDSTimelineProvider.swift
+      - path: Sources/Shared
+        excludes:
+          - "* 2.*"
+        includes:
+          - BrandColor.swift
+          - DurationFormatter.swift
+          - PresetPreferences.swift
+          - PresetTimer.swift
+          - RHOIDSActivityAttributes.swift
+          - SharedStateKeys.swift
+          - StartDefaultTimerIntent.swift
+          - TimerQuip.swift
+          - UserPreferences.swift
+          - WarningMode.swift
+      - path: Sources/Localizable.xcstrings
+        buildPhase: resources
+    info:
+      path: Sources/RHOIDSWidget/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS Widget
+        NSSupportsLiveActivities: true
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.widget
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSWidget/RHOIDSWidget.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+    dependencies:
+      - package: RHOIDSShared
+
+  RHOIDSWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Sources/RHOIDSWatch
+        excludes:
+          - "*.plist"
+          - "*.entitlements"
+          - "* 2.*"
+          - "**/* 2.*"
+      - path: Sources/RHOIDSWatch/Assets.xcassets
+      - path: Sources/RHOIDS/IconLayers
+        excludes:
+          - "* 2.*"
+      - path: Sources/Shared
+        includes:
+          - PresetTimer.swift
+          - DurationFormatter.swift
+          - PresetPreferences.swift
+          - TimerQuip.swift
+          - BrandColor.swift
+          - SharedStateKeys.swift
+          - UserPreferences.swift
+          - WarningMode.swift
+      - path: Sources/Connectivity
+      - path: Sources/Localizable.xcstrings
+        buildPhase: resources
+    info:
+      path: Sources/RHOIDSWatch/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.wesley.RHOIDS
+        WKExtendedRuntimeSessionTypes:
+          - self-care
+        CFBundleURLTypes:
+          - CFBundleURLName: com.wesley.rhoids.watch
+            CFBundleURLSchemes:
+              - rhoids
+    settings:
+      base:
+        WATCHOS_DEPLOYMENT_TARGET: 11.5
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.watchkitapp
+        ASSETCATALOG_COMPILER_APPICON_NAME: WatchAppIcon
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSWatch/RHOIDSWatch.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+    dependencies:
+      - target: RHOIDSWatchWidget
+        embed: true
+
+  RHOIDSWatchWidget:
+    type: app-extension
+    platform: watchOS
+    sources:
+      - path: Sources/RHOIDSWatchWidget/RHOIDSWatchWidgetBundle.swift
+      - path: Sources/RHOIDSWatchWidget/Complications/TimerComplication.swift
+      - path: Sources/Shared
+        includes:
+          - PresetTimer.swift
+          - DurationFormatter.swift
+          - SharedStateKeys.swift
+      - path: Sources/Localizable.xcstrings
+        buildPhase: resources
+    info:
+      path: Sources/RHOIDSWatchWidget/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS Complications
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        WATCHOS_DEPLOYMENT_TARGET: 11.5
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.watchkitapp.widget
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSWatchWidget/RHOIDSWatchWidget.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+        SKIP_INSTALL: YES
+
+  RHOIDSDeviceActivityMonitor:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/RHOIDSDeviceActivityMonitor
+        excludes:
+          - "*.plist"
+          - "*.entitlements"
+          - "* 2.*"
+          - "**/* 2.*"
+      - path: Sources/Shared/FocusLockActivitySchedule.swift
+    info:
+      path: Sources/RHOIDSDeviceActivityMonitor/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS Focus Monitor
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.deviceactivity.monitor-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).FocusLockMonitor
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.DeviceActivityMonitor
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSDeviceActivityMonitor/RHOIDSDeviceActivityMonitor.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  RHOIDSShieldConfiguration:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/RHOIDSShieldConfiguration
+        excludes:
+          - "*.plist"
+          - "*.entitlements"
+          - "* 2.*"
+          - "**/* 2.*"
+    info:
+      path: Sources/RHOIDSShieldConfiguration/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS Focus Shield
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettingsUI.shield-configuration-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).FocusLockShieldConfig
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.ShieldConfiguration
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSShieldConfiguration/RHOIDSShieldConfiguration.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  RHOIDSShieldAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/RHOIDSShieldAction
+        excludes:
+          - "*.plist"
+          - "*.entitlements"
+          - "* 2.*"
+          - "**/* 2.*"
+    info:
+      path: Sources/RHOIDSShieldAction/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: RHOIDS Focus Shield Action
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettings.shield-action-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).FocusLockShieldAction
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wesley.RHOIDS.ShieldAction
+        CODE_SIGN_ENTITLEMENTS: Sources/RHOIDSShieldAction/RHOIDSShieldAction.entitlements
+        PRODUCT_NAME: "$(TARGET_NAME)"
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  RHOIDSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/RHOIDSTests
+        excludes:
+          - "* 2.*"
+          - "**/* 2.*"
+    dependencies:
+      - target: RHOIDS
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: 1
+
+  RHOIDSWatchTests:
+    type: bundle.unit-test
+    platform: watchOS
+    sources:
+      - path: Tests/RHOIDSWatchTests
+      - path: Sources/RHOIDSWatchWidget/Complications/TimerComplication.swift
+        compilerFlags: "-DTESTING"
+      - path: Sources/Shared
+        includes:
+          - SharedStateKeys.swift
+    dependencies:
+      - target: RHOIDSWatch
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        WATCHOS_DEPLOYMENT_TARGET: 11.5

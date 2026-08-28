@@ -1,0 +1,108 @@
+name: iOS Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - AppStore
+
+jobs:
+  commit-messages:
+    name: Commit Message Policy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Validate introduced commit messages
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            range="$BASE_SHA..$HEAD_SHA"
+          elif [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            range="$BEFORE_SHA..$HEAD_SHA"
+          else
+            range="$HEAD_SHA^..$HEAD_SHA"
+          fi
+
+          while IFS= read -r commit; do
+            message_file="$RUNNER_TEMP/commit-message-$commit.txt"
+            git show -s --format=%B "$commit" > "$message_file"
+            echo "Checking $commit"
+            python3 scripts/check_commit_message.py --file "$message_file"
+          done < <(git rev-list --reverse "$range")
+
+  build-and-test:
+    name: Build and Test
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Show toolchain
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun simctl list runtimes
+
+      - name: Resolve compatible simulator destinations
+        id: destinations
+        run: |
+          set -euo pipefail
+
+          IOS_DEVICE_ID="$(xcodebuild -showdestinations -project RHOIDS.xcodeproj -scheme RHOIDS | awk -F'id:' '/platform:iOS Simulator/ && /name:iPhone/ && !found { split($2, fields, ","); gsub(/^[[:space:]]+|[[:space:]]+$/, "", fields[1]); print fields[1]; found = 1 }')"
+          if [ -z "${IOS_DEVICE_ID}" ]; then
+            echo "The RHOIDS scheme has no compatible iOS Simulator destination." >&2
+            exit 1
+          fi
+
+          WATCH_DEVICE_ID="$(xcodebuild -showdestinations -project RHOIDS.xcodeproj -scheme RHOIDSWatchTests | awk -F'id:' '/platform:watchOS Simulator/ && /name:Apple Watch/ && !found { split($2, fields, ","); gsub(/^[[:space:]]+|[[:space:]]+$/, "", fields[1]); print fields[1]; found = 1 }')"
+          if [ -z "${WATCH_DEVICE_ID}" ]; then
+            echo "The RHOIDSWatchTests scheme has no compatible watchOS Simulator destination." >&2
+            exit 1
+          fi
+
+          echo "ios_device_id=${IOS_DEVICE_ID}" >> "${GITHUB_OUTPUT}"
+          echo "watch_device_id=${WATCH_DEVICE_ID}" >> "${GITHUB_OUTPUT}"
+
+      - name: List project
+        run: xcodebuild -list -project RHOIDS.xcodeproj
+
+      - name: Build iOS app
+        run: |
+          xcodebuild build \
+            -project RHOIDS.xcodeproj \
+            -scheme RHOIDS \
+            -configuration Debug \
+            -destination "id=${{ steps.destinations.outputs.ios_device_id }}" \
+            -derivedDataPath "$RUNNER_TEMP/rhoids-derived-data"
+
+      - name: Test iOS app
+        run: |
+          xcodebuild test \
+            -project RHOIDS.xcodeproj \
+            -scheme RHOIDS \
+            -destination "id=${{ steps.destinations.outputs.ios_device_id }}" \
+            -derivedDataPath "$RUNNER_TEMP/rhoids-derived-data" \
+            -resultBundlePath "$RUNNER_TEMP/rhoids-ios-tests.xcresult"
+
+      - name: Test watch app
+        run: |
+          xcodebuild test \
+            -project RHOIDS.xcodeproj \
+            -scheme RHOIDSWatchTests \
+            -destination "id=${{ steps.destinations.outputs.watch_device_id }}" \
+            -derivedDataPath "$RUNNER_TEMP/rhoids-watch-derived-data" \
+            -resultBundlePath "$RUNNER_TEMP/rhoids-watch-tests.xcresult"
