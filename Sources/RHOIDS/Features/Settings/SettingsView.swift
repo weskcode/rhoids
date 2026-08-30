@@ -200,10 +200,19 @@ struct SettingsView: View {
             .onChange(of: notificationsEnabled) { _, isEnabled in
                 Task { @MainActor in
                     guard let services = AppServices.shared else { return }
-                    if !isEnabled {
+                    if isEnabled {
+                        // Pick up alerts for whatever is currently running.
+                        await services.timerService.rescheduleForFocusLockChange()
+                    } else {
+                        // rescheduleForFocusLockChange() only acts while a
+                        // timer is active (activeRunID != nil), so it cannot
+                        // reach a pending post-completion cooldown-complete
+                        // notification. Disabling must cancel everything
+                        // unconditionally, timer running or not.
                         await services.alarmPlayer.stopAlarm()
+                        await services.notificationService.cancelAll()
+                        await services.alarmKitService.cancelActive()
                     }
-                    await services.timerService.rescheduleForFocusLockChange()
                 }
             }
             .onChange(of: dailyReminderEnabled) { _, isEnabled in
