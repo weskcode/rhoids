@@ -145,7 +145,7 @@ struct ScreenTimeServiceTests {
     // `extendCooldownIfNeeded()` so it's testable without touching Screen
     // Time APIs the test environment isn't authorized to exercise.
 
-    @Test func `extendedDeadline extends when a fresh cooldown would run later`() {
+    @Test func `extendedDeadline extends when a fresh cooldown would run later`() throws {
         let existingDeadline = Date.now.addingTimeInterval(120) // 2 minutes left
         let result = ScreenTimeService.extendedDeadline(
             pastDeadline: existingDeadline,
