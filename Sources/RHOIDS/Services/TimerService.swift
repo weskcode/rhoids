@@ -185,8 +185,29 @@ actor TimerService {
         // Actor reentrancy allows stop() or another start() to run while the
         // Live Activity request is suspended. Never let obsolete start work
         // publish state or install tasks for a timer that has been replaced.
-        guard activeRunID == runID, !Task.isCancelled else {
-            log.debug("start abandoned after Live Activity setup because its run is no longer active")
+        guard activeRunID == runID else {
+            log.debug("start abandoned after Live Activity setup because a newer run replaced it")
+            return
+        }
+
+        // The run is still ours, but the enclosing Task (e.g. a cancelled
+        // App Intent / Siri request) was cancelled while the Live Activity
+        // request was suspended above. Unlike the newer-run case, nothing
+        // else will ever clean this run up - no countdown task or side
+        // effects have been scheduled yet - so isPreparingTimer would
+        // otherwise stay stuck true forever, permanently blocking
+        // adoptSharedStateIfNeeded() and every future start(). Tear down
+        // the Live Activity that was already registered and reset state.
+        guard !Task.isCancelled else {
+            log.debug("start cancelled after Live Activity setup - tearing down the orphaned Live Activity")
+            activeRunID = nil
+            isPreparingTimer = false
+            currentEndDate = nil
+            currentPreset = nil
+            currentDuration = 0
+            if sideEffectsEnabled {
+                await liveActivityService.end()
+            }
             return
         }
 
