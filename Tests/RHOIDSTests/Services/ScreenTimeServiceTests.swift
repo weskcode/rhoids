@@ -120,19 +120,54 @@ struct ScreenTimeServiceTests {
                 "Shields must not activate with an empty app/category selection")
     }
 
-    @Test func `applyShields preserves an existing valid cooldown`() {
+    @Test func `applyShields keeps shieldsActive true while an existing cooldown is running`() {
         let prefs = freshPreferences()
-        let deadline = Date.now.addingTimeInterval(120)
         prefs.isEnabled = true
         prefs.shieldsActive = true
-        prefs.cooldownEndDate = deadline
+        prefs.cooldownEndDate = Date.now.addingTimeInterval(120)
         let sut = ScreenTimeService(preferences: prefs)
 
         sut.applyShields()
 
         #expect(sut.shieldsActive)
         #expect(prefs.shieldsActive)
-        #expect(prefs.cooldownEndDate == deadline)
+    }
+
+    // MARK: - Cooldown extension decision (pure logic - see extendCooldownIfNeeded)
+    //
+    // Nothing in the UI blocks starting a second Limited Scrolling timer
+    // while an earlier one's shield/cooldown is still active. Regression:
+    // applyShields() used to silently discard a second session's cooldown
+    // entirely, unblocking apps at the FIRST session's (shorter,
+    // already-in-progress) deadline instead of the one the user just chose.
+    // `extendedDeadline` is the pure decision behind the fix - kept separate
+    // from the real DeviceActivityCenter calls in `applyShields()`/
+    // `extendCooldownIfNeeded()` so it's testable without touching Screen
+    // Time APIs the test environment isn't authorized to exercise.
+
+    @Test func `extendedDeadline extends when a fresh cooldown would run later`() {
+        let existingDeadline = Date.now.addingTimeInterval(120) // 2 minutes left
+        let result = ScreenTimeService.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: 1800 // this session's cooldown: 30 minutes
+        )
+        let extended = try #require(
+            result,
+            "A longer newly-chosen cooldown must extend the deadline, not be silently dropped"
+        )
+        #expect(extended > existingDeadline)
+    }
+
+    @Test func `extendedDeadline preserves a longer existing cooldown over a shorter new one`() {
+        // The reverse direction: the ALREADY-active cooldown is longer than
+        // what a fresh cooldown from right now would produce. The user must
+        // never be unblocked sooner than the longer deadline already promised.
+        let existingDeadline = Date.now.addingTimeInterval(1800) // 30 minutes left
+        let result = ScreenTimeService.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: 120 // this session's cooldown: 2 minutes
+        )
+        #expect(result == nil, "A shorter session must not shorten an already-promised longer cooldown")
     }
 
     // MARK: - Remove Shields

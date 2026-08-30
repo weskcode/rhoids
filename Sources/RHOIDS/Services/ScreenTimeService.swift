@@ -75,10 +75,18 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
     func applyShields() {
         guard preferences.isEnabled else { return }
         if preferences.shieldsActive,
-           let deadline = preferences.cooldownEndDate,
-           deadline > .now {
+           let existingDeadline = preferences.cooldownEndDate,
+           existingDeadline > .now {
+            // This can be a duplicate call for the SAME cooldown, but it can
+            // just as easily be a genuinely new bathroom session finishing
+            // while an earlier one's cooldown is still counting down -
+            // nothing in the UI blocks starting another Limited Scrolling
+            // timer while a shield is already up. Extend the deadline
+            // instead of silently discarding this session's chosen
+            // cooldown, so the user is never unblocked sooner than either
+            // session promised.
             shieldsActive = true
-            log.debug("cooldown already active - preserving existing deadline")
+            extendCooldownIfNeeded(pastDeadline: existingDeadline)
             return
         }
         guard let saved = preferences.selection else { return }
@@ -141,6 +149,48 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
     private func stopCooldown() {
         let center = DeviceActivityCenter()
         center.stopMonitoring([.focusLockCooldown])
+    }
+
+    /// Whether extending the cooldown to a fresh `duration` from now would
+    /// push the deadline later than `existingDeadline`. Pure decision logic,
+    /// kept separate from the DeviceActivityCenter side effects below so it
+    /// can be unit tested without touching real Screen Time APIs.
+    static func extendedDeadline(pastDeadline existingDeadline: Date, duration: TimeInterval) -> Date? {
+        let candidateDeadline = Date.now.addingTimeInterval(duration)
+        return candidateDeadline > existingDeadline ? candidateDeadline : nil
+    }
+
+    /// Restarts cooldown monitoring for this session's chosen duration,
+    /// timed from now, if doing so would push the deadline later than
+    /// `existingDeadline`. No-ops (leaving the earlier cooldown ticking
+    /// down untouched) for a genuine duplicate call where the "new"
+    /// deadline would land at or before the existing one.
+    private func extendCooldownIfNeeded(pastDeadline existingDeadline: Date) {
+        guard let candidateDeadline = Self.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: preferences.cooldownDuration
+        ) else {
+            log.debug("cooldown already active - preserving existing deadline")
+            return
+        }
+        preferences.cooldownEndDate = candidateDeadline
+        stopCooldown()
+        do {
+            try startCooldown()
+        } catch {
+            log.error("failed to extend cooldown: \(error)")
+            // Extension failed, but the original (shorter) cooldown
+            // monitoring was already stopped above - restore the stored
+            // deadline to match what will actually clear the shield, and
+            // try to re-arm monitoring for it rather than leaving nothing
+            // watching the shield at all.
+            preferences.cooldownEndDate = existingDeadline
+            let fallbackPlan = FocusLockActivitySchedule.make(
+                startingAt: .now,
+                duration: existingDeadline.timeIntervalSinceNow
+            )
+            try? DeviceActivityCenter().startMonitoring(.focusLockCooldown, during: fallbackPlan.schedule)
+        }
     }
 
     // MARK: - Bathroom Session Monitoring
