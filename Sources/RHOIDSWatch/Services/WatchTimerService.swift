@@ -19,6 +19,7 @@ actor WatchTimerService {
     private var countdownTask: Task<Void, Never>?
     private var activeRunID: UUID?
     private var extendedSession: WKExtendedRuntimeSession?
+    private var extendedSessionRunID: UUID?
     private var listeners: [UUID: AsyncStream<WatchTimerEvent>.Continuation] = [:]
 
     private(set) var currentEndDate: Date?
@@ -180,13 +181,14 @@ actor WatchTimerService {
 
     func stop() async {
         log.debug("stop()")
+        let runID = activeRunID
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
         currentEndDate = nil
         currentPreset = nil
         currentDuration = 0
-        endExtendedSession()
+        endExtendedSession(runID: runID)
         await clearComplicationState()
 
         WatchHaptics.timerCancelled()
@@ -246,7 +248,7 @@ actor WatchTimerService {
         currentDuration = 0
         countdownTask = nil
         activeRunID = nil
-        endExtendedSession()
+        endExtendedSession(runID: runID)
         await clearComplicationState()
 
         if UserPreferences.timerAlertHapticsEnabled {
@@ -281,30 +283,44 @@ actor WatchTimerService {
         // Invalidate any session left over from a replaced timer so it
         // doesn't keep the app awake past its run.
         extendedSession?.invalidate()
-        self.extendedSession = session
+        extendedSession = session
+        extendedSessionRunID = runID
         log.debug("extended runtime session started")
     }
 
-    private nonisolated func endExtendedSession() {
+    // endExtendedSession schedules its cleanup via two async hops (its own
+    // Task, then a MainActor round-trip) before actually invalidating, so a
+    // new run's startExtendedSession()/setExtendedSession() can easily land
+    // first. Threading the ending run's ID through and re-checking it
+    // against `extendedSessionRunID` (rather than unconditionally clearing
+    // whatever is currently stored) stops that deferred cleanup from tearing
+    // down a newer run's already-live session.
+    private nonisolated func endExtendedSession(runID: UUID?) {
         Task { @MainActor in
-            await self.invalidateExtendedSession()
+            await self.invalidateExtendedSession(runID: runID)
         }
     }
 
-    private func invalidateExtendedSession() {
+    private func invalidateExtendedSession(runID: UUID?) {
+        guard runID == nil || extendedSessionRunID == runID else {
+            log.debug("skipped invalidating extended runtime session - it now belongs to a newer run")
+            return
+        }
         extendedSession?.invalidate()
         extendedSession = nil
+        extendedSessionRunID = nil
         log.debug("extended runtime session ended")
     }
 
     private func resetRunningState() {
+        let runID = activeRunID
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
         currentEndDate = nil
         currentPreset = nil
         currentDuration = 0
-        endExtendedSession()
+        endExtendedSession(runID: runID)
     }
 
     private func persistComplicationState(endDate: Date, presetName: String, duration: TimeInterval) async {
