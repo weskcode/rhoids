@@ -48,10 +48,12 @@ actor NotificationService {
     private var scheduledBeepIDs: [String] = []
     private var timerSchedulingGeneration: UInt = 0
     private var beepSchedulingGeneration: UInt = 0
+    private var dailyReminderSchedulingGeneration: UInt = 0
 
     private enum SchedulingToken: Sendable {
         case timer(UInt)
         case beep(UInt)
+        case dailyReminder(UInt)
     }
 
     init(center: any NotificationSchedulingCenter = UNUserNotificationCenter.current()) {
@@ -83,8 +85,24 @@ actor NotificationService {
         await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
     }
 
+    /// Bumps the daily-reminder scheduling generation and returns a token for
+    /// it - both `scheduleDailyReminder` and `cancelDailyReminder` call this
+    /// first, so whichever runs last "wins": an earlier call's `add()` that
+    /// only completes after a later toggle has already superseded it will
+    /// see `isCurrent(token) == false` and undo its own stale write instead
+    /// of clobbering the fresher state (mirrors the `.timer`/`.beep` token
+    /// pattern in `schedule()` above, which this path previously had no
+    /// equivalent of).
+    @discardableResult
+    private func nextDailyReminderToken() -> SchedulingToken {
+        dailyReminderSchedulingGeneration &+= 1
+        return .dailyReminder(dailyReminderSchedulingGeneration)
+    }
+
     @discardableResult
     func scheduleDailyReminder(hour: Int, minute: Int) async -> Bool {
+        let token = nextDailyReminderToken()
+
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Keep your streak going")
         content.body = String(localized: "Open RHOIDS for today's check-in.")
@@ -103,10 +121,11 @@ actor NotificationService {
         // A request with the same stable identifier replaces the previous one.
         // Do not remove the existing request first: if scheduling fails, the
         // user's last valid reminder remains in place.
-        return await add(request, context: "daily reminder")
+        return await add(request, context: "daily reminder", token: token)
     }
 
     func cancelDailyReminder() async {
+        _ = nextDailyReminderToken()
         await center.removePendingRequests(withIdentifiers: [Self.dailyReminderID])
     }
 
@@ -370,6 +389,8 @@ actor NotificationService {
             generation == timerSchedulingGeneration
         case .beep(let generation):
             generation == beepSchedulingGeneration
+        case .dailyReminder(let generation):
+            generation == dailyReminderSchedulingGeneration
         }
     }
 }
