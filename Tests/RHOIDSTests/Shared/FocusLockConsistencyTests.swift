@@ -22,6 +22,26 @@ struct FocusLockConsistencyTests {
                 "FocusLockMonitor hardcodes this key - changing it would leave shields stuck on after cooldown expires")
     }
 
+    @Test func `cooldownEndDate key matches the value FocusLockMonitor reads and writes`() {
+        // The deadline is what every stale-shield recovery path compares against:
+        // FocusLockMonitor.applyShieldFromSavedSelection() and its
+        // intervalWillEndWarning branch, ScreenTimeService.refreshShieldsActiveState(),
+        // and FocusLockShieldAction.clearExpiredCooldownIfNeeded(). A rename would
+        // leave the extension writing one key and the app reading another, so no
+        // path would ever observe an expired cooldown and the shield would stay up
+        // with no automatic way out.
+        #expect(FocusLockPreferences.cooldownEndDateKey == "focusLockCooldownEndDate",
+                "FocusLockMonitor hardcodes this key - changing it would strand shields with no expiry anyone can see")
+    }
+
+    @Test func `cooldownDuration key matches the value FocusLockMonitor reads`() {
+        // FocusLockMonitor reads this to size the cooldown it schedules. A rename
+        // would silently fall back to the 300s default, so a user who chose a
+        // 30-minute cooldown would be unblocked after 5.
+        #expect(FocusLockPreferences.cooldownDurationKey == "focusLockCooldown",
+                "FocusLockMonitor hardcodes this key - changing it would silently downgrade every cooldown to the default")
+    }
+
     @Test func `DeviceActivity name matches the value FocusLockMonitor listens for`() {
         #expect(DeviceActivityName.focusLockCooldown.rawValue == "com.wesley.RHOIDS.focusLockCooldown",
                 "FocusLockMonitor uses a private extension with this exact raw value")
