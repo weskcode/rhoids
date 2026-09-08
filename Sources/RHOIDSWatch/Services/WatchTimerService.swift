@@ -302,7 +302,12 @@ actor WatchTimerService {
     }
 
     private func invalidateExtendedSession(runID: UUID?) {
-        guard runID == nil || extendedSessionRunID == runID else {
+        // Deliberately no `runID == nil` escape hatch: a nil-runID cleanup
+        // (from stop()/resetRunningState() capturing activeRunID before it
+        // was ever set) must still lose to a newer run's live session, or it
+        // reopens the exact bug this runID-threading was written to close -
+        // just via the nil entry point instead of a mismatched UUID.
+        guard extendedSessionRunID == runID else {
             log.debug("skipped invalidating extended runtime session - it now belongs to a newer run")
             return
         }
