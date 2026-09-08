@@ -1,6 +1,7 @@
 import Testing
 import Foundation
 import FamilyControls
+import DeviceActivity
 @testable import RHOIDS
 
 /// Each test builds a `FocusLockPreferences` over a fresh, per-test
@@ -168,6 +169,51 @@ struct ScreenTimeServiceTests {
             duration: 120 // this session's cooldown: 2 minutes
         )
         #expect(result == nil, "A shorter session must not shorten an already-promised longer cooldown")
+    }
+
+    // MARK: - Cooldown extension side effects (extendCooldownIfNeeded)
+    //
+    // `DeviceActivityScheduling` is the injected seam over `DeviceActivityCenter`
+    // (see ScreenTimeService.swift) - the real center always fails/no-ops the
+    // same way in this unsigned test environment, so a throwing test double is
+    // the only way to exercise `extendCooldownIfNeeded`'s failure/fallback
+    // branch on its own, independent of the success path.
+
+    /// Always throws from `startMonitoring`, standing in for a
+    /// `DeviceActivityCenter` whose scheduling call is rejected.
+    private final class ThrowingDeviceActivityCenter: DeviceActivityScheduling {
+        struct ForcedFailure: Error {}
+
+        private(set) var startMonitoringCallCount = 0
+
+        func startMonitoring(_ activity: DeviceActivityName, during schedule: DeviceActivitySchedule) throws {
+            startMonitoringCallCount += 1
+            throw ForcedFailure()
+        }
+
+        func stopMonitoring(_ activities: [DeviceActivityName]) {}
+    }
+
+    @Test func `extendCooldownIfNeeded restores the original deadline when startCooldown fails`() {
+        let prefs = freshPreferences()
+        prefs.isEnabled = true
+        prefs.shieldsActive = true
+        let existingDeadline = Date.now.addingTimeInterval(120) // 2 minutes left
+        prefs.cooldownEndDate = existingDeadline
+        prefs.cooldownDuration = 1800 // this session's cooldown: 30 minutes - guarantees
+                                       // extendedDeadline() picks the extend branch, not the no-op one
+
+        let throwingCenter = ThrowingDeviceActivityCenter()
+        let sut = ScreenTimeService(preferences: prefs, activityCenter: throwingCenter)
+
+        sut.applyShields()
+
+        #expect(throwingCenter.startMonitoringCallCount == 2,
+                "Both the extension attempt and its fallback re-arm should have called startMonitoring")
+        #expect(sut.shieldsActive == true,
+                "A failed extension must not drop the shield that is already active")
+        #expect(prefs.cooldownEndDate == existingDeadline,
+                "A failed cooldown extension must restore the original deadline, not leave the attempted (and now unmonitored) new one")
     }
 
     // MARK: - Remove Shields

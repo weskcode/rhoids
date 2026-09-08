@@ -32,6 +32,31 @@ protocol ScreenTimeSessionScheduling: Sendable {
     func stopBathroomSessionMonitoring()
 }
 
+/// The subset of `DeviceActivityCenter` that cooldown and bathroom-session
+/// scheduling depend on. The real `DeviceActivityCenter` always fails/no-ops
+/// the same way in the unsigned test environment, so without this seam there
+/// is no way to exercise the "scheduling succeeded" and "scheduling threw"
+/// branches independently - in particular `extendCooldownIfNeeded`'s
+/// failure/fallback path below. Production code defaults to the real
+/// `DeviceActivityCenter` (see `extension DeviceActivityCenter` below), so no
+/// other call site needs to change.
+protocol DeviceActivityScheduling {
+    func startMonitoring(_ activity: DeviceActivityName, during schedule: DeviceActivitySchedule) throws
+    func stopMonitoring(_ activities: [DeviceActivityName])
+}
+
+extension DeviceActivityCenter: DeviceActivityScheduling {
+    // `DeviceActivityCenter.startMonitoring` also takes an `events:`
+    // parameter with a default value; a default value doesn't change a
+    // method's arity for protocol-witness matching, so this explicit
+    // 2-argument overload (forwarding with no events) is what actually
+    // satisfies `DeviceActivityScheduling` - it behaves identically to
+    // omitting `events:` at any real call site.
+    func startMonitoring(_ activity: DeviceActivityName, during schedule: DeviceActivitySchedule) throws {
+        try startMonitoring(activity, during: schedule, events: [:])
+    }
+}
+
 @MainActor
 @Observable
 final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling {
@@ -41,9 +66,11 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
 
     private let store = ManagedSettingsStore(named: .focusLock)
     private let preferences: FocusLockPreferences
+    private let activityCenter: DeviceActivityScheduling
 
-    init(preferences: FocusLockPreferences = .shared) {
+    init(preferences: FocusLockPreferences = .shared, activityCenter: DeviceActivityScheduling = DeviceActivityCenter()) {
         self.preferences = preferences
+        self.activityCenter = activityCenter
         loadSelection()
         shieldsActive = preferences.shieldsActive
         authorizationStatus = AuthorizationCenter.shared.authorizationStatus
@@ -141,14 +168,12 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
             duration: preferences.cooldownDuration
         )
 
-        let center = DeviceActivityCenter()
-        try center.startMonitoring(.focusLockCooldown, during: plan.schedule)
+        try activityCenter.startMonitoring(.focusLockCooldown, during: plan.schedule)
         log.debug("cooldown started - \(Int(self.preferences.cooldownDuration))s")
     }
 
     private func stopCooldown() {
-        let center = DeviceActivityCenter()
-        center.stopMonitoring([.focusLockCooldown])
+        activityCenter.stopMonitoring([.focusLockCooldown])
     }
 
     /// Whether extending the cooldown to a fresh `duration` from now would
@@ -189,7 +214,7 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
                 startingAt: .now,
                 duration: existingDeadline.timeIntervalSinceNow
             )
-            try? DeviceActivityCenter().startMonitoring(.focusLockCooldown, during: fallbackPlan.schedule)
+            try? activityCenter.startMonitoring(.focusLockCooldown, during: fallbackPlan.schedule)
         }
     }
 
@@ -207,10 +232,9 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
         let now = Date.now
         let plan = FocusLockActivitySchedule.make(startingAt: now, duration: duration)
 
-        let center = DeviceActivityCenter()
         preferences.bathroomSessionShouldShield = true
         do {
-            try center.startMonitoring(.focusLockBathroomSession, during: plan.schedule)
+            try activityCenter.startMonitoring(.focusLockBathroomSession, during: plan.schedule)
             log.debug("bathroom session monitoring started - \(Int(duration))s")
         } catch {
             preferences.bathroomSessionShouldShield = false
@@ -223,8 +247,7 @@ final class ScreenTimeService: ScreenTimeShielding, ScreenTimeSessionScheduling 
     /// Scrolling mid-timer, etc).
     func stopBathroomSessionMonitoring() {
         preferences.bathroomSessionShouldShield = false
-        let center = DeviceActivityCenter()
-        center.stopMonitoring([.focusLockBathroomSession])
+        activityCenter.stopMonitoring([.focusLockBathroomSession])
     }
 
     // MARK: - Selection Persistence
