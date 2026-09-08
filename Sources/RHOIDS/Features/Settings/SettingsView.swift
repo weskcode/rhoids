@@ -204,14 +204,13 @@ struct SettingsView: View {
                         // Pick up alerts for whatever is currently running.
                         await services.timerService.rescheduleForFocusLockChange()
                     } else {
-                        // rescheduleForFocusLockChange() only acts while a
-                        // timer is active (activeRunID != nil), so it cannot
-                        // reach a pending post-completion cooldown-complete
-                        // notification. Disabling must cancel everything
-                        // unconditionally, timer running or not.
-                        await services.alarmPlayer.stopAlarm()
-                        await services.notificationService.cancelAll()
-                        await services.alarmKitService.cancelActive()
+                        // Routed through TimerService (not called directly
+                        // on the individual services) so the cancellation
+                        // waits for any in-flight AlarmKit/notification
+                        // scheduling to land first - see
+                        // cancelAlertsForNotificationsDisabled()'s doc
+                        // comment for why that ordering matters.
+                        await services.timerService.cancelAlertsForNotificationsDisabled()
                     }
                 }
             }

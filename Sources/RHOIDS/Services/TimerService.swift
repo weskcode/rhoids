@@ -689,6 +689,40 @@ actor TimerService {
         log.debug("[\(tag)] reschedule complete ✓")
     }
 
+    /// The user disabled notifications in Settings. Unlike
+    /// `rescheduleForFocusLockChange()`, which only acts while a timer is
+    /// active (`activeRunID != nil`), this must cancel every alert source
+    /// unconditionally - timer running or not - because a pending
+    /// post-completion cooldown-complete notification can outlive the run
+    /// itself, and `rescheduleForFocusLockChange()` has no reason to reach
+    /// it.
+    ///
+    /// Uses the same cancel-and-await ordering as `stop()`/
+    /// `handleExternalAlarmStop()`: `start()`/`adopt()`'s side-effects task
+    /// can still be mid-flight (e.g. suspended inside
+    /// `AlarmKitService.scheduleTimer(...)`'s call to
+    /// `AlarmManager.shared.schedule(...)`) when this runs. `AlarmKitService`
+    /// has no generation/token guard of its own (unlike `NotificationService`,
+    /// whose `add()` re-checks its scheduling token after the call lands and
+    /// undoes a stale write) - so calling it directly, without first waiting
+    /// for `sideEffectsTask`, can find nothing scheduled yet and let a
+    /// same-moment `scheduleTimer(...)` land afterward, leaving an AlarmKit
+    /// alarm armed after the user just turned notifications off. Only
+    /// awaiting `sideEffectsTask` first guarantees this cancellation is the
+    /// last writer. Safe to call whether or not a timer is running.
+    func cancelAlertsForNotificationsDisabled() async {
+        let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
+        log.debug("cancelAlertsForNotificationsDisabled - runID=\(tag)")
+        sideEffectsTask?.cancel()
+        await sideEffectsTask?.value
+        sideEffectsTask = nil
+
+        guard sideEffectsEnabled else { return }
+        await alarmPlayer.stopAlarm()
+        await notificationService.cancelAll()
+        await alarmKitService.cancelActive()
+    }
+
     func stop() async {
         let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
         log.debug("stop() called - runID=\(tag)")
