@@ -150,8 +150,14 @@ class FocusLockMonitor: DeviceActivityMonitor {
     private func extendCooldownIfNeeded(pastDeadline existingDeadline: Date) {
         let stored = defaults?.double(forKey: FocusLockKey.cooldownDuration) ?? 0
         let cooldownDuration = stored > 0 ? stored : 300
-        let candidateDeadline = Date.now.addingTimeInterval(cooldownDuration)
-        guard candidateDeadline > existingDeadline else { return }
+
+        // Pure extend-vs-no-op decision lives in `FocusLockCooldownExtension`
+        // (Sources/Shared) so it can be unit tested - see that type's doc
+        // comment for why it isn't just a method on this class.
+        guard let candidateDeadline = FocusLockCooldownExtension.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: cooldownDuration
+        ) else { return }
 
         defaults?.set(candidateDeadline, forKey: FocusLockKey.cooldownEndDate)
         let plan = FocusLockActivitySchedule.make(startingAt: .now, duration: cooldownDuration)
@@ -163,10 +169,11 @@ class FocusLockMonitor: DeviceActivityMonitor {
             // monitoring was already stopped above - restore the stored
             // deadline to match what will actually clear the shield rather
             // than leaving it pointing at a time nothing will act on.
-            defaults?.set(existingDeadline, forKey: FocusLockKey.cooldownEndDate)
+            let fallback = FocusLockCooldownExtension.fallbackAfterFailedExtension(pastDeadline: existingDeadline)
+            defaults?.set(fallback.deadline, forKey: FocusLockKey.cooldownEndDate)
             let fallbackPlan = FocusLockActivitySchedule.make(
                 startingAt: .now,
-                duration: existingDeadline.timeIntervalSinceNow
+                duration: fallback.monitoringDuration
             )
             try? DeviceActivityCenter().startMonitoring(.focusLockCooldown, during: fallbackPlan.schedule)
         }
