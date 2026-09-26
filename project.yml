@@ -4,8 +4,8 @@ options:
   developmentLanguage: en
   knownRegions: [en, es, zh-Hans, ja, de, ko, fr, pt-BR, it, ru, ar, hi, tr]
   deploymentTarget:
-    iOS: 26.4
-    watchOS: 11.5
+    iOS: 26.0
+    watchOS: 26.0
   swiftVersion: 6.0
 settings:
   base:
