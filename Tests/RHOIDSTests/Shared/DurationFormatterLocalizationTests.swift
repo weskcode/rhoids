@@ -26,9 +26,8 @@ struct DurationFormatterLocalizationTests {
     private func localizedBundle(for identifier: String) throws -> Bundle {
         let path = try #require(
             Bundle.main.path(forResource: identifier, ofType: "lproj"),
-            "\(identifier).lproj not found in the host app bundle - either RHOIDSTests isn't " +
-            "hosted by RHOIDS.app anymore, or Localizable.xcstrings stopped compiling " +
-            "per-locale .strings resources into it"
+            // One literal: `Comment` is built from string literals, not a runtime `+` concatenation.
+            "\(identifier).lproj not found in the host app bundle - either RHOIDSTests isn't hosted by RHOIDS.app anymore, or Localizable.xcstrings stopped compiling per-locale .strings resources into it"
         )
         return try #require(Bundle(path: path), "Could not open \(identifier).lproj as a Bundle")
     }

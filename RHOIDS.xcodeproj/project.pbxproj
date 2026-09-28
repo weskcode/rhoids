@@ -92,6 +92,7 @@
 		58BCC1086D104955C720C9ED /* BrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3EB7FA33CA2FE4E0EF49B /* BrandColor.swift */; };
 		5914EE83E6B3F8DA5D9EE89C /* PressableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D10F442D0465B2DC0167D71 /* PressableButtonStyle.swift */; };
 		5AB6BC36CC4AA836B6E0442E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CAAD8DB48E7DC53CB3C7E /* ContentView.swift */; };
+		5B3E6315E3C72D06CABEC4FD /* DurationFormatterLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E1D5C7C4BC6EA46E4CB40 /* DurationFormatterLocalizationTests.swift */; };
 		5B5E7B6987A11EF1621DA3FF /* OnboardingFeatureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EDD3AAC28AE9BAE03032D /* OnboardingFeatureRow.swift */; };
 		601FF3CB123C32C5EEC5F869 /* FocusLockAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AACACED768DCC5ECF79D34 /* FocusLockAppPickerView.swift */; };
 		60CC43EF34DD2A22C7F0BDE0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC82B16B669D8050B18CA8A /* HomeViewModel.swift */; };
@@ -230,7 +231,6 @@
 		E40BEFDA52940180ED40B3E1 /* StartDefaultTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2B66625DD7EEC4D15F55F /* StartDefaultTimerIntent.swift */; };
 		E413939D97285569CC4DD122 /* TimerDisplayOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070B1AC1E73E30C89AEE7B1 /* TimerDisplayOptionRow.swift */; };
 		E8862EA77F7E0DA926B6097D /* foreground.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1AC1DBA49606F7C622316CA9 /* foreground.svg */; };
-		E8B0BCE60773E1BA0F229DA0 /* WidgetIconArcGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A398916273AE141876EC0A1 /* WidgetIconArcGeometryTests.swift */; };
 		E91140CC3D548001E94947CA /* RHOIDSLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3B1ECBDE978D6D35859EA /* RHOIDSLiveActivityWidget.swift */; };
 		EA2F342175F1FBAE1C59930E /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408DCB5DAAF62B32BF27C02 /* AppStoreInfo.swift */; };
 		EAEA85A6C8561A172033D296 /* OnboardingWidgetPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351B42A3370DED0A4747D8A /* OnboardingWidgetPageView.swift */; };
@@ -436,7 +436,6 @@
 		67D80CE8C036BE87DB0B25E0 /* AlarmSoundCategoryIntegrityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSoundCategoryIntegrityTests.swift; sourceTree = "<group>"; };
 		69548E3702BDAF8EE0571E3D /* NotificationSchedulingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSchedulingTests.swift; sourceTree = "<group>"; };
 		6A008DB88348FF4D0BBE5F85 /* harp.caf */ = {isa = PBXFileReference; path = harp.caf; sourceTree = "<group>"; };
-		6A398916273AE141876EC0A1 /* WidgetIconArcGeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetIconArcGeometryTests.swift; sourceTree = "<group>"; };
 		6A5D1EB69C9F4E01E04E905B /* ReadyTimerVisualization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyTimerVisualization.swift; sourceTree = "<group>"; };
 		6AB2E1BF07DB65A278E782B4 /* FeedbackFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackFormView.swift; sourceTree = "<group>"; };
 		6B6C42F7C17C366E1D3A8348 /* FocusLockNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusLockNamesTests.swift; sourceTree = "<group>"; };
@@ -489,6 +488,7 @@
 		A549C942CCFD7255E598A083 /* TimerServiceSchedulingRaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceSchedulingRaceTests.swift; sourceTree = "<group>"; };
 		A59364F1BD7565B30148A0C9 /* LiveActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityService.swift; sourceTree = "<group>"; };
 		A5CA7DF4FA8F6788AA9E54EF /* digital.caf */ = {isa = PBXFileReference; path = digital.caf; sourceTree = "<group>"; };
+		A66E1D5C7C4BC6EA46E4CB40 /* DurationFormatterLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatterLocalizationTests.swift; sourceTree = "<group>"; };
 		A8575837805F9CBD15609B62 /* PresetTimerComputedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetTimerComputedTests.swift; sourceTree = "<group>"; };
 		A922D01D389348B42E4D75B4 /* RHOIDSWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHOIDSWatchApp.swift; sourceTree = "<group>"; };
 		AB9EF96BBDE74BB834953904 /* WeeklySessionStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklySessionStatsTests.swift; sourceTree = "<group>"; };
@@ -686,7 +686,6 @@
 				CA986052101F2D4DD1AE9050 /* LiveActivityDeviceDiagnosticTests.swift */,
 				63CD9EAB5C155ED82F5CFA55 /* SharedStateServiceTests.swift */,
 				DED4EA43A4DB2264399AF9C7 /* SharedStateStaleTimerTests.swift */,
-				6A398916273AE141876EC0A1 /* WidgetIconArcGeometryTests.swift */,
 				D8D6D9CA14EF7F614697350B /* WidgetTimelineStateTests.swift */,
 			);
 			path = Widget;
@@ -758,6 +757,7 @@
 				DAD84E19CA69BC57ED1D99B7 /* ActivityAttributesTests.swift */,
 				7C4F894CAA6D4A35CA3256E3 /* BrandColorTests.swift */,
 				2BA4A2FD717C7905A347F1F4 /* CrossComponentKeyAlignmentTests.swift */,
+				A66E1D5C7C4BC6EA46E4CB40 /* DurationFormatterLocalizationTests.swift */,
 				9E3921CABC1F026BF3FEE3D1 /* DurationFormatterStressTests.swift */,
 				0617D7A6ED800468C29C8E39 /* DurationFormatterTests.swift */,
 				0FB33FDD2D68AF39A95FC85A /* FocusLockConsistencyTests.swift */,
@@ -1639,6 +1639,7 @@
 				43DDA13AC2E3817A3B299F91 /* BrandColorTests.swift in Sources */,
 				8746347B3815CAA376525311 /* CrossComponentKeyAlignmentTests.swift in Sources */,
 				DEA37BA20A6EDCB24DE7CC58 /* DailyUseTrackerTests.swift in Sources */,
+				5B3E6315E3C72D06CABEC4FD /* DurationFormatterLocalizationTests.swift in Sources */,
 				386FC209205A54574508FC01 /* DurationFormatterStressTests.swift in Sources */,
 				08A180BB54AB119A013CD113 /* DurationFormatterTests.swift in Sources */,
 				F79F7C8B7214F1C3298DAC93 /* FocusLockConsistencyTests.swift in Sources */,
@@ -1691,7 +1692,6 @@
 				DA5A01ED2DC6D319983C96C7 /* WarningModeTests.swift in Sources */,
 				4E366E2553AB27D87B21B9D4 /* WatchMessageCodecTests.swift in Sources */,
 				A1A83898BAD21A39DCB215CF /* WeeklySessionStatsTests.swift in Sources */,
-				E8B0BCE60773E1BA0F229DA0 /* WidgetIconArcGeometryTests.swift in Sources */,
 				7C192E03D0E5DD079212730A /* WidgetTimelineStateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
