@@ -128,3 +128,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes. Please report s
 ## License
 
 The source code is available under the [MIT License](LICENSE). The RHOIDS name, app icon, screenshots, and App Store marketing artwork are not granted for use as the identity of a redistributed app. Forks should use their own product name and artwork.
+
+## Simulator runtime policy
+
+iOS 26.0 is the deployment floor. Never download, install, restore, or test iOS 18
+or older simulator runtimes. Use existing iOS 27.0 devices, with iOS 26.0 for floor
+checks. Missing destinations are blocked checks. Follow [AGENTS.md](AGENTS.md).
