@@ -362,11 +362,42 @@ targets:
         excludes:
           - "* 2.*"
           - "**/* 2.*"
+      # Repository files some tests read as data. Xcode Cloud runs tests on a host
+      # without the repository, so the bundle carries copies under RepoFiles/.
+      - path: project.yml
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles }
+      - path: RHOIDS.storekit
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles }
+      - path: RHOIDS.xcodeproj/project.pbxproj
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/RHOIDS.xcodeproj }
+      - path: Sources/Localizable.xcstrings
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources }
+      - path: Sources/RHOIDS/Info.plist
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources/RHOIDS }
+      - path: Sources/RHOIDS/RHOIDS.entitlements
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources/RHOIDS }
+      - path: Sources/RHOIDSWidget/Info.plist
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources/RHOIDSWidget }
+      - path: Sources/RHOIDSWidget/RHOIDSWidget.entitlements
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources/RHOIDSWidget }
+      - path: Sources/RHOIDSWidget/LiveActivity/RHOIDSLiveActivityWidget.swift
+        buildPhase:
+          copyFiles: { destination: resources, subpath: RepoFiles/Sources/RHOIDSWidget/LiveActivity }
     dependencies:
       - target: RHOIDS
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+        # The copied app Info.plist above must not become this bundle's plist.
+        INFOPLIST_FILE: ""
         TARGETED_DEVICE_FAMILY: 1
 
   RHOIDSWatchTests:

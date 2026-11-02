@@ -9,7 +9,6 @@ import Testing
 /// at the call site rather than failing to build).
 struct LocalizationCatalogTests {
     private enum TestError: Error {
-        case projectRootNotFound
         case catalogUnreadable
     }
 
@@ -32,21 +31,8 @@ struct LocalizationCatalogTests {
         "Worldwide prevalence of haemorrhoids",
     ]
 
-    private func findProjectRoot() throws -> URL {
-        var dir = URL(fileURLWithPath: #filePath)
-        for _ in 0..<10 {
-            dir = dir.deletingLastPathComponent()
-            let pbxproj = dir.appendingPathComponent("RHOIDS.xcodeproj/project.pbxproj")
-            if FileManager.default.fileExists(atPath: pbxproj.path) {
-                return dir
-            }
-        }
-        throw TestError.projectRootNotFound
-    }
-
     private func loadCatalog() throws -> [String: [String: Any]] {
-        let root = try findProjectRoot()
-        let catalogURL = root.appendingPathComponent("Sources/Localizable.xcstrings")
+        let catalogURL = try RepoFile.url("Sources/Localizable.xcstrings")
         let data = try Data(contentsOf: catalogURL)
         guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
               let strings = json["strings"] as? [String: [String: Any]] else {
@@ -186,8 +172,7 @@ struct LocalizationCatalogTests {
     }
 
     @Test func `Spanish locale is declared in project knownRegions`() throws {
-        let root = try findProjectRoot()
-        let projectYML = try String(contentsOf: root.appendingPathComponent("project.yml"), encoding: .utf8)
+        let projectYML = try String(contentsOf: RepoFile.url("project.yml"), encoding: .utf8)
         guard let line = projectYML.split(separator: "\n").first(where: { $0.contains("knownRegions") }) else {
             Issue.record("knownRegions not found in project.yml")
             return
