@@ -215,11 +215,7 @@ actor NotificationService {
                 continue
             }
 
-            let minutes = Int(remaining) / 60
-            let seconds = Int(remaining) % 60
-            let timeString = minutes > 0
-                ? (seconds > 0 ? "\(minutes)m \(seconds)s" : "\(minutes) min")
-                : "\(seconds)s"
+            let timeString = DurationFormatter.formatted(remaining)
 
             let content = UNMutableNotificationContent()
             content.title = String(localized: "⏱ \(timeString) remaining")
