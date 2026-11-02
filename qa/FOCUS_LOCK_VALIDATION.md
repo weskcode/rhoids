@@ -35,7 +35,7 @@ shield copy changes.
   when your cooldown ends.**
 - iOS 26.5 and later: **Open RHOIDS** uses the system
   `openParentalControlsApp` response.
-- iOS 26.4: the shield presents a single **Close App** action because the
+- iOS 26.0 through 26.4: the shield presents a single **Close App** action because the
   system open-app response is unavailable.
 
 The shield UI is system-rendered by ManagedSettingsUI. iOS owns its button hit

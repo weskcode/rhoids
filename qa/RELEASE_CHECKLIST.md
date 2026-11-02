@@ -20,8 +20,8 @@ The local tests used Xcode beta because the machine's active developer directory
 
 - Marketing version: `1.1.1`
 - Build number: `4`
-- Minimum iOS version: `26.4`
-- Minimum watchOS version: `11.5`
+- Minimum iOS version: `26.0`
+- Minimum watchOS version: `26.0`
 - iPhone bundle identifier: `com.wesley.RHOIDS`
 - App Group: `group.com.wesley.RHOIDS`
 - Supported native products: iPhone app, iPhone widgets and Live Activity, Apple Watch app, watch complications, and Screen Time extensions
