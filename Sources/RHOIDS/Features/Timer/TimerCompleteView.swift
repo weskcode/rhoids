@@ -19,6 +19,8 @@ struct TimerCompleteView: View {
                 Text(outcome.title)
                     .font(.largeTitle.bold())
                     .tracking(2)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
 
                 Text(outcome.quip.body)

@@ -5963,13 +5963,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ärzte empfehlen maximal 3 to 5 Minuten auf der Toilette."
+            "value" : "Ärzte empfehlen maximal 3 bis 5 Minuten auf der Toilette."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los médicos dicen máximo 3 to 5 minutos en el inodoro."
+            "value" : "Los médicos dicen que de 3 a 5 minutos como máximo en el inodoro."
           }
         },
         "fr" : {
@@ -5981,13 +5981,13 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डॉक्टर कहते हैं: शौचालय पर अधिकतम 3 to 5 मिनट।"
+            "value" : "डॉक्टर कहते हैं: शौचालय पर अधिकतम 3 से 5 मिनट।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I medici dicono massimo 3 to 5 minuti sul water."
+            "value" : "I medici dicono da 3 a 5 minuti al massimo sul water."
           }
         },
         "ja" : {
@@ -6005,25 +6005,25 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os médicos recomendam no máximo 3 to 5 minutos no vaso."
+            "value" : "Os médicos recomendam no máximo de 3 a 5 minutos no vaso."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Врачи советуют не более 3 to 5 минут на унитазе."
+            "value" : "Врачи советуют проводить на унитазе не больше 3–5 минут."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doktorlar tuvalette en fazla 3 to 5 dakika diyor."
+            "value" : "Doktorlar tuvalette en fazla 3 ila 5 dakika diyor."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "医生建议如厕最多 3 to 5 分钟。"
+            "value" : "医生建议如厕最多 3 到 5 分钟。"
           }
         }
       }

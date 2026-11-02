@@ -142,16 +142,19 @@ struct LocalizationCatalogTests {
         #expect(mismatches.isEmpty, "[\(locale)] placeholder mismatches: \(mismatches)")
     }
 
-    /// A past bulk edit turned commas and dashes into ". " mid-sentence and swapped
-    /// full-width CJK punctuation for ASCII. Both read as broken text in those locales.
+    /// A past bulk edit turned commas and dashes into ". " mid-sentence, turned "3–5"
+    /// into "3 to 5", and swapped full-width CJK punctuation for ASCII. All of these
+    /// read as broken text in the affected locales.
     @Test func `Translations keep sentence punctuation intact`() throws {
         let strings = try loadCatalog()
         let midSentencePeriod = /\. \p{Ll}/
         let asciiNextToCJK = /[\p{Han}\p{Hiragana}\p{Katakana}][,:;!?]|[,:;!?][\p{Han}\p{Hiragana}\p{Katakana}]/
+        let englishRange = /\d to \d/
         var damaged: [String] = []
         for (key, entry) in strings {
             for locale in Self.requiredLocales {
                 guard let value = localizedValue(entry, locale: locale) else { continue }
+                if value.contains(englishRange) { damaged.append("\(key) [\(locale)]") }
                 switch locale {
                 case "ja", "zh-Hans":
                     if value.contains(asciiNextToCJK) { damaged.append("\(key) [\(locale)]") }
