@@ -111,12 +111,10 @@ Ejemplo:
   naturally to `es-MX`/LatAm users. Only add a separate `es-MX` App Store Connect
   listing if you want Mexico-specific keywords, pricing, or promotional text — not
   required for correctness.
-- **Screenshots**: the existing screenshot pipeline (`scripts/frame_screenshots_v2.py`,
-  `AppStore/Screenshots/`) produces English-captioned marketing screenshots. Spanish
-  App Store listings need their own captioned screenshot set (same device frames, translated
-  caption text) before this listing can be considered complete for submission — that's a
-  screenshot-pipeline task, not a code change, and is not included in this pass.
-  See the `app-store-screenshots` skill for the localized-screenshot workflow.
+- **Screenshots**: the current marketing screenshots (`AppStore/Screenshots/`) have
+  English captions. A Spanish listing needs its own captioned set (same device frames,
+  translated captions) before it is complete for submission. That is a screenshot task,
+  not a code change.
 - **Pricing/availability/tax**: unaffected by adding a Spanish listing — App Store
   pricing and territory availability are configured independently in App Store Connect
   and are unchanged by this work.

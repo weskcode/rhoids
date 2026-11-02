@@ -80,11 +80,6 @@ actor NotificationService {
         return granted
     }
 
-    /// Reads the current authorization status without prompting.
-    func authorizationStatus() async -> UNAuthorizationStatus {
-        await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
-    }
-
     /// Bumps the daily-reminder scheduling generation and returns a token for
     /// it - both `scheduleDailyReminder` and `cancelDailyReminder` call this
     /// first, so whichever runs last "wins": an earlier call's `add()` that

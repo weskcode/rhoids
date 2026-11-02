@@ -5,7 +5,7 @@ Procedural alarm-sound generator for RHOIDS.
 Synthesizes 12 natural, calm notification tones and writes them as mono
 16-bit .caf files into Sources/RHOIDS/Resources/Sounds/.
 
-Design goals (per user feedback "the dings are too fast / not natural"):
+Design goals (slow, natural-sounding tones rather than rapid dings):
   * Real instrument physics: inharmonic partials for bells, exponential
     decay where higher partials fade faster, soft (click-free) attacks.
   * A trailing silence "gap" baked into every file so that when the alarm

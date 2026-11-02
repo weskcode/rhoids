@@ -146,7 +146,6 @@ targets:
         files:
           - HomeScreenWidget.swift
           - LockScreenWidget.swift
-          - WidgetRing.swift
           - WidgetIconArc.swift
           - WidgetMediumIdleView.swift
           - WidgetMediumRunningView.swift

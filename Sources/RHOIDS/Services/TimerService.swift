@@ -304,7 +304,8 @@ actor TimerService {
         }
     }
 
-    /// Resolves the mode that should actually drive completion messaging -     /// falls back to `nil` (today's neutral default copy) when Limited
+    /// Resolves the mode that should actually drive completion messaging;
+    /// falls back to `nil` (today's neutral default copy) when Limited
     /// Scrolling was picked but blocking won't really engage.
     private func resolvedMessagingMode(_ preferences: TimerPreferences) -> FocusLockMode? {
         FocusLockMode.effective(selected: preferences.focusLockMode, blockingWillEngage: preferences.focusLockBlockingWillEngage)
@@ -421,7 +422,8 @@ actor TimerService {
         if sideEffectsEnabled {
             // Start the Live Activity so the Dynamic Island / Lock Screen show the timer.
             // Awaited eagerly (like `start()`) rather than folded into the
-            // tracked side-effects task: LiveActivityService is idempotent -             // `end()`/`dismiss()` sweep up any orphaned activity even if this
+            // tracked side-effects task: LiveActivityService is idempotent:
+            // `end()`/`dismiss()` sweep up any orphaned activity even if this
             // races with a cancellation - so it isn't part of the
             // "cancelled timer still alerts" hazard the tracked task guards
             // against below.
