@@ -31,7 +31,9 @@ struct TimerCountdownText: View {
             .accessibilityValue(Self.formatted(accessibilityRemaining))
     }
 
-    private static func formatted(_ duration: TimeInterval) -> String {
+    /// Matches the live `Text(timerInterval:)` shape (`2:39`, `1:02:03`), so the
+    /// digits don't jump when the countdown freezes on stop or completion.
+    static func formatted(_ duration: TimeInterval) -> String {
         let totalSeconds = max(Int(ceil(duration)), 0)
         let hours = totalSeconds / 3600
         let minutes = (totalSeconds % 3600) / 60
@@ -40,6 +42,6 @@ struct TimerCountdownText: View {
         if hours > 0 {
             return String(format: "%d:%02d:%02d", hours, minutes, seconds)
         }
-        return String(format: "%02d:%02d", minutes, seconds)
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }

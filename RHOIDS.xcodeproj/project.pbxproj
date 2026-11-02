@@ -190,6 +190,7 @@
 		B42FC6F1A51D945032110348 /* TimerOutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAED3C257E6B636D76F4FD7 /* TimerOutcomeTests.swift */; };
 		B4804CCEEE75AFA6742655BA /* LiveActivityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3A22B0DF50EA61FAAA07BA /* LiveActivityServiceTests.swift */; };
 		B55678998AA1226C3ADC7519 /* ScreenTimeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292895CA715257238FC02040 /* ScreenTimeServiceTests.swift */; };
+		B670D4525FD24069B36F0B8A /* TimerCountdownTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C8CDA20CE29C27EEDD82 /* TimerCountdownTextTests.swift */; };
 		B6D48B80CF9F22888D81E97E /* TimerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA81BAA8D996BF952FE4F89C /* TimerServiceTests.swift */; };
 		B6DB0A4BBFF1B0AFCFC3F8DD /* WatchAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 840BA11C65FAD13F6B48DA91 /* WatchAppIcon.icon */; };
 		B9A4EB9A458B648D90280326 /* WidgetSetupChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF6C2A79DCA27192A942C0 /* WidgetSetupChecklist.swift */; };
@@ -323,33 +324,31 @@
 		0AC87C1644702D79ED22A174 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles;
+			dstPath = RepoFiles/Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				70A12CFA767FE5D68E011501 /* RHOIDS.storekit in CopyFiles */,
-				F3A1ABDA5B618F26D449FA4A /* project.yml in CopyFiles */,
+				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDS;
+			dstPath = RepoFiles/RHOIDS.xcodeproj;
 			dstSubfolderSpec = 7;
 			files = (
-				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
-				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		82F60B18E8CBB62377FFBE00 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget;
+			dstPath = RepoFiles;
 			dstSubfolderSpec = 7;
 			files = (
-				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
-				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
+				70A12CFA767FE5D68E011501 /* RHOIDS.storekit in CopyFiles */,
+				F3A1ABDA5B618F26D449FA4A /* project.yml in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,30 +369,32 @@
 		9EB7C689D8B8FF553B949737 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/RHOIDS.xcodeproj;
+			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
 			dstSubfolderSpec = 7;
 			files = (
-				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
+				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A7C9A9796908F641C96E4AE0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources;
+			dstPath = RepoFiles/Sources/RHOIDS;
 			dstSubfolderSpec = 7;
 			files = (
-				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
+				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
+				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B6DB2D127531AE30E4FB664D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
+			dstPath = RepoFiles/Sources/RHOIDSWidget;
 			dstSubfolderSpec = 7;
 			files = (
-				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
+				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
+				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +444,7 @@
 		1D1CC8FA4FB6CA0B515FAB72 /* singing_bowl.caf */ = {isa = PBXFileReference; path = singing_bowl.caf; sourceTree = "<group>"; };
 		1D7945DF1F298AA0E760EAD4 /* NotificationCategoryAlignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCategoryAlignmentTests.swift; sourceTree = "<group>"; };
 		1DFAE2D85F9C3E1FF623D056 /* TimerViewModelShieldingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModelShieldingTests.swift; sourceTree = "<group>"; };
+		1EA5C8CDA20CE29C27EEDD82 /* TimerCountdownTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownTextTests.swift; sourceTree = "<group>"; };
 		2141890E742EADC4AC6E44D4 /* RHOIDSWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHOIDSWidgetBundle.swift; sourceTree = "<group>"; };
 		229107AFF08F7780B2BC2F11 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		22E8B9087BBD5C393FE5995A /* AppOpenTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOpenTrackerTests.swift; sourceTree = "<group>"; };
@@ -927,6 +929,7 @@
 				87C0A8705B41A171D5EE00AA /* HomeViewModelTests.swift */,
 				745DCFA21FC6D02943604B75 /* OnboardingPageTests.swift */,
 				7A8D4847E317F0A70695617D /* OnboardingPermissionTests.swift */,
+				1EA5C8CDA20CE29C27EEDD82 /* TimerCountdownTextTests.swift */,
 				3F9204D351B554F726914FED /* TimerViewModelCompletionTests.swift */,
 				6382D4FAC8B002EA8DE2E276 /* TimerViewModelProgressTests.swift */,
 				190E945FA7A3252F82E231E8 /* TimerViewModelSessionLoggingTests.swift */,
@@ -1762,6 +1765,7 @@
 				5153539D59DAC0A0924838ED /* SoundPreferencesRoundTripTests.swift in Sources */,
 				BAA2360109C485175B2BF8CF /* SoundPreferencesTests.swift in Sources */,
 				BA1ED6606213B2E27D710B8D /* SyncedPreferencesResilienceTests.swift in Sources */,
+				B670D4525FD24069B36F0B8A /* TimerCountdownTextTests.swift in Sources */,
 				2B0C542595A1E13201A9FEBB /* TimerEventTests.swift in Sources */,
 				B42FC6F1A51D945032110348 /* TimerOutcomeTests.swift in Sources */,
 				AFC8DEF1A76B099E0D633CCF /* TimerQuipTests.swift in Sources */,
