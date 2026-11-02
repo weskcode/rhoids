@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-Please report suspected security or privacy issues privately to [wesleyk@duck.com](mailto:wesleyk@duck.com). Include the affected version, reproduction steps, impact, and any supporting logs or screenshots that do not expose unrelated personal data.
+Please report suspected security or privacy issues privately to [weskcode@duck.com](mailto:weskcode@duck.com). Include the affected version, reproduction steps, impact, and any supporting logs or screenshots that do not expose unrelated personal data.
 
 Do not open a public issue for an unpatched vulnerability. Please allow reasonable time to investigate and prepare a fix before public disclosure.
 
