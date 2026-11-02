@@ -10929,7 +10929,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hesap yok, akış yok, veri toplama yok. Sadece seni tuvaletten kaldıran bir zamanlayıcı."
+            "value" : "Hesap yok, akış yok, veri toplama yok. Sadece sizi tuvaletten kaldıran bir zamanlayıcı."
           }
         },
         "zh-Hans" : {
@@ -14076,7 +14076,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS ücretsiz; reklam ya da abonelik yok. İşine yarıyorsa bir bahşiş geliştirmenin sürmesine yardımcı olur."
+            "value" : "RHOIDS ücretsiz; reklam ya da abonelik yok. İşinize yarıyorsa bir bahşiş geliştirmenin sürmesine yardımcı olur."
           }
         },
         "zh-Hans" : {
@@ -16760,7 +16760,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zamanlayıcıları bileğinden başlat ve durdur."
+            "value" : "Zamanlayıcıları bileğinizden başlatın ve durdurun."
           }
         },
         "zh-Hans" : {
@@ -21210,7 +21210,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uygulamaların yeniden kullanılabilir. Gerçek bir mola verdin, tebrikler."
+            "value" : "Uygulamalarınız yeniden kullanılabilir. Gerçek bir mola verdiniz, tebrikler."
           }
         },
         "zh-Hans" : {
@@ -22849,9 +22849,21 @@
           }
         },
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Minuten"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Minuten"
+                }
+              }
+            }
           }
         },
         "en" : {
@@ -22873,15 +22885,39 @@
           }
         },
         "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld minutos"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutos"
+                }
+              }
+            }
           }
         },
         "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld minutes"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
           }
         },
         "hi" : {
@@ -22891,9 +22927,21 @@
           }
         },
         "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld minuti"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuti"
+                }
+              }
+            }
           }
         },
         "ja" : {
@@ -22909,9 +22957,21 @@
           }
         },
         "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld minutos"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutos"
+                }
+              }
+            }
           }
         },
         "ru" : {
@@ -27219,9 +27279,21 @@
     "%lld selected" : {
       "localizations" : {
         "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld seleccionadas"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionada"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionadas"
+                }
+              }
+            }
           }
         },
         "de" : {
@@ -27231,21 +27303,57 @@
           }
         },
         "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld sélectionnées"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sélectionnée"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sélectionnées"
+                }
+              }
+            }
           }
         },
         "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld selezionate"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selezionata"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selezionate"
+                }
+              }
+            }
           }
         },
         "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld selecionados"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selecionado"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selecionados"
+                }
+              }
+            }
           }
         },
         "ru" : {

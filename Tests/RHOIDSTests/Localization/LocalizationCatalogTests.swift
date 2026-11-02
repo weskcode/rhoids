@@ -22,7 +22,7 @@ struct LocalizationCatalogTests {
     /// their originally published language. Growing this list should be a deliberate,
     /// reviewed decision, not a silent side effect of forgetting to translate a new string.
     private static let exemptKeys: Set<String> = [
-        "%@", "%@ · %@", "%@ min", "%@, %@", "%lld%%", "0:00", "R", "RHOIDS", "RHOIDS · %@",
+        "%@", "%@ · %@", "%@, %@", "%lld%%", "0:00", "R", "RHOIDS", "RHOIDS · %@",
         "%@. %@", "%@, %@, %@",
         "Esmaeilnia Shirvani et al., Annals of Medicine, 2025",
         "Hemorrhoids: from basic pathophysiology to clinical management",
@@ -61,10 +61,15 @@ struct LocalizationCatalogTests {
         return string.replacing("%%", with: "").matches(of: pattern).count
     }
 
+    /// The plain value, or the `other` plural form when the locale uses plural variations.
     private func localizedValue(_ entry: [String: Any], locale: String) -> String? {
         guard let localizations = entry["localizations"] as? [String: Any],
-              let localization = localizations[locale] as? [String: Any],
-              let stringUnit = localization["stringUnit"] as? [String: Any],
+              let localization = localizations[locale] as? [String: Any] else {
+            return nil
+        }
+        let plural = (localization["variations"] as? [String: Any])?["plural"] as? [String: Any]
+        let unitHolder = (plural?["other"] as? [String: Any]) ?? localization
+        guard let stringUnit = unitHolder["stringUnit"] as? [String: Any],
               let value = stringUnit["value"] as? String else {
             return nil
         }

@@ -143,6 +143,7 @@
 		8A805FB77C1A7789FFDB8A0B /* TimerCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51766474A31AD07D0BBF59F /* TimerCompleteView.swift */; };
 		8B0E27C6B3B2D66990596CCD /* TimerStylePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5912EB45DFF51A7CDCAD8F6 /* TimerStylePreview.swift */; };
 		8D6B6BB035D6841F601B944C /* StartDefaultTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2B66625DD7EEC4D15F55F /* StartDefaultTimerIntent.swift */; };
+		953207F185B06854029E23C2 /* NotificationPermissionRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892266373C62C68ADDD69C92 /* NotificationPermissionRequesting.swift */; };
 		9532EF3B54FD3E8ABB31391B /* TimerViewModelSessionLoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E945FA7A3252F82E231E8 /* TimerViewModelSessionLoggingTests.swift */; };
 		959B275E2711D58282C14C9C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D4C6C8D8759AD45364FC846C /* Localizable.xcstrings */; };
 		9608D1AE602313260D4CEF2A /* marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 52452B489DE17F0027C3D617 /* marimba.caf */; };
@@ -248,7 +249,6 @@
 		F853AA7EAAEA65042CCDCECD /* FocusLockPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CB1A0DA755BF6445CD33C0 /* FocusLockPreferencesTests.swift */; };
 		F887E1DB51A94D9302053A7B /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D70C6E4F4A5F8D428AD6B3 /* UserPreferences.swift */; };
 		F9B221C5300D5E08A7327690 /* harp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6A008DB88348FF4D0BBE5F85 /* harp.caf */; };
-		F9B4F9F9A2FD051D02E8AFF9 /* NotificationAuthorizationChecking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E1EA3B66FE854CAFFE24BE /* NotificationAuthorizationChecking.swift */; };
 		FB6031D1BE080B54C9C47D6C /* OnboardingPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745DCFA21FC6D02943604B75 /* OnboardingPageTests.swift */; };
 		FC7E7D3A7C4B04DFF2823835 /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B20F7B1BEBE0F02CC5B178 /* AdaptiveLayout.swift */; };
 		FE6D252A5C960C0DD35987C7 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A474D43D64BC06DB6B3367C /* DesignTokens.swift */; };
@@ -466,6 +466,7 @@
 		84ECCA950964E71ADEF74E02 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		87C0A8705B41A171D5EE00AA /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		886ACC42DB0F6B32A783F44F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		892266373C62C68ADDD69C92 /* NotificationPermissionRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionRequesting.swift; sourceTree = "<group>"; };
 		8A7EB07D33F752C3253DB0BA /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		8AA00680A05292685AF71C25 /* LiveActivityTimerRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityTimerRangeTests.swift; sourceTree = "<group>"; };
 		8B395874165F838B1F9A228B /* TimerServiceAdoptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceAdoptionTests.swift; sourceTree = "<group>"; };
@@ -550,7 +551,6 @@
 		F60068707AB655F76AF7B20F /* StreakAchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakAchievementsView.swift; sourceTree = "<group>"; };
 		F603D80A145D20360EE6F7E7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F6C7C0709EC1ECE1AD20ABD4 /* TimerPresetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPresetEntity.swift; sourceTree = "<group>"; };
-		F7E1EA3B66FE854CAFFE24BE /* NotificationAuthorizationChecking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAuthorizationChecking.swift; sourceTree = "<group>"; };
 		F9CB1A0DA755BF6445CD33C0 /* FocusLockPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusLockPreferencesTests.swift; sourceTree = "<group>"; };
 		FA6D488A87A09B6295097754 /* background.svg */ = {isa = PBXFileReference; path = background.svg; sourceTree = "<group>"; };
 		FA81BAA8D996BF952FE4F89C /* TimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceTests.swift; sourceTree = "<group>"; };
@@ -918,7 +918,7 @@
 				EC2DE317DB4FFC2EFED46FEF /* AppServices.swift */,
 				13AE47B998B428455E59FC5B /* DailyUseTracker.swift */,
 				A59364F1BD7565B30148A0C9 /* LiveActivityService.swift */,
-				F7E1EA3B66FE854CAFFE24BE /* NotificationAuthorizationChecking.swift */,
+				892266373C62C68ADDD69C92 /* NotificationPermissionRequesting.swift */,
 				DA1148EC2A0B1F06AE5E777A /* NotificationPermissionService.swift */,
 				06D5DD8699A5F0485FFBBA0D /* NotificationService.swift */,
 				4138AA66ABA6943ED9FC8165 /* PhoneConnectivityService.swift */,
@@ -1750,7 +1750,7 @@
 				544E3356D4CBCEC75DED52DC /* HomeView.swift in Sources */,
 				60CC43EF34DD2A22C7F0BDE0 /* HomeViewModel.swift in Sources */,
 				A8C33445E782AE25EB10B672 /* LiveActivityService.swift in Sources */,
-				F9B4F9F9A2FD051D02E8AFF9 /* NotificationAuthorizationChecking.swift in Sources */,
+				953207F185B06854029E23C2 /* NotificationPermissionRequesting.swift in Sources */,
 				1C8CA13F23CD94032A524CC4 /* NotificationPermissionService.swift in Sources */,
 				859B527AAAAF5B6E48792607 /* NotificationService.swift in Sources */,
 				5B5E7B6987A11EF1621DA3FF /* OnboardingFeatureRow.swift in Sources */,

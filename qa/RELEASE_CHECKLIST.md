@@ -1,20 +1,20 @@
 # RHOIDS Release Readiness Checklist
 
-Last updated: August 26, 2026
+Last updated: November 2, 2026
 
 This document separates evidence the repository can prove from checks that require a signed physical device or App Store Connect. Passing local and CI tests is important, but it is not the same as release approval.
 
 ## Current Automated Evidence
 
-- XcodeGen 2.45.4 regenerated `RHOIDS.xcodeproj` from `project.yml` successfully.
-- The iPhone suite passed 746 tests across 70 suites on an iPhone simulator.
-- The Apple Watch suite passed 24 tests across 3 suites on an Apple Watch simulator.
-- GitHub Actions completed project discovery, the iPhone build, iPhone tests, and Apple Watch tests successfully for commit `2b60932`.
-- The privacy manifest passes property-list validation and declares no tracking or collected data.
-- The screenshot generator reproduced and validated ten opaque RGB PNGs with embedded sRGB metadata at 1284 by 2778 pixels.
-- `git diff --check` and Python script compilation passed.
+Recorded November 2, 2026 for the 1.1.1 release branch with Xcode 27.2 and XcodeGen 2.46.0:
 
-The local tests used Xcode beta because the machine's active developer directory pointed to Command Line Tools. CI independently passed with its hosted Xcode installation.
+- The iPhone suite passed 764 tests with no failures or skips on an iPhone 17e simulator running iOS 27.2.
+- The `RHOIDS` scheme built for the simulator, and a Release build for a generic iOS device succeeded with code signing disabled.
+- The Apple Watch suite was not run: no watchOS simulator runtime is installed on the release machine. Run it in Xcode Cloud or on a machine with a watchOS runtime before release.
+- No iOS 26.0 runtime was available, so the deployment-floor check is still open.
+- The app was exercised in German on the simulator: onboarding, preset selection, a timer start and early stop, the completion sheet, History, streak achievements, and Settings. The completion sheet was also checked at the largest accessibility text size.
+- The privacy manifest passes property-list validation and declares no tracking or collected data.
+- `git diff --check` passed.
 
 ## Release Configuration
 
