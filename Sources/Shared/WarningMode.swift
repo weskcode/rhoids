@@ -8,7 +8,7 @@ enum WarningMode: String, CaseIterable, Identifiable, Codable, Sendable {
 
     var displayName: String {
         switch self {
-        case .endOnly: String(localized: "End Only")
+        case .endOnly: String(localized: "Once")
         case .recurring: String(localized: "Every 30 Seconds")
         }
     }

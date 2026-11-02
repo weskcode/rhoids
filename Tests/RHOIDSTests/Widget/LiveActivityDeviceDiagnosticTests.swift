@@ -50,7 +50,7 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("Main app Info.plist must include NSSupportsLiveActivities")
     func mainAppInfoPlistHasLiveActivities() throws {
-        let plistPath = try findProjectRoot() + "/Sources/RHOIDS/Info.plist"
+        let plistPath = try RepoFile.url("Sources/RHOIDS/Info.plist").path
         let data = try Data(contentsOf: URL(fileURLWithPath: plistPath))
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any]
         let value = try #require(plist?["NSSupportsLiveActivities"] as? Bool,
@@ -60,7 +60,7 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("Widget Info.plist must include NSSupportsLiveActivities")
     func widgetInfoPlistHasLiveActivities() throws {
-        let plistPath = try findProjectRoot() + "/Sources/RHOIDSWidget/Info.plist"
+        let plistPath = try RepoFile.url("Sources/RHOIDSWidget/Info.plist").path
         let data = try Data(contentsOf: URL(fileURLWithPath: plistPath))
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any]
         let value = try #require(plist?["NSSupportsLiveActivities"] as? Bool,
@@ -70,7 +70,7 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("Widget Info.plist NSExtensionPointIdentifier is correct")
     func widgetExtensionPointIsCorrect() throws {
-        let plistPath = try findProjectRoot() + "/Sources/RHOIDSWidget/Info.plist"
+        let plistPath = try RepoFile.url("Sources/RHOIDSWidget/Info.plist").path
         let data = try Data(contentsOf: URL(fileURLWithPath: plistPath))
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any]
         let ext = try #require(plist?["NSExtension"] as? [String: Any])
@@ -100,9 +100,8 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("App and widget extension must share the same App Group")
     func appGroupEntitlementsMatch() throws {
-        let root = try findProjectRoot()
-        let appGroups = try extractAppGroups(from: root + "/Sources/RHOIDS/RHOIDS.entitlements")
-        let widgetGroups = try extractAppGroups(from: root + "/Sources/RHOIDSWidget/RHOIDSWidget.entitlements")
+        let appGroups = try extractAppGroups(from: RepoFile.url("Sources/RHOIDS/RHOIDS.entitlements").path)
+        let widgetGroups = try extractAppGroups(from: RepoFile.url("Sources/RHOIDSWidget/RHOIDSWidget.entitlements").path)
 
         try #require(appGroups.isEmpty == false, "App must have at least one App Group")
         try #require(widgetGroups.isEmpty == false, "Widget must have at least one App Group")
@@ -138,7 +137,7 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("project.yml widget sources should not include framework-restricted files")
     func projectYmlDoesNotIncludeRestrictedFiles() throws {
-        let ymlPath = try findProjectRoot() + "/project.yml"
+        let ymlPath = try RepoFile.url("project.yml").path
         let content = try String(contentsOfFile: ymlPath, encoding: .utf8)
 
         let restrictedFiles = ["AlarmKitService.swift", "FocusLockNames.swift", "FocusLockPreferences.swift"]
@@ -150,7 +149,7 @@ struct LiveActivityDeviceDiagnosticTests {
 
     @Test("Dynamic Island avoids timer-driven ProgressView snapshots")
     func dynamicIslandAvoidsTimerDrivenProgressView() throws {
-        let liveActivityPath = try findProjectRoot() + "/Sources/RHOIDSWidget/LiveActivity/RHOIDSLiveActivityWidget.swift"
+        let liveActivityPath = try RepoFile.url("Sources/RHOIDSWidget/LiveActivity/RHOIDSLiveActivityWidget.swift").path
         let content = try String(contentsOfFile: liveActivityPath, encoding: .utf8)
         let dynamicIslandSource = try extractDynamicIslandSource(from: content)
 
@@ -162,20 +161,8 @@ struct LiveActivityDeviceDiagnosticTests {
 
     // MARK: - Helpers
 
-    private func findProjectRoot() throws -> String {
-        var dir = URL(fileURLWithPath: #filePath)
-        for _ in 0..<10 {
-            dir = dir.deletingLastPathComponent()
-            let pbxproj = dir.appendingPathComponent("RHOIDS.xcodeproj/project.pbxproj")
-            if FileManager.default.fileExists(atPath: pbxproj.path) {
-                return dir.path
-            }
-        }
-        throw TestHelperError.projectRootNotFound
-    }
-
     private func findPbxproj() throws -> String {
-        try findProjectRoot() + "/RHOIDS.xcodeproj/project.pbxproj"
+        try RepoFile.url("RHOIDS.xcodeproj/project.pbxproj").path
     }
 
     private func extractWidgetSourceFiles(from pbxproj: String) throws -> Set<String> {
@@ -241,7 +228,6 @@ struct LiveActivityDeviceDiagnosticTests {
     }
 
     private enum TestHelperError: Error {
-        case projectRootNotFound
         case buildPhaseNotFound
         case widgetSourceFilesNotFound
         case dynamicIslandSourceNotFound

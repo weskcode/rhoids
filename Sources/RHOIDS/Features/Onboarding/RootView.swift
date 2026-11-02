@@ -14,8 +14,13 @@ struct RootView: View {
 
     /// Set the env var `FORCE_ONBOARDING=1` (Xcode → Edit Scheme → Run → Arguments
     /// → Environment Variables) to always show onboarding for QA / screenshots.
+    /// DEBUG-only - release builds ignore it.
     private static var forceOnboarding: Bool {
+        #if DEBUG
         ProcessInfo.processInfo.environment["FORCE_ONBOARDING"] == "1"
+        #else
+        false
+        #endif
     }
 
     #if DEBUG

@@ -22,6 +22,26 @@ struct FocusLockConsistencyTests {
                 "FocusLockMonitor hardcodes this key - changing it would leave shields stuck on after cooldown expires")
     }
 
+    @Test func `cooldownEndDate key matches the value FocusLockMonitor reads and writes`() {
+        // The deadline is what every stale-shield recovery path compares against:
+        // FocusLockMonitor.applyShieldFromSavedSelection() and its
+        // intervalWillEndWarning branch, ScreenTimeService.refreshShieldsActiveState(),
+        // and FocusLockShieldAction.clearExpiredCooldownIfNeeded(). A rename would
+        // leave the extension writing one key and the app reading another, so no
+        // path would ever observe an expired cooldown and the shield would stay up
+        // with no automatic way out.
+        #expect(FocusLockPreferences.cooldownEndDateKey == "focusLockCooldownEndDate",
+                "FocusLockMonitor hardcodes this key - changing it would strand shields with no expiry anyone can see")
+    }
+
+    @Test func `cooldownDuration key matches the value FocusLockMonitor reads`() {
+        // FocusLockMonitor reads this to size the cooldown it schedules. A rename
+        // would silently fall back to the 300s default, so a user who chose a
+        // 30-minute cooldown would be unblocked after 5.
+        #expect(FocusLockPreferences.cooldownDurationKey == "focusLockCooldown",
+                "FocusLockMonitor hardcodes this key - changing it would silently downgrade every cooldown to the default")
+    }
+
     @Test func `DeviceActivity name matches the value FocusLockMonitor listens for`() {
         #expect(DeviceActivityName.focusLockCooldown.rawValue == "com.wesley.RHOIDS.focusLockCooldown",
                 "FocusLockMonitor uses a private extension with this exact raw value")
@@ -165,5 +185,59 @@ struct FocusLockConsistencyTests {
 
         #expect(plan.monitoringDuration == 15 * 60)
         #expect(plan.endWarningOffset == TimeInterval(15 * 60 - 1))
+    }
+
+    // MARK: - Cooldown extension decision (pure logic - see FocusLockMonitor.extendCooldownIfNeeded)
+    //
+    // FocusLockMonitor can't import the main app target (see the note at the top of
+    // FocusLockMonitor.swift), so the pure decision behind extendCooldownIfNeeded(pastDeadline:)
+    // lives in Sources/Shared as `FocusLockCooldownExtension` instead of on FocusLockMonitor
+    // itself - that's what makes it reachable here via @testable import RHOIDS. Nothing in the
+    // UI blocks starting a second Limited Scrolling timer while an earlier one's shield/cooldown
+    // is still active, so a duplicate bathroom-session-end delivery must extend the deadline
+    // rather than silently discarding this session's chosen cooldown (mirrors the same fix on
+    // ScreenTimeService.extendedDeadline).
+
+    @Test func `extendedDeadline extends when a fresh cooldown would run later`() throws {
+        let existingDeadline = Date.now.addingTimeInterval(120) // 2 minutes left
+        let result = FocusLockCooldownExtension.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: 1800 // this session's cooldown: 30 minutes
+        )
+        let extended = try #require(
+            result,
+            "A longer newly-chosen cooldown must extend the deadline, not be silently dropped"
+        )
+        #expect(extended > existingDeadline)
+    }
+
+    @Test func `extendedDeadline no-ops when the existing cooldown already runs later`() {
+        // The reverse direction: the ALREADY-active cooldown (or a genuine
+        // duplicate delivery of the same one) is longer than what a fresh
+        // cooldown from right now would produce. The user must never be
+        // unblocked sooner than the longer deadline already promised.
+        let existingDeadline = Date.now.addingTimeInterval(1800) // 30 minutes left
+        let result = FocusLockCooldownExtension.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: 120 // this session's cooldown: 2 minutes
+        )
+        #expect(result == nil, "A shorter session must not shorten an already-promised longer cooldown")
+    }
+
+    @Test func `fallbackAfterFailedExtension restores the original deadline and remaining duration`() {
+        // startMonitoring failed for the extended deadline, after the
+        // earlier (shorter) cooldown's monitoring was already stopped -
+        // restore the deadline that will actually clear the shield, and
+        // size the re-armed fallback schedule off however much time is
+        // actually left on it, rather than leaving the stored value
+        // pointing at a time nothing will act on.
+        let now = Date.now
+        let existingDeadline = now.addingTimeInterval(900) // 15 minutes left
+        let fallback = FocusLockCooldownExtension.fallbackAfterFailedExtension(
+            pastDeadline: existingDeadline,
+            now: now
+        )
+        #expect(fallback.deadline == existingDeadline)
+        #expect(fallback.monitoringDuration == 900)
     }
 }

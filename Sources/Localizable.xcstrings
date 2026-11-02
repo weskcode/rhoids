@@ -12,84 +12,260 @@
         }
       }
     },
-    "%@ day streak" : {
-      "extractionState" : "stale",
+    "%lld day streak" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "سلسلة %@ يوم"
+            "value" : "سلسلة %lld يوم"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Tage in Folge"
+            "value" : "%lld Tage in Folge"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Racha de %@ días"
+            "value" : "Racha de %lld días"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Série de %@ jours"
+            "value" : "Série de %lld jours"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ दिन की स्ट्रीक"
+            "value" : "%lld दिन की स्ट्रीक"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serie di %@ giorni"
+            "value" : "Serie di %lld giorni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@日連続"
+            "value" : "%lld日連続"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@일 연속"
+            "value" : "%lld일 연속"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sequência de %@ dias"
+            "value" : "Sequência de %lld dias"
           }
         },
         "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ дней подряд"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld день подряд"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дня подряд"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дней подряд"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дня подряд"
+                }
+              }
+            }
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ günlük seri"
+            "value" : "%lld günlük seri"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "连续%@天"
+            "value" : "连续%lld天"
           }
         }
       }
     },
-    "%@ min" : {},
+    "%lld min" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld دقيقة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Min."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld मिनट"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld分"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld분"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dk"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld 分钟"
+          }
+        }
+      }
+    },
+    "%lld sec" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ثانية"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Sek."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld s"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld s"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld सेकंड"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld s"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld秒"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld초"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld s"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld с"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld sn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld 秒"
+          }
+        }
+      }
+    },
     "%@, %@" : {
       "localizations" : {
         "en" : {
@@ -100,7 +276,7 @@
         }
       }
     },
-    "%@%%" : {},
+    "%lld%%" : {},
     "0:00" : {},
     "1 in 4 adults are affected" : {
       "extractionState" : "stale",
@@ -175,6 +351,158 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每 4 名成年人中就有 1 人受影响"
+          }
+        }
+      }
+    },
+    "30 seconds left. No need to hurry. You can always come back later." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تبقّت 30 ثانية. لا داعي للعجلة. يمكنك دائمًا العودة لاحقًا."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch 30 Sekunden. Kein Grund zur Eile. Du kannst jederzeit später wiederkommen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quedan 30 segundos. Sin prisa. Siempre puedes volver más tarde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus que 30 secondes. Rien ne presse. Vous pouvez toujours revenir plus tard."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 सेकंड बाकी। जल्दी की ज़रूरत नहीं। आप बाद में कभी भी लौट सकते हैं।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mancano 30 secondi. Nessuna fretta. Puoi sempre tornare più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り30秒。急がなくて大丈夫。いつでも後でまた来られます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30초 남았어요. 서두를 필요 없어요. 나중에 다시 와도 돼요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faltam 30 segundos. Sem pressa. Você sempre pode voltar depois."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осталось 30 секунд. Не спешите. Всегда можно вернуться позже."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 saniye kaldı. Acele etmene gerek yok. Sonra her zaman geri gelebilirsin."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还剩 30 秒。不用着急，随时可以待会儿再来。"
+          }
+        }
+      }
+    },
+    "30 seconds left. Remember: never strain." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تبقّت 30 ثانية. تذكّر: لا تُجهد نفسك أبدًا."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch 30 Sekunden. Denk dran: niemals pressen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quedan 30 segundos. Recuerda: nunca hagas fuerza."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus que 30 secondes. Souvenez-vous : ne forcez jamais."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 सेकंड बाकी। याद रखें: कभी ज़ोर न लगाएं।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mancano 30 secondi. Ricorda: non sforzarti mai."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り30秒。覚えておいて：決していきまないこと。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30초 남았어요. 기억하세요: 절대 힘주지 마세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faltam 30 segundos. Lembre-se: nunca force."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осталось 30 секунд. Помните: никогда не тужьтесь."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 saniye kaldı. Unutma: asla ıkınma."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还剩 30 秒。记住：千万别用力。"
           }
         }
       }
@@ -483,83 +811,6 @@
         }
       }
     },
-    "30 seconds left. Don't rush. Just start wrapping up." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "بقيت 30 ثانية. لا تتعجّل. ابدأ بالإنهاء فقط."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch 30 Sekunden. Nicht hetzen. komm einfach zum Schluss."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quedan 30 segundos. Sin prisa: ve terminando."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus que 30 secondes. Pas de précipitation. commencez à conclure."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 सेकंड बचे हैं। जल्दबाज़ी न करें. बस समेटना शुरू करें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restano 30 secondi. Niente fretta. inizia a concludere."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "残り30秒。焦らず、そろそろ切り上げを。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30초 남았어요. 서두르지 말고 마무리를 시작하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faltam 30 segundos. Sem pressa. vá finalizando."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Осталось 30 секунд. Не спешите. просто начинайте завершать."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 saniye kaldı. Acele etme. yavaşça toparlanmaya başla."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "还剩 30 秒。别急。慢慢收尾即可。"
-          }
-        }
-      }
-    },
     "30 seconds left. It's okay to walk away unfinished." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -637,83 +888,6 @@
         }
       }
     },
-    "30 seconds left. Wrap it up." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 ثانية متبقية. أنهِ الأمر."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch 30 Sekunden. Fertig machen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quedan 30 segundos. Termina."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 secondes restantes. Terminez."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 सेकंड बचे। निपटा लीजिए।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 secondi. Concludi."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "あと30秒。まとめて。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30초 남았습니다. 마무리하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 segundos. Finalize."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Осталось 30 секунд. Заканчивай."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 saniye kaldı. Tamamla."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "还剩30秒。收尾吧。"
-          }
-        }
-      }
-    },
     "30 seconds. No pushing! You can always try again." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -786,7 +960,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "30 秒。别用力!你随时可以再试。"
+            "value" : "30 秒。别用力！你随时可以再试。"
           }
         }
       }
@@ -939,7 +1113,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "哈佛医学院 2025 年的一项研究(Ramprasad 等人,发表于 PLOS One)调查了接受筛查性结肠镜检查的患者,发现如厕时使用手机与痔疮风险升高 46% 相关。"
+            "value" : "哈佛医学院 2025 年的一项研究（Ramprasad 等人，发表于 PLOS One）调查了接受筛查性结肠镜检查的患者，发现如厕时使用手机与痔疮风险升高 46% 相关。"
           }
         }
       }
@@ -1017,83 +1191,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在计时结束前 30 秒轻柔提醒一次。"
-          }
-        }
-      }
-    },
-    "A single alert sounds 30 seconds before your timer ends." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تنبيه قبل 30 ثانية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Alarm 30 Sekunden vor Ablauf."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una alerta suena 30 segundos antes."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une alerte 30 secondes avant la fin."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 सेकंड पहले अलर्ट।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un avviso 30 secondi prima."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "終了30秒前にアラート。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "종료 30초 전 알림."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um alerta 30 segundos antes."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оповещение за 30 секунд до конца."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30 saniye önce uyarı."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "结束前30秒提醒一次。"
           }
         }
       }
@@ -1234,7 +1331,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Унитаз устроен не как стул. Открытый вырез позволяет силе тяжести оттягивать кровь в вены прямой кишки, а без обычной поддержки тазового дна давление растёт быстро. Посидите достаточно долго. и эти вены набухают. Это и есть геморрой."
+            "value" : "Унитаз устроен не как стул. Открытый вырез позволяет силе тяжести оттягивать кровь в вены прямой кишки, а без обычной поддержки тазового дна давление растёт быстро. Посидите достаточно долго, и эти вены набухают. Это и есть геморрой."
           }
         },
         "tr" : {
@@ -1246,7 +1343,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "马桶不是椅子的形状。中间的开口让重力把血液往下拉入直肠静脉,而缺少正常的盆底支撑,压力会迅速积聚。坐得够久,这些静脉就会肿胀。这就是痔疮。"
+            "value" : "马桶不是椅子的形状。中间的开口让重力把血液往下拉入直肠静脉，而缺少正常的盆底支撑，压力会迅速积聚。坐得够久，这些静脉就会肿胀。这就是痔疮。"
           }
         }
       }
@@ -1322,7 +1419,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在任何时候,大约每 4 名成年人中就有 1 人患有痔疮。《Annals of Medicine》2025 年的一项荟萃分析考察了涵盖近 900 万人的 150 项研究,得出全球患病率为 26%。最可预防的单一诱因?如厕时间太长。"
+            "value" : "在任何时候，大约每 4 名成年人中就有 1 人患有痔疮。《Annals of Medicine》2025 年的一项荟萃分析考察了涵盖近 900 万人的 150 项研究，得出全球患病率为 26%。最可预防的单一诱因？如厕时间太长。"
           }
         }
       }
@@ -1704,84 +1801,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "即使应用已关闭或手机锁定,闹钟也会响起。响铃/静音开关仍会静音默认提示音。"
-          }
-        }
-      }
-    },
-    "Alarms won't sound through Do Not Disturb or when the app is in the background." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "لن تُسمع التنبيهات في وضع عدم الإزعاج أو عندما يكون التطبيق في الخلفية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alarme erklingen nicht bei „Nicht stören“ oder wenn die App im Hintergrund läuft."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las alarmas no sonarán con No molestar ni cuando la app esté en segundo plano."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les alarmes ne sonneront pas en mode Ne pas déranger ni lorsque l’app est en arrière-plan."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अलार्म परेशान न करें मोड में या जब ऐप बैकग्राउंड में हो, तब नहीं बजेंगे।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le sveglie non suoneranno in Non disturbare o quando l’app è in background."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アラームは「おやすみモード」中やAppがバックグラウンドのときは鳴りません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "방해 금지 모드이거나 앱이 백그라운드에 있을 때는 알람이 울리지 않습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Os alarmes não tocarão no Não Perturbe ou quando o app estiver em segundo plano."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Будильники не сработают в режиме «Не беспокоить» или когда приложение в фоне."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alarmlar Rahatsız Etme modunda veya uygulama arka plandayken çalmaz."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在“勿扰模式”下或应用处于后台时,闹钟不会响起。"
+            "value" : "即使应用已关闭或手机锁定，闹钟也会响起。响铃/静音开关仍会静音默认提示音。"
           }
         }
       }
@@ -1798,7 +1818,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fast geschafft. nichts überstürzen!"
+            "value" : "Fast geschafft, nichts überstürzen!"
           }
         },
         "es" : {
@@ -1810,7 +1830,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Presque fini. pas de précipitation !"
+            "value" : "Presque fini, pas de précipitation !"
           }
         },
         "hi" : {
@@ -1822,7 +1842,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quasi finito. niente fretta!"
+            "value" : "Quasi finito, niente fretta!"
           }
         },
         "ja" : {
@@ -1840,25 +1860,25 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quase lá. sem pressa!"
+            "value" : "Quase lá, sem pressa!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Почти всё. не торопитесь!"
+            "value" : "Почти всё, не торопитесь!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neredeyse bitti. acele etme!"
+            "value" : "Neredeyse bitti, acele etme!"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快好了。别着急!"
+            "value" : "快好了。别着急！"
           }
         }
       }
@@ -1923,7 +1943,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Почти всё. Если не закончили. вернётесь позже."
+            "value" : "Почти всё. Если не закончили, вернётесь позже."
           }
         },
         "tr" : {
@@ -1935,238 +1955,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快好了。如果还没完成,待会儿再来。"
-          }
-        }
-      }
-    },
-    "Almost there..." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "اقتربت..."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fast geschafft..."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Casi listo..."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bientôt fini..."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "लगभग हो गया..."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quasi finito..."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "もう少し…"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "거의 다 됐어요..."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quase lá..."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Почти всё..."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neredeyse bitti..."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "快到了……"
-          }
-        }
-      }
-    },
-    "Already installed. Start timers from your wrist." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "مُثبَّت بالفعل. ابدأ المؤقتات من معصمك."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bereits installiert. Starte Timer direkt vom Handgelenk."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ya instalado. Inicia temporizadores desde tu muñeca."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déjà installé. Lancez des minuteries depuis votre poignet."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पहले से इंस्टॉल। अपनी कलाई से टाइमर शुरू करें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Già installato. Avvia i timer dal polso."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "インストール済み。手首からタイマーを開始できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이미 설치됨. 손목에서 타이머를 시작하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Já instalado. Inicie temporizadores pelo seu pulso."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уже установлено. Запускайте таймеры прямо с запястья."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaten yüklü. Zamanlayıcıları bileğinizden başlatın."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已安装。从你的手腕启动计时器。"
-          }
-        }
-      }
-    },
-    "An alert sounds every 30 seconds throughout your session." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تنبيه كل 30 ثانية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Alarm alle 30 Sekunden."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una alerta cada 30 segundos durante la sesión."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une alerte toutes les 30 secondes."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "हर 30 सेकंड अलर्ट।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un avviso ogni 30 secondi."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30秒ごとにアラート。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "30초마다 알림."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um alerta a cada 30 segundos."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оповещение каждые 30 секунд."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Her 30 saniyede uyarı."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每30秒提醒一次。"
+            "value" : "快好了。如果还没完成，待会儿再来。"
           }
         }
       }
@@ -2552,6 +2341,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "平均"
+          }
+        }
+      }
+    },
+    "Avg. time" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متوسط الوقت"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø Dauer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo medio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée moy."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "औसत समय"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo medio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均時間"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평균 시간"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo médio"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среднее время"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ortalama süre"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均时长"
           }
         }
       }
@@ -3017,83 +2882,6 @@
         }
       }
     },
-    "Block distracting apps when your RHOIDS timer finishes. Requires Screen Time authorization." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "احجب التطبيقات المشتتة عند انتهاء مؤقت RHOIDS. يتطلب إذن وقت الشاشة."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Blockiere ablenkende Apps, wenn dein RHOIDS-Timer endet. Erfordert die Bildschirmzeit-Berechtigung."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bloquea las apps que distraen cuando termine tu temporizador de RHOIDS. Requiere autorización de Tiempo de uso."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bloquez les apps distrayantes à la fin de votre minuterie RHOIDS. Nécessite l’autorisation Temps d’écran."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "जब आपका RHOIDS टाइमर खत्म हो तो ध्यान भटकाने वाले ऐप्स को ब्लॉक करें। स्क्रीन टाइम की अनुमति आवश्यक है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Blocca le app che distraggono quando il timer RHOIDS finisce. Richiede l’autorizzazione a Tempo di utilizzo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDSのタイマー終了時に気を散らすAppをブロックします。スクリーンタイムの許可が必要です。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS 타이머가 끝나면 방해되는 앱을 차단합니다. 스크린 타임 권한이 필요합니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bloqueie apps que distraem quando seu timer RHOIDS terminar. Requer autorização do Tempo de Uso."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Блокируйте отвлекающие приложения по окончании таймера RHOIDS. Требуется доступ к «Экранному времени»."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS zamanlayıcınız bittiğinde dikkat dağıtan uygulamaları engelleyin. Ekran Süresi izni gerekir."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 RHOIDS 计时结束时屏蔽分散注意力的应用。需要“屏幕使用时间”授权。"
-          }
-        }
-      }
-    },
     "Blocked Apps" : {
       "localizations" : {
         "ar" : {
@@ -3243,83 +3031,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "光荣的肠道。胜利之门。"
-          }
-        }
-      }
-    },
-    "Breaks through Silent Mode" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يخترق الوضع الصامت"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durchbricht den Lautlosmodus"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suena aunque esté en silencio"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Passe outre le mode silencieux"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "साइलेंट मोड में भी बजता है"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supera la modalità silenziosa"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サイレントモードでも鳴ります"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "무음 모드도 뚫고 울립니다"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca mesmo no modo silencioso"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Срабатывает даже в беззвучном режиме"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sessiz modu aşar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "静音模式也能响起"
           }
         }
       }
@@ -3555,6 +3266,82 @@
         }
       }
     },
+    "Century" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مئة يوم"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hundert Tage"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cien días"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cent jours"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सौ दिन"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cento giorni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100日達成"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100일"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cem dias"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сто дней"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yüz gün"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "百日"
+          }
+        }
+      }
+    },
     "Changes take effect immediately, even for a timer that's already running." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3644,7 +3431,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sieh dir die Wissenschaftsseite in den Einstellungen an. dort findest du alle Studien."
+            "value" : "Sieh dir die Wissenschaftsseite in den Einstellungen an, dort findest du alle Studien."
           }
         },
         "es" : {
@@ -3656,7 +3443,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consultez la page Science dans Réglages. toutes les études y sont."
+            "value" : "Consultez la page Science dans Réglages, toutes les études y sont."
           }
         },
         "hi" : {
@@ -3686,19 +3473,19 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Confira a página Ciência nos Ajustes. toda a pesquisa está lá."
+            "value" : "Confira a página Ciência nos Ajustes, toda a pesquisa está lá."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Откройте раздел «Наука» в настройках. там все исследования."
+            "value" : "Откройте раздел «Наука» в настройках, там все исследования."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayarlar’daki Bilim sayfasına bakın. tüm araştırmalar orada."
+            "value" : "Ayarlar’daki Bilim sayfasına bakın, tüm araştırmalar orada."
           }
         },
         "zh-Hans" : {
@@ -4476,6 +4263,82 @@
         }
       }
     },
+    "Continue" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متابعة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जारी रखें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continua"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계속"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devam"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
+          }
+        }
+      }
+    },
     "Cooldown" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4855,7 +4718,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自定义时长(分钟)"
+            "value" : "自定义时长（分钟）"
           }
         }
       }
@@ -5935,83 +5798,6 @@
         }
       }
     },
-    "Dismiss timer completion" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "إغلاق إشعار انتهاء المؤقت"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Timer-Abschluss schließen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descartar el final del temporizador"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ignorer la fin de la minuterie"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "टाइमर पूर्णता खारिज करें"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ignora il completamento del timer"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイマー完了を閉じる"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "타이머 완료 닫기"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dispensar conclusão do timer"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Закрыть уведомление о завершении"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zamanlayıcı tamamlanmasını kapat"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "关闭计时完成提示"
-          }
-        }
-      }
-    },
     "Distracting apps are blocked." : {
       "localizations" : {
         "ar" : {
@@ -6177,13 +5963,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ärzte empfehlen maximal 3 to 5 Minuten auf der Toilette."
+            "value" : "Ärzte empfehlen maximal 3 bis 5 Minuten auf der Toilette."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los médicos dicen máximo 3 to 5 minutos en el inodoro."
+            "value" : "Los médicos dicen que de 3 a 5 minutos como máximo en el inodoro."
           }
         },
         "fr" : {
@@ -6195,13 +5981,13 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डॉक्टर कहते हैं: शौचालय पर अधिकतम 3 to 5 मिनट।"
+            "value" : "डॉक्टर कहते हैं: शौचालय पर अधिकतम 3 से 5 मिनट।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I medici dicono massimo 3 to 5 minuti sul water."
+            "value" : "I medici dicono da 3 a 5 minuti al massimo sul water."
           }
         },
         "ja" : {
@@ -6219,25 +6005,25 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os médicos recomendam no máximo 3 to 5 minutos no vaso."
+            "value" : "Os médicos recomendam no máximo de 3 a 5 minutos no vaso."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Врачи советуют не более 3 to 5 минут на унитазе."
+            "value" : "Врачи советуют проводить на унитазе не больше 3–5 минут."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doktorlar tuvalette en fazla 3 to 5 dakika diyor."
+            "value" : "Doktorlar tuvalette en fazla 3 ila 5 dakika diyor."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "医生建议如厕最多 3 to 5 分钟。"
+            "value" : "医生建议如厕最多 3 到 5 分钟。"
           }
         }
       }
@@ -6389,7 +6175,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完成,我已设置好"
+            "value" : "完成，我已设置好"
           }
         }
       }
@@ -6931,160 +6717,6 @@
         }
       }
     },
-    "Enabled" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "مُفعّل"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiviert"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activé"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सक्षम"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attivato"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "オン"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "활성화됨"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ativado"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включено"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Etkin"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已开启"
-          }
-        }
-      }
-    },
-    "End Only" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "في النهاية فقط"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur am Ende"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo al final"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fin uniquement"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "केवल अंत में"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo alla fine"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "終了時のみ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "종료 시에만"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apenas no final"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Только в конце"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yalnızca sonda"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "仅结束时"
-          }
-        }
-      }
-    },
     "Esmaeilnia Shirvani et al., Annals of Medicine, 2025" : {},
     "Every 30 Seconds" : {
       "extractionState" : "stale",
@@ -7316,6 +6948,82 @@
         }
       }
     },
+    "Finishes the introduction and opens the app." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُنهي المقدمة ويفتح التطبيق."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beendet die Einführung und öffnet die App."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina la introducción y abre la app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termine la présentation et ouvre l’app."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिचय पूरा करता है और ऐप खोलता है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina l’introduzione e apre l’app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "紹介を終えてアプリを開きます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "소개를 마치고 앱을 엽니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conclui a introdução e abre o app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершает вступление и открывает приложение."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanıtımı bitirir ve uygulamayı açar."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结束介绍并打开 App。"
+          }
+        }
+      }
+    },
     "Five more minutes is how it always starts." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -7376,7 +7084,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ещё пять минуток. вот как всё начинается."
+            "value" : "Ещё пять минуток — вот как всё начинается."
           }
         },
         "tr" : {
@@ -7466,83 +7174,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "翻页"
-          }
-        }
-      }
-    },
-    "Focus Lock" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "قفل التركيز"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fokus-Sperre"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bloqueo de enfoque"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verrouillage"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "फ़ोकस लॉक"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Blocco"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォーカスロック"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "집중 잠금"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bloqueio"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фокус-блокировка"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Odak kilidi"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "专注锁定"
           }
         }
       }
@@ -7772,7 +7403,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "温馨提示:用力 = 痔疮。别这么做。"
+            "value" : "温馨提示：用力 = 痔疮。别这么做。"
           }
         }
       }
@@ -7849,7 +7480,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每 30 秒轻柔提醒一次,让你保持放松、不要着急。"
+            "value" : "每 30 秒轻柔提醒一次，让你保持放松、不要着急。"
           }
         }
       }
@@ -8080,6 +7711,158 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "开始使用"
+          }
+        }
+      }
+    },
+    "Getting Started" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البداية"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Anfang"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeros pasos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premiers pas"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शुरुआत"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primi passi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "はじめの一歩"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫걸음"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeiros passos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первые шаги"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlk adımlar"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "起步"
+          }
+        }
+      }
+    },
+    "Goes to the next page." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ينتقل إلى الصفحة التالية."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geht zur nächsten Seite."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Va a la página siguiente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passe à la page suivante."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले पेज पर जाता है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passa alla pagina successiva."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次のページに進みます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 페이지로 이동합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vai para a próxima página."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переходит на следующую страницу."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki sayfaya geçer."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往下一页。"
           }
         }
       }
@@ -8848,7 +8631,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "弓背低头看手机会让情况更糟。休斯顿卫理公会医院的 Kalakota 医生解释说,这种姿势会改变直肠与肛门相接处的角度,进一步增加血管所受的压力。"
+            "value" : "弓背低头看手机会让情况更糟。休斯顿卫理公会医院的 Kalakota 医生解释说，这种姿势会改变直肠与肛门相接处的角度，进一步增加血管所受的压力。"
           }
         }
       }
@@ -8913,7 +8696,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вошёл. вышел. Олимпийская форма."
+            "value" : "Вошёл — вышел. Олимпийская форма."
           }
         },
         "tr" : {
@@ -9084,82 +8867,6 @@
         }
       }
     },
-    "It is not a wellness tracker. It is not social. It does not collect data. It just does one thing extremely well: it gets you off the toilet." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "إنه ليس متتبّع عافية. وليس تطبيقًا اجتماعيًا. ولا يجمع البيانات. إنه يفعل شيئًا واحدًا ببراعة: يجعلك تنهض عن المرحاض."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es ist kein Wellness-Tracker. Es ist nicht sozial. Es sammelt keine Daten. Es macht nur eine Sache extrem gut: Es holt dich von der Toilette."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No es un rastreador de bienestar. No es social. No recopila datos. Solo hace una cosa extremadamente bien: te levanta del inodoro."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ce n’est pas un tracker de bien-être. Ce n’est pas un réseau social. Il ne collecte pas de données. Il fait une seule chose, très bien : il vous fait quitter les toilettes."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "यह वेलनेस ट्रैकर नहीं है। यह सोशल नहीं है। यह डेटा एकत्र नहीं करता। यह बस एक काम बेहद अच्छे से करता है: आपको शौचालय से उठा देता है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non è un tracker del benessere. Non è social. Non raccoglie dati. Fa solo una cosa, e benissimo: ti fa alzare dal water."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ウェルネストラッカーではありません。SNSでもありません。データも収集しません。ただ一つのことを極めてうまくやります。あなたをトイレから立たせるのです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "웰니스 트래커가 아닙니다. 소셜도 아닙니다. 데이터를 수집하지 않습니다. 단 한 가지만 아주 잘합니다. 당신을 변기에서 일어나게 합니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não é um monitor de bem-estar. Não é social. Não coleta dados. Faz apenas uma coisa muito bem: tira você do vaso."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Это не трекер здоровья. Это не соцсеть. Он не собирает данные. Он делает одно, но превосходно: поднимает вас с унитаза."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bir sağlık takip aracı değil. Sosyal bir uygulama değil. Veri toplamaz. Sadece tek bir şeyi son derece iyi yapar: sizi tuvaletten kaldırır."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "它不是健康追踪器,不是社交应用,也不收集数据。它只把一件事做到极致:让你离开马桶。"
-          }
-        }
-      }
-    },
     "Keep Editing" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -9233,83 +8940,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "继续编辑"
-          }
-        }
-      }
-    },
-    "Keep it moving." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "استمر."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weiter machen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sigue moviéndote."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continuez."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "जारी रखें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continua così."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "そのまま進めて。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "계속 진행하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продолжай."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Devam et."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "继续加油。"
           }
         }
       }
@@ -9921,7 +9551,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS 的实时活动已关闭。请在“设置”>“RHOIDS”>“实时活动”中开启,即可在锁定屏幕和灵动岛上看到计时器。"
+            "value" : "RHOIDS 的实时活动已关闭。请在“设置”>“RHOIDS”>“实时活动”中开启，即可在锁定屏幕和灵动岛上看到计时器。"
           }
         }
       }
@@ -10004,6 +9634,82 @@
       }
     },
     "Lohsiriwat, World J. Gastroenterology, 2012" : {},
+    "Long press your Home Screen until the apps wiggle" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط مطولًا على الشاشة الرئيسية حتى تهتز التطبيقات"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Home-Bildschirm gedrückt, bis die Apps wackeln"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantén pulsada la pantalla de inicio hasta que las apps se muevan"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maintenez le doigt sur l’écran d’accueil jusqu’à ce que les apps bougent"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "होम स्क्रीन को तब तक दबाए रखें जब तक ऐप्स हिलने न लगें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tieni premuto sulla schermata Home finché le app non tremolano"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリが揺れ始めるまでホーム画面を長押しします"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱이 흔들릴 때까지 홈 화면을 길게 누르세요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque e segure a Tela de Início até os apps tremerem"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите и удерживайте экран «Домой», пока приложения не начнут покачиваться"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamalar titreyene kadar Ana Ekran’a basılı tutun"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "长按主屏幕，直到 App 开始晃动"
+          }
+        }
+      }
+    },
     "Mail Isn’t Available" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -10922,7 +10628,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "来自不同机构的多位医生各自独立地得出了相同的数字。克利夫兰诊所结直肠外科医生 Michael Valente:“五分钟确实应该是上限。”哈佛胃肠科医生 Trisha Pasricha:“如果五分钟内没有动静,那就不会有了。”"
+            "value" : "来自不同机构的多位医生各自独立地得出了相同的数字。克利夫兰诊所结直肠外科医生 Michael Valente：“五分钟确实应该是上限。”哈佛胃肠科医生 Trisha Pasricha：“如果五分钟内没有动静，那就不会有了。”"
           }
         }
       }
@@ -11158,6 +10864,82 @@
         }
       }
     },
+    "No accounts, no feeds, no data collection. Just a timer that gets you off the toilet." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بلا حسابات ولا خلاصات ولا جمع للبيانات. مجرد مؤقت يُنهضك عن المرحاض."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Konten, keine Feeds, keine Datensammlung. Nur ein Timer, der dich von der Toilette holt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin cuentas, sin feeds, sin recopilar datos. Solo un temporizador que te saca del baño."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas de compte, pas de fil d’actualité, aucune collecte de données. Juste un minuteur qui vous fait quitter les toilettes."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "न अकाउंट, न फ़ीड, न डेटा संग्रह। बस एक टाइमर जो आपको टॉयलेट से उठाता है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niente account, niente feed, nessuna raccolta di dati. Solo un timer che ti fa alzare dal water."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントもフィードもなく、データも収集しません。トイレから立ち上がるためのタイマーです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정도, 피드도, 데이터 수집도 없어요. 화장실에서 일어나게 해 주는 타이머예요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem contas, sem feeds, sem coleta de dados. Só um timer que tira você do vaso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без аккаунтов, лент и сбора данных. Просто таймер, который поднимает вас с унитаза."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesap yok, akış yok, veri toplama yok. Sadece sizi tuvaletten kaldıran bir zamanlayıcı."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有账户，没有信息流，也不收集数据。只是一个让你离开马桶的计时器。"
+          }
+        }
+      }
+    },
     "No rushing. If it's not happening, that's okay." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -11218,7 +11000,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не спешите. Не получается. и ладно."
+            "value" : "Не спешите. Не получается, и ладно."
           }
         },
         "tr" : {
@@ -11538,84 +11320,83 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "还没好?别有压力。先离开,待会儿再试。"
+            "value" : "还没好？别有压力。先离开，待会儿再试。"
           }
         }
       }
     },
-    "Not Now" : {
-      "extractionState" : "stale",
+    "Notification permission has already been requested." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ليس الآن"
+            "value" : "تم طلب إذن الإشعارات بالفعل."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nicht jetzt"
+            "value" : "Die Berechtigung für Benachrichtigungen wurde bereits angefragt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ahora no"
+            "value" : "Ya se solicitó el permiso de notificaciones."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas maintenant"
+            "value" : "L’autorisation des notifications a déjà été demandée."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "अभी नहीं"
+            "value" : "नोटिफ़िकेशन की अनुमति पहले ही मांगी जा चुकी है।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Non ora"
+            "value" : "Il permesso per le notifiche è già stato richiesto."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "今はしない"
+            "value" : "通知の許可はすでにリクエスト済みです。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "나중에"
+            "value" : "알림 권한을 이미 요청했습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agora não"
+            "value" : "A permissão de notificações já foi solicitada."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не сейчас"
+            "value" : "Разрешение на уведомления уже запрошено."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Şimdi değil"
+            "value" : "Bildirim izni zaten istendi."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "暂时不"
+            "value" : "已请求过通知权限。"
           }
         }
       }
@@ -11767,7 +11548,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS 的通知已关闭。请在“设置”中开启,以便听到闹钟。"
+            "value" : "RHOIDS 的通知已关闭。请在“设置”中开启，以便听到闹钟。"
           }
         }
       }
@@ -11849,85 +11630,83 @@
         }
       }
     },
-    "Notifications Disabled" : {
-      "extractionState" : "stale",
+    "Notifications Enabled" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الإشعارات معطلة"
+            "value" : "الإشعارات مفعّلة"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Benachrichtigungen deaktiviert"
+            "value" : "Benachrichtigungen an"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notificaciones desactivadas"
+            "value" : "Notificaciones activadas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifications désactivées"
+            "value" : "Notifications activées"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "नोटिफ़िकेशन अक्षम"
+            "value" : "नोटिफ़िकेशन चालू"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifiche disattivate"
+            "value" : "Notifiche attivate"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知が無効です"
+            "value" : "通知オン"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "알림 비활성화됨"
+            "value" : "알림 켜짐"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notificações desativadas"
+            "value" : "Notificações ativadas"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уведомления отключены"
+            "value" : "Уведомления включены"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bildirimler devre dışı"
+            "value" : "Bildirimler açık"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知已禁用"
+            "value" : "通知已开启"
           }
         }
       }
     },
     "Notifications Off" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12157,79 +11936,154 @@
         }
       }
     },
-    "One alert when time’s up. That’s it." : {
-      "extractionState" : "stale",
+    "Once" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تنبيه واحد عند انتهاء الوقت. هذا كل شيء."
+            "value" : "مرة واحدة"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Meldung, wenn die Zeit um ist. Mehr nicht."
+            "value" : "Einmal"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un aviso cuando se acabe el tiempo. Nada más."
+            "value" : "Una vez"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Une alerte quand le temps est écoulé. C’est tout."
+            "value" : "Une fois"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "समय खत्म होने पर एक अलर्ट। बस इतना ही।"
+            "value" : "एक बार"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un avviso a tempo scaduto. Tutto qui."
+            "value" : "Una volta"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "時間切れに通知が1回。それだけです。"
+            "value" : "1回のみ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시간이 다 되면 알림 한 번. 그게 전부예요."
+            "value" : "한 번만"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um aviso quando o tempo acabar. Só isso."
+            "value" : "Uma vez"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Одно уведомление, когда время вышло. И всё."
+            "value" : "Один раз"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Süre dolunca tek bir uyarı. Hepsi bu."
+            "value" : "Bir kez"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "时间到时提醒一次,仅此而已。"
+            "value" : "一次"
+          }
+        }
+      }
+    },
+    "One Month" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شهر كامل"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Monat"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक महीना"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1か月"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1개월"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um mês"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Месяц"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir ay"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一个月"
           }
         }
       }
@@ -12306,6 +12160,158 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "轻点一下即可开始。没有借口。"
+          }
+        }
+      }
+    },
+    "One Week" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أسبوع كامل"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Woche"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una semana"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une semaine"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक हफ़्ता"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una settimana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1週間"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1주"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma semana"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неделя"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir hafta"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一周"
+          }
+        }
+      }
+    },
+    "One Year" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عام كامل"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Jahr"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un año"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un an"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक साल"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un anno"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1年"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1년"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um ano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Год"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir yıl"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一年"
           }
         }
       }
@@ -12937,7 +12943,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Platziere RHOIDS neben Social Media, News oder Spielen. den Apps, die du auf der Toilette öffnest."
+            "value" : "Platziere RHOIDS neben Social Media, News oder Spielen, den Apps, die du auf der Toilette öffnest."
           }
         },
         "es" : {
@@ -12949,7 +12955,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Placez RHOIDS près des réseaux sociaux, actus ou jeux. les apps que vous ouvrez aux toilettes."
+            "value" : "Placez RHOIDS près des réseaux sociaux, actus ou jeux, les apps que vous ouvrez aux toilettes."
           }
         },
         "hi" : {
@@ -12961,7 +12967,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metti RHOIDS accanto a social, notizie o giochi. le app che apri sul water."
+            "value" : "Metti RHOIDS accanto a social, notizie o giochi, le app che apri sul water."
           }
         },
         "ja" : {
@@ -12979,19 +12985,19 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Coloque o RHOIDS perto de redes sociais, notícias ou jogos. os apps que você abre no vaso."
+            "value" : "Coloque o RHOIDS perto de redes sociais, notícias ou jogos, os apps que você abre no vaso."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поместите RHOIDS рядом с соцсетями, новостями или играми. теми приложениями, что вы открываете на унитазе."
+            "value" : "Поместите RHOIDS рядом с соцсетями, новостями или играми, теми приложениями, что вы открываете на унитазе."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS’u sosyal medya, haber veya oyunların. tuvalette açtığınız uygulamaların yanına koyun."
+            "value" : "RHOIDS’u sosyal medya, haber veya oyunların, tuvalette açtığınız uygulamaların yanına koyun."
           }
         },
         "zh-Hans" : {
@@ -13091,7 +13097,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leg RHOIDS auf deinen Home-Bildschirm. Ein Tippen startet den Timer. keine App nötig."
+            "value" : "Leg RHOIDS auf deinen Home-Bildschirm. Ein Tippen startet den Timer, keine App nötig."
           }
         },
         "es" : {
@@ -13103,7 +13109,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Placez RHOIDS sur votre écran d’accueil. Un toucher lance la minuterie. sans ouvrir d’app."
+            "value" : "Placez RHOIDS sur votre écran d’accueil. Un toucher lance la minuterie, sans ouvrir d’app."
           }
         },
         "hi" : {
@@ -13115,7 +13121,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metti RHOIDS sulla schermata Home. Un tocco avvia il timer. senza aprire l’app."
+            "value" : "Metti RHOIDS sulla schermata Home. Un tocco avvia il timer, senza aprire l’app."
           }
         },
         "ja" : {
@@ -13133,19 +13139,19 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Coloque o RHOIDS na Tela de Início. Um toque inicia o timer. sem abrir o app."
+            "value" : "Coloque o RHOIDS na Tela de Início. Um toque inicia o timer, sem abrir o app."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поместите RHOIDS на экран «Домой». Одно касание запускает таймер. приложение открывать не нужно."
+            "value" : "Поместите RHOIDS на экран «Домой». Одно касание запускает таймер, приложение открывать не нужно."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS’u Ana Ekranınıza koyun. Tek dokunuşla zamanlayıcı başlar. uygulama açmaya gerek yok."
+            "value" : "RHOIDS’u Ana Ekranınıza koyun. Tek dokunuşla zamanlayıcı başlar, uygulama açmaya gerek yok."
           }
         },
         "zh-Hans" : {
@@ -13709,7 +13715,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entspann dich. Nicht pressen. lass es natürlich geschehen."
+            "value" : "Entspann dich. Nicht pressen, lass es natürlich geschehen."
           }
         },
         "es" : {
@@ -13721,7 +13727,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détendez-vous. Ne poussez pas. laissez faire la nature."
+            "value" : "Détendez-vous. Ne poussez pas, laissez faire la nature."
           }
         },
         "hi" : {
@@ -13733,7 +13739,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rilassati. Non spingere. lascia che accada in modo naturale."
+            "value" : "Rilassati. Non spingere, lascia che accada in modo naturale."
           }
         },
         "ja" : {
@@ -13751,19 +13757,19 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Relaxe. Não force. deixe acontecer naturalmente."
+            "value" : "Relaxe. Não force, deixe acontecer naturalmente."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Расслабьтесь. Не тужьтесь. пусть всё произойдёт естественно."
+            "value" : "Расслабьтесь. Не тужьтесь, пусть всё произойдёт естественно."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rahatla. Ikınma. doğal akışına bırak."
+            "value" : "Rahatla. Ikınma, doğal akışına bırak."
           }
         },
         "zh-Hans" : {
@@ -13851,6 +13857,82 @@
         }
       }
     },
+    "Requests permission to send timer alerts." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يطلب إذنًا لإرسال تنبيهات المؤقت."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fragt die Berechtigung für Timer-Hinweise an."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solicita permiso para enviar avisos del temporizador."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demande l’autorisation d’envoyer les alertes du minuteur."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइमर अलर्ट भेजने की अनुमति मांगता है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiede il permesso di inviare gli avvisi del timer."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイマーの通知を送る許可をリクエストします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "타이머 알림을 보낼 권한을 요청합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solicita permissão para enviar alertas do timer."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запрашивает разрешение на уведомления таймера."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamanlayıcı uyarıları göndermek için izin ister."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请求发送计时器提醒的权限。"
+          }
+        }
+      }
+    },
     "Retro split-flap clock with digit tiles" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -13929,6 +14011,82 @@
       }
     },
     "RHOIDS" : {},
+    "RHOIDS is free, with no ads or subscriptions. If it helps you, a tip keeps development going." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS مجاني، بلا إعلانات أو اشتراكات. إن كان مفيدًا لك، فالإكرامية تساعد على استمرار تطويره."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS ist kostenlos, ohne Werbung und ohne Abo. Wenn es dir hilft, hält ein Trinkgeld die Entwicklung am Laufen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS es gratis, sin anuncios ni suscripciones. Si te ayuda, una propina permite seguir desarrollándolo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS est gratuit, sans publicité ni abonnement. S’il vous aide, un pourboire permet de poursuivre son développement."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS मुफ़्त है, बिना विज्ञापन या सब्सक्रिप्शन के। अगर यह आपके काम आता है, तो एक टिप इसके विकास को जारी रखने में मदद करती है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS è gratis, senza pubblicità né abbonamenti. Se ti è utile, una mancia aiuta a continuare a svilupparlo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDSは無料で、広告もサブスクリプションもありません。役に立ったら、チップが今後の開発を支えます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS는 광고도 구독도 없는 무료 앱이에요. 도움이 됐다면 팁이 개발을 이어가는 힘이 돼요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O RHOIDS é gratuito, sem anúncios nem assinaturas. Se ele ajuda você, uma gorjeta mantém o desenvolvimento."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS бесплатен, без рекламы и подписок. Если он вам помогает, чаевые помогут продолжать разработку."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS ücretsiz; reklam ya da abonelik yok. İşinize yarıyorsa bir bahşiş geliştirmenin sürmesine yardımcı olur."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RHOIDS 免费，没有广告，也没有订阅。如果它对你有帮助，打赏能支持后续开发。"
+          }
+        }
+      }
+    },
     "RHOIDS · %@" : {},
     "RHOIDS · Ready" : {
       "localizations" : {
@@ -14065,7 +14223,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS. это сфокусированное приложение с единственной целью: помочь вам не сидеть слишком долго на унитазе, что является основной поведенческой причиной геморроя."
+            "value" : "RHOIDS — это сфокусированное приложение с единственной целью: помочь вам не сидеть слишком долго на унитазе, что является основной поведенческой причиной геморроя."
           }
         },
         "tr" : {
@@ -14077,83 +14235,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS 是一款专注、单一用途的应用,帮助你避免如厕时间过长。这是痔疮的主要行为诱因。"
-          }
-        }
-      }
-    },
-    "RHOIDS is built with care and offered completely free, no ads, no subscriptions. If you find it valuable, a tip goes a long way toward keeping development going." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "صُنع RHOIDS بعناية ويُقدَّم مجانًا تمامًا، بلا إعلانات ولا اشتراكات. إن وجدته مفيدًا، فإن إكرامية بسيطة تساعد كثيرًا على استمرار التطوير."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS wurde mit Sorgfalt entwickelt und ist komplett kostenlos, ohne Werbung, ohne Abos. Wenn es dir nützt, hilft ein Trinkgeld sehr, die Weiterentwicklung am Laufen zu halten."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS está hecho con cariño y es totalmente gratis, sin anuncios ni suscripciones. Si te resulta útil, una propina ayuda mucho a seguir desarrollándolo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS est conçu avec soin et offert entièrement gratuitement, sans pub ni abonnement. S’il vous est utile, un pourboire aide grandement à poursuivre le développement."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS को सावधानी से बनाया गया है और पूरी तरह मुफ्त दिया जाता है, न विज्ञापन, न सदस्यता। अगर यह आपको उपयोगी लगे, तो एक टिप विकास जारी रखने में बहुत मदद करती है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS è realizzato con cura e offerto del tutto gratis, senza pubblicità né abbonamenti. Se lo trovi utile, una mancia aiuta molto a portare avanti lo sviluppo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDSは丁寧に作られ、完全無料で提供されます。広告もサブスクもありません。役立つと感じたら、チップが開発の継続に大きく役立ちます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS는 정성껏 만들어졌으며 광고도 구독도 없이 완전히 무료로 제공됩니다. 유용하다고 느끼시면, 팁은 개발을 이어가는 데 큰 힘이 됩니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O RHOIDS é feito com cuidado e oferecido totalmente grátis, sem anúncios nem assinaturas. Se for útil para você, uma gorjeta ajuda muito a manter o desenvolvimento."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS создан с заботой и предлагается совершенно бесплатно. без рекламы и подписок. Если он полезен, чаевые очень помогают продолжать разработку."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS özenle geliştirildi ve tamamen ücretsiz sunuluyor; reklam yok, abonelik yok. Faydalı bulursanız, bir bahşiş geliştirmenin sürmesine çok katkı sağlar."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS 用心打造,完全免费提供,没有广告,没有订阅。如果你觉得有用,一笔小费将极大地帮助开发持续进行。"
+            "value" : "RHOIDS 是一款专注、单一用途的应用，帮助你避免如厕时间过长。这是痔疮的主要行为诱因。"
           }
         }
       }
@@ -14234,160 +14316,6 @@
         }
       }
     },
-    "RHOIDS needs notifications to alert you when your timer ends. Without them, the alarm won't break through Do Not Disturb and the 30-second warning won't fire." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يحتاج RHOIDS إلى الإشعارات لتنبيهك عند انتهاء المؤقت. بدونها، لن يخترق المنبّه وضع عدم الإزعاج ولن يصدر تحذير الـ 30 ثانية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS braucht Mitteilungen, um dich beim Ablauf des Timers zu warnen. Ohne sie durchbricht der Alarm „Nicht stören“ nicht und die 30-Sekunden-Warnung bleibt aus."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS necesita notificaciones para avisarte cuando termine el temporizador. Sin ellas, la alarma no atravesará No molestar y el aviso de 30 segundos no sonará."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS a besoin des notifications pour vous avertir à la fin de la minuterie. Sans elles, l’alarme ne passera pas le mode Ne pas déranger et l’avertissement à 30 secondes ne se déclenchera pas."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "टाइमर खत्म होने पर सूचित करने के लिए RHOIDS को नोटिफिकेशन चाहिए। इनके बिना, अलार्म परेशान न करें मोड को पार नहीं करेगा और 30-सेकंड की चेतावनी नहीं बजेगी।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS ha bisogno delle notifiche per avvisarti alla fine del timer. Senza, la sveglia non supererà Non disturbare e l’avviso a 30 secondi non scatterà."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDSはタイマー終了を知らせるために通知が必要です。通知がないと、アラームは「おやすみモード」を突破できず、30秒前の警告も鳴りません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS는 타이머가 끝날 때 알리기 위해 알림이 필요합니다. 알림이 없으면 알람이 방해 금지 모드를 뚫지 못하고 30초 경고도 울리지 않습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O RHOIDS precisa de notificações para avisar quando o timer terminar. Sem elas, o alarme não atravessa o Não Perturbe e o aviso de 30 segundos não dispara."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS нужны уведомления, чтобы предупредить вас об окончании таймера. Без них будильник не пробьётся сквозь «Не беспокоить», а предупреждение за 30 секунд не сработает."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS, zamanlayıcı bittiğinde sizi uyarmak için bildirimlere ihtiyaç duyar. Bunlar olmadan alarm Rahatsız Etme modunu aşamaz ve 30 saniyelik uyarı çalışmaz."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS 需要通知才能在计时结束时提醒你。没有通知,闹钟无法穿透“勿扰模式”,30 秒提醒也不会响起。"
-          }
-        }
-      }
-    },
-    "RHOIDS needs notifications to alert you when your timer ends. Without them, the alarm won't sound in the background and the 30-second warning won't fire." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يحتاج RHOIDS إلى الإشعارات لتنبيهك عند انتهاء المؤقت. بدونها، لن يصدر المنبّه في الخلفية ولن يصدر تحذير الـ 30 ثانية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS braucht Mitteilungen, um dich beim Ablauf des Timers zu warnen. Ohne sie ertönt der Alarm im Hintergrund nicht und die 30-Sekunden-Warnung bleibt aus."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS necesita notificaciones para avisarte cuando termine el temporizador. Sin ellas, la alarma no sonará en segundo plano y el aviso de 30 segundos no se activará."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS a besoin des notifications pour vous avertir à la fin de la minuterie. Sans elles, l’alarme ne sonnera pas en arrière-plan et l’avertissement à 30 secondes ne se déclenchera pas."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "टाइमर खत्म होने पर सूचित करने के लिए RHOIDS को नोटिफिकेशन चाहिए। इनके बिना, अलार्म बैकग्राउंड में नहीं बजेगा और 30-सेकंड की चेतावनी नहीं चलेगी।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS ha bisogno delle notifiche per avvisarti alla fine del timer. Senza, la sveglia non suonerà in background e l’avviso a 30 secondi non scatterà."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDSはタイマー終了を知らせるために通知が必要です。通知がないと、バックグラウンドでアラームが鳴らず、30秒前の警告も鳴りません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS는 타이머가 끝날 때 알리기 위해 알림이 필요합니다. 알림이 없으면 백그라운드에서 알람이 울리지 않고 30초 경고도 작동하지 않습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O RHOIDS precisa de notificações para avisar quando o timer terminar. Sem elas, o alarme não toca em segundo plano e o aviso de 30 segundos não dispara."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS нужны уведомления, чтобы предупредить вас об окончании таймера. Без них будильник не прозвучит в фоне, а предупреждение за 30 секунд не сработает."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS, zamanlayıcı bittiğinde sizi uyarmak için bildirimlere ihtiyaç duyar. Bunlar olmadan alarm arka planda çalmaz ve 30 saniyelik uyarı tetiklenmez."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RHOIDS 需要通知才能在计时结束时提醒你。没有通知,闹钟在后台不会响起,30 秒提醒也不会触发。"
-          }
-        }
-      }
-    },
     "RHOIDS sets the Recommended timer at 3 minutes (a comfortable buffer) and the Max at 5 (the clinical ceiling)." : {
       "localizations" : {
         "ar" : {
@@ -14447,7 +14375,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS устанавливает рекомендуемый таймер на 3 минуты (комфортный запас), а максимум. на 5 (клинический предел)."
+            "value" : "RHOIDS устанавливает рекомендуемый таймер на 3 минуты (комфортный запас), а максимум — на 5 (клинический предел)."
           }
         },
         "tr" : {
@@ -14459,7 +14387,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDS 将“推荐”计时设为 3 分钟(舒适的缓冲),将“上限”设为 5 分钟(临床上限)。"
+            "value" : "RHOIDS 将“推荐”计时设为 3 分钟（舒适的缓冲），将“上限”设为 5 分钟（临床上限）。"
           }
         }
       }
@@ -14689,7 +14617,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "首次启动计时器时,RHOIDS 会请求通知权限。"
+            "value" : "首次启动计时器时，RHOIDS 会请求通知权限。"
           }
         }
       }
@@ -15078,79 +15006,154 @@
         }
       }
     },
-    "Scrolling on the toilet raises the risk by 46%." : {
-      "extractionState" : "stale",
+    "Scrolling on the toilet is linked to a 46% higher risk." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "التصفّح على المرحاض يرفع الخطر بنسبة 46%."
+            "value" : "التصفّح على المرحاض مرتبط بارتفاع الخطر بنسبة 46%."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scrollen auf der Toilette erhöht das Risiko um 46 %."
+            "value" : "Scrollen auf der Toilette geht mit einem um 46 % höheren Risiko einher."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar el móvil en el inodoro aumenta el riesgo un 46 %."
+            "value" : "Usar el móvil en el inodoro se asocia con un 46 % más de riesgo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scroller aux toilettes augmente le risque de 46 %."
+            "value" : "Scroller aux toilettes est associé à un risque plus élevé de 46 %."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "शौचालय पर स्क्रॉल करने से जोखिम 46% बढ़ जाता है।"
+            "value" : "शौचालय पर स्क्रॉल करने का संबंध 46% अधिक जोखिम से पाया गया है।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scrollare sul water aumenta il rischio del 46%."
+            "value" : "Scrollare sul water è associato a un rischio più alto del 46%."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "トイレでのスクロールはリスクを46%高めます。"
+            "value" : "トイレでのスクロールは、46%高いリスクと関連しています。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "변기에서 스크롤하면 위험이 46% 높아집니다."
+            "value" : "변기에서 스크롤하는 습관은 46% 더 높은 위험과 관련이 있어요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rolar a tela no vaso aumenta o risco em 46%."
+            "value" : "Rolar a tela no vaso está associado a um risco 46% maior."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Листание ленты на унитазе повышает риск на 46%."
+            "value" : "Листание ленты на унитазе связано с риском выше на 46%."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuvalette kaydırmak riski %46 artırır."
+            "value" : "Tuvalette ekran kaydırmak %46 daha yüksek riskle ilişkili."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如厕时刷手机会使风险增加 46%。"
+            "value" : "如厕时刷手机与风险升高 46% 相关。"
+          }
+        }
+      }
+    },
+    "Search \"RHOIDS\" and add the small widget" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابحث عن \"RHOIDS\" وأضف الأداة الصغيرة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche nach „RHOIDS“ und füge das kleine Widget hinzu"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Busca «RHOIDS» y añade el widget pequeño"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherchez « RHOIDS » et ajoutez le petit widget"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"RHOIDS\" खोजें और छोटा विजेट जोड़ें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerca “RHOIDS” e aggiungi il widget piccolo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「RHOIDS」を検索して、小サイズのウィジェットを追加します"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"RHOIDS\"를 검색해 작은 위젯을 추가하세요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Busque “RHOIDS” e adicione o widget pequeno"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найдите «RHOIDS» и добавьте маленький виджет"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“RHOIDS” araması yapın ve küçük widget’ı ekleyin"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索“RHOIDS”并添加小号小组件"
           }
         }
       }
@@ -15305,6 +15308,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "发送反馈"
+          }
+        }
+      }
+    },
+    "Sessions" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجلسات"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitzungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesiones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सत्र"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "횟수"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessões"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сессии"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oturumlar"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次数"
           }
         }
       }
@@ -15753,7 +15832,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Короткий визит. долгосрочная победа."
+            "value" : "Короткий визит — долгосрочная победа."
           }
         },
         "tr" : {
@@ -15984,7 +16063,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Слишком долгое сидение. причина №1, которую можно предотвратить."
+            "value" : "Слишком долгое сидение — причина №1, которую можно предотвратить."
           }
         },
         "tr" : {
@@ -16245,7 +16324,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Steh auf und geh. Noch nicht fertig? Kein Problem. komm später wieder."
+            "value" : "Steh auf und geh. Noch nicht fertig? Kein Problem, komm später wieder."
           }
         },
         "es" : {
@@ -16257,7 +16336,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Levez-vous et éloignez-vous. Pas fini ? Pas grave. revenez plus tard."
+            "value" : "Levez-vous et éloignez-vous. Pas fini ? Pas grave, revenez plus tard."
           }
         },
         "hi" : {
@@ -16269,7 +16348,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alzati e allontanati. Non hai finito? Va bene. torna più tardi."
+            "value" : "Alzati e allontanati. Non hai finito? Va bene, torna più tardi."
           }
         },
         "ja" : {
@@ -16287,102 +16366,25 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Levante-se e saia. Não terminou? Tudo bem. volte depois."
+            "value" : "Levante-se e saia. Não terminou? Tudo bem, volte depois."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Встаньте и отойдите. Не получилось? Ничего. вернётесь позже."
+            "value" : "Встаньте и отойдите. Не получилось? Ничего, вернётесь позже."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kalk ve uzaklaş. Bitmedi mi? Sorun değil. sonra tekrar gel."
+            "value" : "Kalk ve uzaklaş. Bitmedi mi? Sorun değil, sonra tekrar gel."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "起身离开吧。还没好?没关系。待会儿再来。"
-          }
-        }
-      }
-    },
-    "Stand up. Walk away. Your body thanks you." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "قف. ابتعد. جسمك يشكرك."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steh auf. Geh weg. Dein Körper dankt dir."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Levántate. Aléjate. Tu cuerpo te lo agradece."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Levez-vous. Votre corps vous remercie."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "खड़े हो जाइए। शरीर शुक्रगुज़ार है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alzati. Il corpo ti ringrazia."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "立って。離れて。体が感謝するよ。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "일어나세요. 몸이 감사할 거예요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Levante-se. Seu corpo agradece."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Встань. Уходи. Тело скажет спасибо."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kalk. Uzaklaş. Vücudun teşekkür ediyor."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "站起来。走开。身体会感谢你。"
+            "value" : "起身离开吧。还没好？没关系。待会儿再来。"
           }
         }
       }
@@ -16693,6 +16695,82 @@
         }
       }
     },
+    "Start and stop timers from your wrist." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابدأ المؤقتات وأوقفها من معصمك."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starte und stoppe Timer direkt am Handgelenk."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia y detén temporizadores desde tu muñeca."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancez et arrêtez les minuteurs depuis votre poignet."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपनी कलाई से टाइमर शुरू और बंद करें।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avvia e ferma i timer dal polso."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手首からタイマーを開始・停止できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "손목에서 타이머를 시작하고 멈출 수 있어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicie e pare timers pelo pulso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запускайте и останавливайте таймеры с запястья."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamanlayıcıları bileğinizden başlatın ve durdurun."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在手腕上开始和停止计时器。"
+          }
+        }
+      }
+    },
     "Start default RHOIDS timer" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -16843,83 +16921,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "开始计时"
-          }
-        }
-      }
-    },
-    "Start your first timer to see history." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ابدأ مؤقتك الأول."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Starte deinen ersten Timer."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicia tu primer temporizador."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Démarrez votre premier minuteur."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पहला टाइमर शुरू करें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avvia il primo timer."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最初のタイマーを開始してください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "첫 타이머를 시작하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicie seu primeiro timer."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запустите первый таймер."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlk zamanlayıcını başlat."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启动第一个计时器来查看历史。"
           }
         }
       }
@@ -17151,83 +17152,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "离开宝座吧，平民。"
-          }
-        }
-      }
-    },
-    "Step away from the throne. Your RHOIDS timer finished. Give your body a break." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ابتعد عن العرش. انتهى مؤقت RHOIDS. امنح جسدك استراحة."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steh auf vom Thron. Dein RHOIDS-Timer ist abgelaufen. gönn deinem Körper eine Pause."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aléjate del trono. Tu temporizador de RHOIDS terminó: dale un respiro a tu cuerpo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quittez le trône. Votre minuterie RHOIDS est terminée. accordez une pause à votre corps."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सिंहासन से उठ जाएं। आपका RHOIDS टाइमर खत्म हुआ. अपने शरीर को आराम दें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alzati dal trono. Il tuo timer RHOIDS è finito. concedi una pausa al corpo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "王座から離れましょう。RHOIDSのタイマーが終了. 体を休ませてあげて。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "왕좌에서 일어나세요. RHOIDS 타이머가 끝났어요. 몸에 휴식을 주세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saia do trono. Seu timer RHOIDS terminou. dê um descanso ao corpo."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покиньте трон. Таймер RHOIDS завершён. дайте телу отдохнуть."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tahttan kalk. RHOIDS zamanlayıcın bitti. bedenine bir mola ver."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "离开“宝座”吧。你的 RHOIDS 计时已结束。让身体歇一歇。"
           }
         }
       }
@@ -17694,6 +17618,82 @@
         }
       }
     },
+    "Strong Habit" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عادة راسخة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feste Gewohnheit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hábito firme"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Habitude solide"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पक्की आदत"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abitudine solida"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定着した習慣"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확실한 습관"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hábito firme"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Крепкая привычка"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sağlam alışkanlık"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "习惯养成"
+          }
+        }
+      }
+    },
     "Support RHOIDS" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -17921,6 +17921,158 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "放轻松。身体有它自己的节奏。"
+          }
+        }
+      }
+    },
+    "Tap the + button in the top corner" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على زر + في الزاوية العلوية"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe oben in der Ecke auf +"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el botón + de la esquina superior"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le bouton + dans le coin supérieur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऊपर कोने में + बटन पर टैप करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca il pulsante + nell’angolo in alto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上の隅にある＋ボタンをタップします"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위쪽 모서리의 + 버튼을 탭하세요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no botão + no canto superior"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите кнопку «+» в верхнем углу"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üst köşedeki + düğmesine dokunun"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轻点顶部角落的“+”按钮"
+          }
+        }
+      }
+    },
+    "Tap the widget when you sit down to start your timer instantly" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على الأداة عندما تجلس لبدء المؤقت فورًا"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe beim Hinsetzen auf das Widget, um den Timer sofort zu starten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el widget al sentarte para iniciar el temporizador al instante"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le widget en vous asseyant pour lancer le minuteur aussitôt"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बैठते ही विजेट पर टैप करें, टाइमर तुरंत शुरू हो जाएगा"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca il widget quando ti siedi per avviare subito il timer"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "座ったらウィジェットをタップして、すぐにタイマーを開始します"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앉을 때 위젯을 탭하면 타이머가 바로 시작돼요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no widget ao se sentar para iniciar o timer na hora"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сев, нажмите на виджет, чтобы сразу запустить таймер"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oturduğunuzda zamanlayıcıyı hemen başlatmak için widget’a dokunun"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "坐下时轻点小组件，即可立即开始计时"
           }
         }
       }
@@ -18367,7 +18519,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Лучший таймер. тот, которым вы действительно пользуетесь."
+            "value" : "Лучший таймер — тот, которым вы действительно пользуетесь."
           }
         },
         "tr" : {
@@ -18379,7 +18531,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最好的计时器,是你真正会用的那个。"
+            "value" : "最好的计时器，是你真正会用的那个。"
           }
         }
       }
@@ -18455,7 +18607,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "研究人员对用力排便、纤维摄入和运动进行了控制。独立预测因素是使用手机,而非用力排便。最常见的活动?看新闻和刷社交媒体。"
+            "value" : "研究人员对用力排便、纤维摄入和运动进行了控制。独立预测因素是使用手机，而非用力排便。最常见的活动？看新闻和刷社交媒体。"
           }
         }
       }
@@ -18922,83 +19074,6 @@
         }
       }
     },
-    "Time-sensitive alerts sound even in Do Not Disturb." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تنبيهات حسّاسة للوقت تُسمع حتى في وضع عدم الإزعاج."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeitkritische Hinweise erklingen sogar bei „Nicht stören“."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las alertas urgentes suenan incluso en No molestar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les alertes urgentes sonnent même en mode Ne pas déranger."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "समय-संवेदनशील अलर्ट परेशान न करें मोड में भी बजते हैं।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gli avvisi urgenti suonano anche in Non disturbare."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "時間指定の通知は「おやすみモード」でも鳴ります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "시간 민감형 알림은 방해 금지 모드에서도 울립니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alertas urgentes tocam mesmo no Não Perturbe."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Срочные уведомления звучат даже в режиме «Не беспокоить»."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaman duyarlı uyarılar Rahatsız Etme modunda bile çalar."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "时效性提醒即使在“勿扰模式”下也会响起。"
-          }
-        }
-      }
-    },
     "Time's nearly up. Relax. Forcing it does more harm." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -19023,7 +19098,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le temps est presque écoulé. Détendez-vous. forcer fait plus de mal."
+            "value" : "Le temps est presque écoulé. Détendez-vous, forcer fait plus de mal."
           }
         },
         "hi" : {
@@ -19035,7 +19110,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tempo è quasi finito. Rilassati. forzare fa più male."
+            "value" : "Il tempo è quasi finito. Rilassati, forzare fa più male."
           }
         },
         "ja" : {
@@ -19053,102 +19128,25 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O tempo está acabando. Relaxe. forçar faz mais mal."
+            "value" : "O tempo está acabando. Relaxe, forçar faz mais mal."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Время почти вышло. Расслабьтесь. тужиться вреднее."
+            "value" : "Время почти вышло. Расслабьтесь, тужиться вреднее."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Süre neredeyse doldu. Rahatla. zorlamak daha çok zarar verir."
+            "value" : "Süre neredeyse doldu. Rahatla, zorlamak daha çok zarar verir."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "时间快到了。放松。硬来反而更伤身。"
-          }
-        }
-      }
-    },
-    "Time's Up" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "انتهى الوقت"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeit abgelaufen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se acabó el tiempo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temps écoulé"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "समय हो गया"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tempo scaduto"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイムアップ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "시간 종료"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tempo esgotado"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Время вышло"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Süre doldu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "时间到"
           }
         }
       }
@@ -20073,6 +20071,158 @@
         }
       }
     },
+    "Turn On Notifications" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشغيل الإشعارات"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benachrichtigungen aktivieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar notificaciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer les notifications"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नोटिफ़िकेशन चालू करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva notifiche"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知をオンにする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림 켜기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ativar notificações"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить уведомления"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimleri aç"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启通知"
+          }
+        }
+      }
+    },
+    "Two Weeks" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أسبوعان"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwei Wochen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dos semanas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deux semaines"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दो हफ़्ते"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due settimane"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2週間"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2주"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duas semanas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Две недели"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İki hafta"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "两周"
+          }
+        }
+      }
+    },
     "Unlock" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -20221,7 +20371,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当你未选择计时器就启动时,主屏幕小组件和 Siri 快捷指令会使用它。"
+            "value" : "当你未选择计时器就启动时，主屏幕小组件和 Siri 快捷指令会使用它。"
           }
         }
       }
@@ -20299,83 +20449,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本 %@"
-          }
-        }
-      }
-    },
-    "Version 1.0" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "الإصدار 1.0"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versión 1.0"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "संस्करण 1.0"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versione 1.0"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バージョン 1.0"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "버전 1.0"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versão 1.0"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Версия 1.0"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sürüm 1.0"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "版本 1.0"
           }
         }
       }
@@ -20687,83 +20760,6 @@
         }
       }
     },
-    "We only notify when your timer ends. Nothing else." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "نُنبّهك فقط عند انتهاء المؤقت. لا شيء آخر."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wir benachrichtigen dich nur, wenn dein Timer endet. Sonst nichts."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo te avisamos cuando termina el temporizador. Nada más."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "On vous notifie seulement à la fin de la minuterie. Rien d’autre."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "हम केवल तभी सूचित करते हैं जब आपका टाइमर खत्म हो। और कुछ नहीं।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ti avvisiamo solo quando il timer finisce. Nient’altro."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイマー終了時のみ通知します。それ以外は一切ありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "타이머가 끝날 때만 알립니다. 그 외에는 없습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Só avisamos quando seu timer termina. Nada mais."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мы уведомляем только об окончании таймера. Больше ничего."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yalnızca zamanlayıcınız bittiğinde bildirim göndeririz. Başka bir şey değil."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "我们只在计时结束时通知你,仅此而已。"
-          }
-        }
-      }
-    },
     "We'll remind you to put your phone down when the timer starts. No Screen Time access needed." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -20917,83 +20913,6 @@
         }
       }
     },
-    "When your timer ends, selected apps are blocked for the cooldown period. You can always unlock early from the Timer tab." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "عند انتهاء المؤقت، تُحجب التطبيقات المحددة طوال فترة التهدئة. يمكنك دائمًا إلغاء القفل مبكرًا من علامة تبويب المؤقت."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wenn dein Timer endet, werden die ausgewählten Apps für die Abkühlphase blockiert. Du kannst sie jederzeit vorzeitig über den Tab „Timer“ entsperren."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cuando termina tu temporizador, las apps seleccionadas se bloquean durante el periodo de enfriamiento. Siempre puedes desbloquear antes desde la pestaña Temporizador."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "À la fin de votre minuterie, les apps sélectionnées sont bloquées pendant la période de repos. Vous pouvez toujours déverrouiller plus tôt depuis l’onglet Minuterie."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "जब आपका टाइमर खत्म होता है, तो चयनित ऐप्स कूलडाउन अवधि के लिए ब्लॉक हो जाते हैं। आप टाइमर टैब से हमेशा जल्दी अनलॉक कर सकते हैं।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quando il timer finisce, le app selezionate vengono bloccate per il periodo di pausa. Puoi sempre sbloccarle in anticipo dalla scheda Timer."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイマー終了時、選択したAppはクールダウン期間中ブロックされます。タイマータブからいつでも早めに解除できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "타이머가 끝나면 선택한 앱이 쿨다운 기간 동안 차단됩니다. 타이머 탭에서 언제든 일찍 잠금 해제할 수 있습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quando seu timer termina, os apps selecionados ficam bloqueados durante o período de espera. Você sempre pode desbloquear antes na aba Timer."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Когда таймер заканчивается, выбранные приложения блокируются на время паузы. Вы всегда можете разблокировать раньше на вкладке «Таймер»."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zamanlayıcınız bittiğinde, seçilen uygulamalar dinlenme süresi boyunca engellenir. Zamanlayıcı sekmesinden istediğiniz zaman erkenden kilidi açabilirsiniz."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "计时结束后,所选应用会在冷却期内被屏蔽。你随时可以在“计时器”标签中提前解锁。"
-          }
-        }
-      }
-    },
     "Widget setup guide" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -21071,161 +20990,7 @@
         }
       }
     },
-    "Without notifications, alarms won't sound and warnings won't fire when the app is in the background." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "بدون الإشعارات، لن تصدر التنبيهات ولن تُطلق التحذيرات عندما يكون التطبيق في الخلفية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ohne Mitteilungen ertönen keine Alarme und es werden keine Warnungen ausgelöst, wenn die App im Hintergrund ist."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin notificaciones, las alarmas no sonarán ni se activarán los avisos cuando la app esté en segundo plano."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sans notifications, les alarmes ne sonneront pas et les avertissements ne se déclencheront pas lorsque l’app est en arrière-plan."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "नोटिफिकेशन के बिना, जब ऐप बैकग्राउंड में होगा तो अलार्म नहीं बजेंगे और चेतावनियां नहीं चलेंगी।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senza notifiche, le sveglie non suoneranno e gli avvisi non scatteranno quando l’app è in background."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通知がないと、Appがバックグラウンドのときにアラームは鳴らず、警告も発生しません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "알림이 없으면 앱이 백그라운드에 있을 때 알람이 울리지 않고 경고도 작동하지 않습니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sem notificações, os alarmes não tocam e os avisos não disparam quando o app está em segundo plano."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Без уведомлений будильники не прозвучат и предупреждения не сработают, когда приложение в фоне."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bildirimler olmadan, uygulama arka plandayken alarmlar çalmaz ve uyarılar tetiklenmez."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有通知,当应用处于后台时,闹钟不会响起,提醒也不会触发。"
-          }
-        }
-      }
-    },
     "Worldwide prevalence of haemorrhoids" : {},
-    "Wrapping up soon. Remember: never strain." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ستنتهي قريبًا. تذكّر: لا تُجهد نفسك أبدًا."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gleich vorbei. Denk dran: niemals pressen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terminando pronto. Recuerda: nunca hagas fuerza."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bientôt fini. Souvenez-vous : ne forcez jamais."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "जल्द ही समाप्त। याद रखें: कभी ज़ोर न लगाएं।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si conclude a breve. Ricorda: non sforzarti mai."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "まもなく終了。覚えておいて：決していきまないこと。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "곧 끝나요. 기억하세요: 절대 힘주지 마세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terminando logo. Lembre-se: nunca force."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скоро конец. Помните: никогда не тужьтесь."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Birazdan bitiyor. Unutma: asla ıkınma."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "马上结束。记住:千万别用力。"
-          }
-        }
-      }
-    },
     "You knew when to leave. Respect." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -21380,6 +21145,82 @@
         }
       }
     },
+    "Your apps are available again. Nice work taking a real break." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تطبيقاتك متاحة مجددًا. أحسنت في أخذ استراحة حقيقية."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Apps sind wieder verfügbar. Schön, dass du dir eine echte Pause gegönnt hast."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus apps vuelven a estar disponibles. Bien hecho por tomarte un descanso de verdad."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos apps sont de nouveau disponibles. Bravo pour cette vraie pause."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके ऐप्स फिर से उपलब्ध हैं। सच में ब्रेक लेने के लिए शाबाश।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le tue app sono di nuovo disponibili. Ottimo, ti sei preso una vera pausa."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリがまた使えるようになりました。しっかり休憩できましたね。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱을 다시 사용할 수 있어요. 제대로 쉬셨네요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus apps estão disponíveis de novo. Muito bem por fazer uma pausa de verdade."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приложения снова доступны. Отлично, вы сделали настоящий перерыв."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamalarınız yeniden kullanılabilir. Gerçek bir mola verdiniz, tebrikler."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的 App 已恢复可用。这次真正休息了一下，做得好。"
+          }
+        }
+      }
+    },
     "Your call, but the science is clear past 5" : {
       "localizations" : {
         "ar" : {
@@ -21451,7 +21292,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "由你决定,但超过 5 分钟,科学结论很明确"
+            "value" : "由你决定，但超过 5 分钟，科学结论很明确"
           }
         }
       }
@@ -21833,7 +21674,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你的支持意义重大,有助于让 RHOIDS 对所有人保持免费。"
+            "value" : "你的支持意义重大，有助于让 RHOIDS 对所有人保持免费。"
           }
         }
       }
@@ -22214,7 +22055,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用连续天数,%@"
+            "value" : "使用连续天数，%@"
           }
         }
       }
@@ -22675,78 +22516,138 @@
         }
       }
     },
-    "%@ days" : {
+    "%lld days" : {
       "localizations" : {
         "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ يومًا"
+          "variations" : {
+            "plural" : {
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld يوم"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "يوم واحد"
+                }
+              },
+              "two" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "يومان"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld أيام"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld يومًا"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld يوم"
+                }
+              }
+            }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Tage"
+            "value" : "%lld Tage"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ días"
+            "value" : "%lld días"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ jours"
+            "value" : "%lld jours"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ दिन"
+            "value" : "%lld दिन"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ giorni"
+            "value" : "%lld giorni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@日"
+            "value" : "%lld日"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@일"
+            "value" : "%lld일"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ dias"
+            "value" : "%lld dias"
           }
         },
         "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ дней"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld день"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дня"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дней"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld дня"
+                }
+              }
+            }
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ gün"
+            "value" : "%lld gün"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@天"
+            "value" : "%lld天"
           }
         }
       }
@@ -22903,78 +22804,216 @@
         }
       }
     },
-    "%@ minutes" : {
+    "%lld minutes" : {
       "localizations" : {
         "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ دقيقة"
+          "variations" : {
+            "plural" : {
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld دقيقة"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "دقيقة واحدة"
+                }
+              },
+              "two" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "دقيقتان"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld دقائق"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld دقيقة"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld دقيقة"
+                }
+              }
+            }
           }
         },
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Minuten"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Minuten"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
           }
         },
         "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minutos"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutos"
+                }
+              }
+            }
           }
         },
         "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minutes"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ मिनट"
+            "value" : "%lld मिनट"
           }
         },
         "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minuti"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuti"
+                }
+              }
+            }
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@分"
+            "value" : "%lld分"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@분"
+            "value" : "%lld분"
           }
         },
         "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minutos"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minuto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutos"
+                }
+              }
+            }
           }
         },
         "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ минут"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минута"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минут"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              }
+            }
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ dakika"
+            "value" : "%lld dakika"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@分钟"
+            "value" : "%lld分钟"
           }
         }
       }
@@ -23050,7 +23089,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@计时器预览,%@"
+            "value" : "%@计时器预览，%@"
           }
         }
       }
@@ -23435,78 +23474,78 @@
         }
       }
     },
-    "Start %@ minute timer" : {
+    "Start %lld minute timer" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بدء مؤقت %@ دقيقة"
+            "value" : "بدء مؤقت %lld دقيقة"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@-Minuten-Timer starten"
+            "value" : "%lld-Minuten-Timer starten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciar temporizador de %@ minutos"
+            "value" : "Iniciar temporizador de %lld minutos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Démarrer une minuterie de %@ minutes"
+            "value" : "Démarrer une minuterie de %lld minutes"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ मिनट का टाइमर शुरू करें"
+            "value" : "%lld मिनट का टाइमर शुरू करें"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvia timer da %@ minuti"
+            "value" : "Avvia timer da %lld minuti"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@分のタイマーを開始"
+            "value" : "%lld分のタイマーを開始"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@분 타이머 시작"
+            "value" : "%lld분 타이머 시작"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciar timer de %@ minutos"
+            "value" : "Iniciar timer de %lld minutos"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запустить таймер на %@ минут"
+            "value" : "Запустить таймер на %lld минут"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ dakikalık zamanlayıcıyı başlat"
+            "value" : "%lld dakikalık zamanlayıcıyı başlat"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "开始%@分钟计时器"
+            "value" : "开始%lld分钟计时器"
           }
         }
       }
@@ -23663,78 +23702,78 @@
         }
       }
     },
-    "%@ percent remaining" : {
+    "%lld percent remaining" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ بالمئة متبقية"
+            "value" : "%lld بالمئة متبقية"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch %@ Prozent"
+            "value" : "Noch %lld Prozent"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ por ciento restante"
+            "value" : "%lld por ciento restante"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pour cent restant"
+            "value" : "%lld pour cent restant"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ प्रतिशत शेष"
+            "value" : "%lld प्रतिशत शेष"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ percento rimanente"
+            "value" : "%lld percento rimanente"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "残り%@パーセント"
+            "value" : "残り%lldパーセント"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@퍼센트 남음"
+            "value" : "%lld퍼센트 남음"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ por cento restante"
+            "value" : "%lld por cento restante"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Осталось %@ процентов"
+            "value" : "Осталось %lld процентов"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yüzde %@ kaldı"
+            "value" : "Yüzde %lld kaldı"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "剩余百分之%@"
+            "value" : "剩余百分之%lld"
           }
         }
       }
@@ -23811,82 +23850,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已选择"
-          }
-        }
-      }
-    },
-    "Not selected" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "غير محدد"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht ausgewählt"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No seleccionado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non sélectionné"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "चयनित नहीं"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non selezionato"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未選択"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택 안 됨"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não selecionado"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не выбрано"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seçili değil"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未选择"
           }
         }
       }
@@ -24271,82 +24234,6 @@
         }
       }
     },
-    "Nice work - your selected apps are available again. Take a moment to recognize the break you gave yourself today." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "أحسنت! تطبيقاتك المحددة متاحة مجددًا الآن. خذ لحظة لتقدير الاستراحة التي منحتها لنفسك اليوم."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gut gemacht – deine ausgewählten Apps sind wieder verfügbar. Nimm dir einen Moment, um die Pause zu würdigen, die du dir heute gegönnt hast."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bien hecho. Tus apps seleccionadas ya están disponibles de nuevo. Tómate un momento para reconocer el descanso que te diste hoy."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bien joué : vos applications sélectionnées sont de nouveau disponibles. Prenez un instant pour apprécier la pause que vous vous êtes accordée aujourd’hui."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "बहुत बढ़िया - आपके चुने हुए ऐप्स फिर से उपलब्ध हैं। आज आपने खुद को जो ब्रेक दिया, उसे महसूस करने के लिए एक पल रुकें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ottimo lavoro: le tue app selezionate sono di nuovo disponibili. Prenditi un momento per riconoscere la pausa che ti sei concesso oggi."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "よくできました。選択したアプリが再び使えるようになりました。今日自分に与えた休憩を少し振り返ってみましょう。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "잘하셨어요. 선택한 앱을 다시 사용할 수 있습니다. 오늘 스스로에게 준 휴식을 잠시 되새겨 보세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muito bem! Seus apps selecionados já estão disponíveis novamente. Reserve um momento para reconhecer a pausa que você se deu hoje."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отлично! Выбранные приложения снова доступны. Уделите минуту, чтобы оценить перерыв, который вы себе сегодня дали."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aferin! Seçtiğiniz uygulamalar yeniden kullanılabilir. Bugün kendinize verdiğiniz molanın değerini bir an durup düşünün."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "做得好,你选择的应用已重新可用。花一点时间感受一下今天给自己的这次休息吧。"
-          }
-        }
-      }
-    },
     "PUT YOUR PHONE DOWN!" : {
       "localizations" : {
         "ar" : {
@@ -24388,7 +24275,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スマホを置いて!"
+            "value" : "スマホを置いて！"
           }
         },
         "ko" : {
@@ -24418,7 +24305,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放下手机!"
+            "value" : "放下手机！"
           }
         }
       }
@@ -24464,7 +24351,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "時間切れです!"
+            "value" : "時間切れです！"
           }
         },
         "ko" : {
@@ -24494,7 +24381,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "时间到!"
+            "value" : "时间到！"
           }
         }
       }
@@ -24798,7 +24685,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你的计时器已结束。冷却时间结束后,这些应用将自动解锁。"
+            "value" : "你的计时器已结束。冷却时间结束后，这些应用将自动解锁。"
           }
         }
       }
@@ -25072,7 +24959,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RHOIDSにスマホを置く手助けをどうしてほしいですか?"
+            "value" : "RHOIDSにスマホを置く手助けをどうしてほしいですか？"
           }
         },
         "ko" : {
@@ -25102,7 +24989,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你希望 RHOIDS 如何帮助你放下手机?"
+            "value" : "你希望 RHOIDS 如何帮助你放下手机？"
           }
         }
       }
@@ -25254,7 +25141,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "计时器开始后放下手机,我们会提醒你。无需任何设置。"
+            "value" : "计时器开始后放下手机，我们会提醒你。无需任何设置。"
           }
         }
       }
@@ -25406,7 +25293,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "计时期间可以使用一些应用。时间一到,我们会用冷却时间将它们锁定。"
+            "value" : "计时期间可以使用一些应用。时间一到，我们会用冷却时间将它们锁定。"
           }
         }
       }
@@ -25832,7 +25719,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "おすすめ(3分)"
+            "value" : "おすすめ（3分）"
           }
         },
         "ko" : {
@@ -25862,7 +25749,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "推荐(3分钟)"
+            "value" : "推荐（3分钟）"
           }
         }
       }
@@ -25908,7 +25795,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最大(5分)"
+            "value" : "最大（5分）"
           }
         },
         "ko" : {
@@ -25938,7 +25825,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最大(5分钟)"
+            "value" : "最大（5分钟）"
           }
         }
       }
@@ -26247,78 +26134,78 @@
         }
       }
     },
-    "Time's up. Your apps are blocked for the next %@ min." : {
+    "Time's up. Your apps are blocked for the next %lld min." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "انتهى الوقت. ستكون تطبيقاتك مقفلة خلال الدقائق الـ%@ القادمة."
+            "value" : "انتهى الوقت. ستكون تطبيقاتك مقفلة خلال الدقائق الـ%lld القادمة."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Zeit ist um. Deine Apps sind für die nächsten %@ Min. gesperrt."
+            "value" : "Die Zeit ist um. Deine Apps sind für die nächsten %lld Min. gesperrt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se acabó el tiempo. Tus apps estarán bloqueadas durante los próximos %@ min."
+            "value" : "Se acabó el tiempo. Tus apps estarán bloqueadas durante los próximos %lld min."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le temps est écoulé. Vos applications sont verrouillées pendant les %@ prochaines minutes."
+            "value" : "Le temps est écoulé. Vos applications sont verrouillées pendant les %lld prochaines minutes."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "समय समाप्त हो गया। आपके ऐप्स अगले %@ मिनट तक ब्लॉक रहेंगे।"
+            "value" : "समय समाप्त हो गया। आपके ऐप्स अगले %lld मिनट तक ब्लॉक रहेंगे।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tempo è scaduto. Le tue app sono bloccate per i prossimi %@ min."
+            "value" : "Il tempo è scaduto. Le tue app sono bloccate per i prossimi %lld min."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "時間切れです。次の%@分間、アプリはブロックされます。"
+            "value" : "時間切れです。次の%lld分間、アプリはブロックされます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시간이 다 됐습니다. 다음 %@분 동안 앱이 차단됩니다."
+            "value" : "시간이 다 됐습니다. 다음 %lld분 동안 앱이 차단됩니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O tempo acabou. Seus apps ficarão bloqueados pelos próximos %@ min."
+            "value" : "O tempo acabou. Seus apps ficarão bloqueados pelos próximos %lld min."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Время вышло. Ваши приложения заблокированы на следующие %@ мин."
+            "value" : "Время вышло. Ваши приложения заблокированы на следующие %lld мин."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Süre doldu. Uygulamalarınız önümüzdeki %@ dakika boyunca kilitli olacak."
+            "value" : "Süre doldu. Uygulamalarınız önümüzdeki %lld dakika boyunca kilitli olacak."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "时间到。接下来%@分钟内你的应用将被屏蔽。"
+            "value" : "时间到。接下来%lld分钟内你的应用将被屏蔽。"
           }
         }
       }
@@ -26622,7 +26509,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启动如厕计时器,以预防痔疮。"
+            "value" : "启动如厕计时器，以预防痔疮。"
           }
         }
       }
@@ -27389,78 +27276,126 @@
     },
     "%@. %@" : {},
     "%@, %@, %@" : {},
-    "%@ selected" : {
+    "%lld selected" : {
       "localizations" : {
         "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ seleccionadas"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionada"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionadas"
+                }
+              }
+            }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ ausgewählt"
+            "value" : "%lld ausgewählt"
           }
         },
         "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ sélectionnées"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sélectionnée"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sélectionnées"
+                }
+              }
+            }
           }
         },
         "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ selezionate"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selezionata"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selezionate"
+                }
+              }
+            }
           }
         },
         "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ selecionados"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selecionado"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld selecionados"
+                }
+              }
+            }
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ выбрано"
+            "value" : "%lld выбрано"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ seçildi"
+            "value" : "%lld seçildi"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تم تحديد %@"
+            "value" : "تم تحديد %lld"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ चयनित"
+            "value" : "%lld चयनित"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@個選択中"
+            "value" : "%lld個選択中"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@개 선택됨"
+            "value" : "%lld개 선택됨"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已选择%@个"
+            "value" : "已选择%lld个"
           }
         }
       }
@@ -27536,7 +27471,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "做得好,远离了手机。站起来走开吧。"
+            "value" : "做得好，远离了手机。站起来走开吧。"
           }
         }
       }

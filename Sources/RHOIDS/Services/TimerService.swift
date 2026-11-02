@@ -185,8 +185,29 @@ actor TimerService {
         // Actor reentrancy allows stop() or another start() to run while the
         // Live Activity request is suspended. Never let obsolete start work
         // publish state or install tasks for a timer that has been replaced.
-        guard activeRunID == runID, !Task.isCancelled else {
-            log.debug("start abandoned after Live Activity setup because its run is no longer active")
+        guard activeRunID == runID else {
+            log.debug("start abandoned after Live Activity setup because a newer run replaced it")
+            return
+        }
+
+        // The run is still ours, but the enclosing Task (e.g. a cancelled
+        // App Intent / Siri request) was cancelled while the Live Activity
+        // request was suspended above. Unlike the newer-run case, nothing
+        // else will ever clean this run up - no countdown task or side
+        // effects have been scheduled yet - so isPreparingTimer would
+        // otherwise stay stuck true forever, permanently blocking
+        // adoptSharedStateIfNeeded() and every future start(). Tear down
+        // the Live Activity that was already registered and reset state.
+        guard !Task.isCancelled else {
+            log.debug("start cancelled after Live Activity setup - tearing down the orphaned Live Activity")
+            activeRunID = nil
+            isPreparingTimer = false
+            currentEndDate = nil
+            currentPreset = nil
+            currentDuration = 0
+            if sideEffectsEnabled {
+                await liveActivityService.end()
+            }
             return
         }
 
@@ -283,7 +304,8 @@ actor TimerService {
         }
     }
 
-    /// Resolves the mode that should actually drive completion messaging -     /// falls back to `nil` (today's neutral default copy) when Limited
+    /// Resolves the mode that should actually drive completion messaging;
+    /// falls back to `nil` (today's neutral default copy) when Limited
     /// Scrolling was picked but blocking won't really engage.
     private func resolvedMessagingMode(_ preferences: TimerPreferences) -> FocusLockMode? {
         FocusLockMode.effective(selected: preferences.focusLockMode, blockingWillEngage: preferences.focusLockBlockingWillEngage)
@@ -400,7 +422,8 @@ actor TimerService {
         if sideEffectsEnabled {
             // Start the Live Activity so the Dynamic Island / Lock Screen show the timer.
             // Awaited eagerly (like `start()`) rather than folded into the
-            // tracked side-effects task: LiveActivityService is idempotent -             // `end()`/`dismiss()` sweep up any orphaned activity even if this
+            // tracked side-effects task: LiveActivityService is idempotent:
+            // `end()`/`dismiss()` sweep up any orphaned activity even if this
             // races with a cancellation - so it isn't part of the
             // "cancelled timer still alerts" hazard the tracked task guards
             // against below.
@@ -666,6 +689,40 @@ actor TimerService {
             await notificationService.cancelAll()
         }
         log.debug("[\(tag)] reschedule complete ✓")
+    }
+
+    /// The user disabled notifications in Settings. Unlike
+    /// `rescheduleForFocusLockChange()`, which only acts while a timer is
+    /// active (`activeRunID != nil`), this must cancel every alert source
+    /// unconditionally - timer running or not - because a pending
+    /// post-completion cooldown-complete notification can outlive the run
+    /// itself, and `rescheduleForFocusLockChange()` has no reason to reach
+    /// it.
+    ///
+    /// Uses the same cancel-and-await ordering as `stop()`/
+    /// `handleExternalAlarmStop()`: `start()`/`adopt()`'s side-effects task
+    /// can still be mid-flight (e.g. suspended inside
+    /// `AlarmKitService.scheduleTimer(...)`'s call to
+    /// `AlarmManager.shared.schedule(...)`) when this runs. `AlarmKitService`
+    /// has no generation/token guard of its own (unlike `NotificationService`,
+    /// whose `add()` re-checks its scheduling token after the call lands and
+    /// undoes a stale write) - so calling it directly, without first waiting
+    /// for `sideEffectsTask`, can find nothing scheduled yet and let a
+    /// same-moment `scheduleTimer(...)` land afterward, leaving an AlarmKit
+    /// alarm armed after the user just turned notifications off. Only
+    /// awaiting `sideEffectsTask` first guarantees this cancellation is the
+    /// last writer. Safe to call whether or not a timer is running.
+    func cancelAlertsForNotificationsDisabled() async {
+        let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
+        log.debug("cancelAlertsForNotificationsDisabled - runID=\(tag)")
+        sideEffectsTask?.cancel()
+        await sideEffectsTask?.value
+        sideEffectsTask = nil
+
+        guard sideEffectsEnabled else { return }
+        await alarmPlayer.stopAlarm()
+        await notificationService.cancelAll()
+        await alarmKitService.cancelActive()
     }
 
     func stop() async {

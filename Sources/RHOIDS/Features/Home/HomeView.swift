@@ -113,11 +113,11 @@ struct HomeView: View {
                         .transition(AppMotion.edgeFade(.bottom, reduceMotion: reduceMotion))
 
                     customDurationPicker
-                        .opacity(viewModel.selectedPreset?.isCustom == true ? 1 : 0)
-                        .frame(height: viewModel.selectedPreset?.isCustom == true ? nil : 0)
+                        .opacity(viewModel.startPreset.isCustom ? 1 : 0)
+                        .frame(height: viewModel.startPreset.isCustom ? nil : 0)
                         .clipped()
-                        .allowsHitTesting(viewModel.selectedPreset?.isCustom == true)
-                        .accessibilityHidden(viewModel.selectedPreset?.isCustom != true)
+                        .allowsHitTesting(viewModel.startPreset.isCustom)
+                        .accessibilityHidden(!viewModel.startPreset.isCustom)
 
                     WidgetSetupChecklist(
                         expanded: $widgetSetupExpanded,
@@ -158,11 +158,11 @@ struct HomeView: View {
                 presetList
 
                 customDurationPicker
-                    .opacity(viewModel.selectedPreset?.isCustom == true ? 1 : 0)
-                    .frame(height: viewModel.selectedPreset?.isCustom == true ? nil : 0)
+                    .opacity(viewModel.startPreset.isCustom ? 1 : 0)
+                    .frame(height: viewModel.startPreset.isCustom ? nil : 0)
                     .clipped()
-                    .allowsHitTesting(viewModel.selectedPreset?.isCustom == true)
-                    .accessibilityHidden(viewModel.selectedPreset?.isCustom != true)
+                    .allowsHitTesting(viewModel.startPreset.isCustom)
+                    .accessibilityHidden(!viewModel.startPreset.isCustom)
             }
             .frame(maxWidth: .infinity)
         }
@@ -232,13 +232,13 @@ struct HomeView: View {
             ForEach(PresetTimer.all) { preset in
                 PresetRow(
                     preset: preset,
-                    isSelected: viewModel.selectedPreset == preset
+                    isSelected: viewModel.startPreset == preset
                 ) {
                     selectPreset(preset)
                 }
             }
         }
-        .animation(AppMotion.optionSelection(reduceMotion: reduceMotion), value: viewModel.selectedPreset?.id)
+        .animation(AppMotion.optionSelection(reduceMotion: reduceMotion), value: viewModel.startPreset.id)
     }
 
     private var customDurationPicker: some View {

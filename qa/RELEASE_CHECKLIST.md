@@ -1,27 +1,28 @@
 # RHOIDS Release Readiness Checklist
 
-Last updated: August 26, 2026
+Last updated: November 2, 2026
 
 This document separates evidence the repository can prove from checks that require a signed physical device or App Store Connect. Passing local and CI tests is important, but it is not the same as release approval.
 
 ## Current Automated Evidence
 
-- XcodeGen 2.45.4 regenerated `RHOIDS.xcodeproj` from `project.yml` successfully.
-- The iPhone suite passed 746 tests across 70 suites on an iPhone simulator.
-- The Apple Watch suite passed 24 tests across 3 suites on an Apple Watch simulator.
-- GitHub Actions completed project discovery, the iPhone build, iPhone tests, and Apple Watch tests successfully for commit `2b60932`.
-- The privacy manifest passes property-list validation and declares no tracking or collected data.
-- The screenshot generator reproduced and validated ten opaque RGB PNGs with embedded sRGB metadata at 1284 by 2778 pixels.
-- `git diff --check` and Python script compilation passed.
+Recorded November 2, 2026 for the 1.1.2 release branch with Xcode 27.2 and XcodeGen 2.46.0:
 
-The local tests used Xcode beta because the machine's active developer directory pointed to Command Line Tools. CI independently passed with its hosted Xcode installation.
+- The iPhone suite passed 764 tests with no failures or skips on an iPhone 17e simulator running iOS 27.2.
+- The `RHOIDS` scheme built for the simulator, and a Release build for a generic iOS device succeeded with code signing disabled.
+- The Apple Watch suite passed in Xcode Cloud (PR Check) on Apple Watch Series 10 and Ultra 2 simulators. It was not run locally because the release machine has no watchOS simulator runtime.
+- The iPhone suite failed in Xcode Cloud with 19 `.projectRootNotFound` errors from `LiveActivityDeviceDiagnosticTests`, `LocalizationCatalogTests`, and `TipJarServiceTests`. Those tests read repository files at run time, and Xcode Cloud runs tests on a host without the repository. The test bundle now carries copies of those files under `RepoFiles/` (see `Tests/RHOIDSTests/Utilities/RepoFile.swift`).
+- No iOS 26.0 runtime was available, so the deployment-floor check is still open.
+- The app was exercised in German on the simulator: onboarding, preset selection, a timer start and early stop, the completion sheet, History, streak achievements, and Settings. The completion sheet was also checked at the largest accessibility text size.
+- The privacy manifest passes property-list validation and declares no tracking or collected data.
+- `git diff --check` passed.
 
 ## Release Configuration
 
-- Marketing version: `1.1.1`
-- Build number: `4`
-- Minimum iOS version: `26.4`
-- Minimum watchOS version: `11.5`
+- Marketing version: `1.1.2`
+- Build number: `5`, uploaded to TestFlight on November 2, 2026. `project.yml` now holds `6`, which the archive post-action prepared for the next upload.
+- Minimum iOS version: `26.0`
+- Minimum watchOS version: `26.0`
 - iPhone bundle identifier: `com.wesley.RHOIDS`
 - App Group: `group.com.wesley.RHOIDS`
 - Supported native products: iPhone app, iPhone widgets and Live Activity, Apple Watch app, watch complications, and Screen Time extensions

@@ -1,7 +1,8 @@
 import SwiftUI
 
 /// Centralized layout tokens so spacing and corner radii are consistent across
-/// the app instead of scattered magic numbers. Named to match `AppMotion` - /// the app's other design-system namespace.
+/// the app instead of scattered magic numbers. Named to match `AppMotion`,
+/// the app's other design-system namespace.
 ///
 /// The scale is an 8-pt rhythm with two finer steps (2, 4) for tight,
 /// intra-component spacing (icon-to-label, stacked text).

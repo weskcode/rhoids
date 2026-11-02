@@ -52,17 +52,4 @@ enum WatchHaptics {
         guard isEnabled else { return }
         WKInterfaceDevice.current().play(.click)
     }
-
-    /// Digital Crown detent (handled by system when `isHapticFeedbackEnabled: true`).
-    /// This is here for manual Crown scenarios only.
-    static func crownDetent() {
-        guard isEnabled else { return }
-        WKInterfaceDevice.current().play(.click)
-    }
-
-    /// Positive outcome (early stop = good behavior).
-    static func positiveOutcome() {
-        guard isEnabled else { return }
-        WKInterfaceDevice.current().play(.success)
-    }
 }

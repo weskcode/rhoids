@@ -50,7 +50,7 @@ struct AlarmKitServiceTests {
     //    - Expected: Alarm breaks through Focus restrictions
     //
     // 4. 30-second warning banner appears when backgrounded:
-    //    - Set warning to "End Only" mode
+    //    - Set warning to "Once" mode
     //    - Start a 2-minute timer, switch to Home screen
     //    - Expected: Banner notification at T-30
     //

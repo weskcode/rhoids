@@ -200,10 +200,18 @@ struct SettingsView: View {
             .onChange(of: notificationsEnabled) { _, isEnabled in
                 Task { @MainActor in
                     guard let services = AppServices.shared else { return }
-                    if !isEnabled {
-                        await services.alarmPlayer.stopAlarm()
+                    if isEnabled {
+                        // Pick up alerts for whatever is currently running.
+                        await services.timerService.rescheduleForFocusLockChange()
+                    } else {
+                        // Routed through TimerService (not called directly
+                        // on the individual services) so the cancellation
+                        // waits for any in-flight AlarmKit/notification
+                        // scheduling to land first - see
+                        // cancelAlertsForNotificationsDisabled()'s doc
+                        // comment for why that ordering matters.
+                        await services.timerService.cancelAlertsForNotificationsDisabled()
                     }
-                    await services.timerService.rescheduleForFocusLockChange()
                 }
             }
             .onChange(of: dailyReminderEnabled) { _, isEnabled in

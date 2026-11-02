@@ -81,7 +81,8 @@ struct FocusLockPreferences: @unchecked Sendable {
         nonmutating set { defaults?.set(newValue, forKey: Self.bathroomSessionShouldShieldKey) }
     }
 
-    /// Which bathroom-focus path the user picked. Defaults to `.phoneFree` -     /// the option that requires no Screen Time authorization - so an
+    /// Which bathroom-focus path the user picked. Defaults to `.phoneFree`,
+    /// the option that requires no Screen Time authorization - so an
     /// unset/pre-onboarding value never implies app blocking.
     var mode: FocusLockMode {
         get {

@@ -53,7 +53,8 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Se
     static let timerDismissActionID = "TIMER_DISMISS"
     static let timerSnoozeActionID = "TIMER_SNOOZE"
 
-    /// When the app is foregrounded, our in-app UI handles timer alerts -     /// the 30-second warning beeps fire from TimerService and the completion
+    /// When the app is foregrounded, our in-app UI handles timer alerts:
+    /// the 30-second warning beeps fire from TimerService and the completion
     /// alarm loops from AlarmPlayer. Suppress the OS notification's banner +
     /// sound for those identifiers so we don't double up audio.
     func userNotificationCenter(_ center: UNUserNotificationCenter,

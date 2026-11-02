@@ -59,9 +59,8 @@ struct OnboardingWidgetPageView: View {
                     Spacer(minLength: 0)
                 }
                 .accessibilityElement(children: .combine)
-                .accessibilityLabel("\(feature.title). \(feature.description)")
                 .opacity(isVisible ? 1 : 0)
-                .offset(y: isVisible ? 0 : 16)
+                .offset(y: isVisible || reduceMotion ? 0 : 16)
             }
         }
     }

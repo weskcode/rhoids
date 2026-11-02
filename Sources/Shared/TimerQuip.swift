@@ -46,11 +46,11 @@ extension TimerQuip {
 
     /// Message for the T-30 warning - time is almost up, but don't panic.
     static let warningQuips: [TimerQuip] = [
-        TimerQuip(body: String(localized: "30 seconds left. Don't rush. Just start wrapping up.")),
+        TimerQuip(body: String(localized: "30 seconds left. No need to hurry. You can always come back later.")),
         TimerQuip(body: String(localized: "Almost done. If you're not finished, come back later.")),
         TimerQuip(body: String(localized: "30 seconds. No pushing! You can always try again.")),
         TimerQuip(body: String(localized: "Time's nearly up. Relax. Forcing it does more harm.")),
-        TimerQuip(body: String(localized: "Wrapping up soon. Remember: never strain.")),
+        TimerQuip(body: String(localized: "30 seconds left. Remember: never strain.")),
         TimerQuip(body: String(localized: "30 seconds left. It's okay to walk away unfinished.")),
     ]
 

@@ -4,6 +4,7 @@ struct TimerCompleteView: View {
     let outcome: TimerOutcome
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var contentAppeared = false
 
     var body: some View {
@@ -18,6 +19,8 @@ struct TimerCompleteView: View {
                 Text(outcome.title)
                     .font(.largeTitle.bold())
                     .tracking(2)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
 
                 Text(outcome.quip.body)
@@ -32,7 +35,7 @@ struct TimerCompleteView: View {
             Spacer(minLength: 0)
 
             Button(action: { dismiss() }) {
-                Label("Dismiss", systemImage: "stop.circle.fill")
+                Label("Dismiss", systemImage: "checkmark")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
@@ -46,7 +49,7 @@ struct TimerCompleteView: View {
         .scenePadding(.horizontal)
         .padding(.vertical, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .presentationDetents([.medium])
+        .presentationDetents(dynamicTypeSize.isAccessibilitySize ? [.large] : [.medium])
         .presentationDragIndicator(.hidden)
         .interactiveDismissDisabled()
         .task {

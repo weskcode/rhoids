@@ -84,8 +84,18 @@ class FocusLockMonitor: DeviceActivityMonitor {
     /// the user's latest choice.
     private func applyShieldFromSavedSelection() {
         if defaults?.bool(forKey: FocusLockKey.shieldsActive) == true,
-           let deadline = defaults?.object(forKey: FocusLockKey.cooldownEndDate) as? Date,
-           deadline > .now {
+           let existingDeadline = defaults?.object(forKey: FocusLockKey.cooldownEndDate) as? Date,
+           existingDeadline > .now {
+            // This can be a duplicate delivery for the SAME cooldown
+            // (intervalWillEndWarning and intervalDidEnd both firing), but
+            // it can just as easily be a genuinely new bathroom session
+            // finishing while an earlier one's cooldown is still counting
+            // down - nothing in the UI blocks starting another Limited
+            // Scrolling timer while a shield is already up. Extend the
+            // deadline instead of silently discarding this session's
+            // chosen cooldown, so the user is never unblocked sooner than
+            // either session promised.
+            extendCooldownIfNeeded(pastDeadline: existingDeadline)
             DeviceActivityCenter().stopMonitoring([.focusLockBathroomSession])
             return
         }
@@ -129,6 +139,43 @@ class FocusLockMonitor: DeviceActivityMonitor {
             store.clearAllSettings()
             defaults?.set(false, forKey: FocusLockKey.shieldsActive)
             defaults?.removeObject(forKey: FocusLockKey.cooldownEndDate)
+        }
+    }
+
+    /// Restarts cooldown monitoring for this session's chosen duration,
+    /// timed from now, if doing so would push the deadline later than
+    /// `existingDeadline`. No-ops (leaving the earlier cooldown ticking
+    /// down untouched) for a genuine duplicate delivery of the same event,
+    /// where the "new" deadline would land at or before the existing one.
+    private func extendCooldownIfNeeded(pastDeadline existingDeadline: Date) {
+        let stored = defaults?.double(forKey: FocusLockKey.cooldownDuration) ?? 0
+        let cooldownDuration = stored > 0 ? stored : 300
+
+        // Pure extend-vs-no-op decision lives in `FocusLockCooldownExtension`
+        // (Sources/Shared) so it can be unit tested - see that type's doc
+        // comment for why it isn't just a method on this class.
+        guard let candidateDeadline = FocusLockCooldownExtension.extendedDeadline(
+            pastDeadline: existingDeadline,
+            duration: cooldownDuration
+        ) else { return }
+
+        defaults?.set(candidateDeadline, forKey: FocusLockKey.cooldownEndDate)
+        let plan = FocusLockActivitySchedule.make(startingAt: .now, duration: cooldownDuration)
+        DeviceActivityCenter().stopMonitoring([.focusLockCooldown])
+        do {
+            try DeviceActivityCenter().startMonitoring(.focusLockCooldown, during: plan.schedule)
+        } catch {
+            // Extension failed, but the original (shorter) cooldown
+            // monitoring was already stopped above - restore the stored
+            // deadline to match what will actually clear the shield rather
+            // than leaving it pointing at a time nothing will act on.
+            let fallback = FocusLockCooldownExtension.fallbackAfterFailedExtension(pastDeadline: existingDeadline)
+            defaults?.set(fallback.deadline, forKey: FocusLockKey.cooldownEndDate)
+            let fallbackPlan = FocusLockActivitySchedule.make(
+                startingAt: .now,
+                duration: fallback.monitoringDuration
+            )
+            try? DeviceActivityCenter().startMonitoring(.focusLockCooldown, during: fallbackPlan.schedule)
         }
     }
 

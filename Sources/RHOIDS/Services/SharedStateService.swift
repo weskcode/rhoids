@@ -43,10 +43,6 @@ final class SharedStateService {
         WidgetCenter.shared.reloadAllTimelines()
     }
 
-    func reloadWidgetTimelines() {
-        WidgetCenter.shared.reloadAllTimelines()
-    }
-
     nonisolated func getTimerState() -> (endDate: Date?, isRunning: Bool, presetName: String?, duration: TimeInterval) {
         let defaults = UserDefaults(suiteName: suiteName)
         let endDate = defaults?.object(forKey: timerEndDateKey) as? Date

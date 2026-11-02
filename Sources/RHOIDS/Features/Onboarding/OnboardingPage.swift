@@ -36,7 +36,7 @@ extension OnboardingPage {
             OnboardingFeature(
                 symbol: "iphone.gen3",
                 title: String(localized: "Phones make it worse"),
-                description: String(localized: "Scrolling on the toilet raises the risk by 46%.")
+                description: String(localized: "Scrolling on the toilet is linked to a 46% higher risk.")
             ),
             OnboardingFeature(
                 symbol: "book.closed.fill",
@@ -89,7 +89,7 @@ extension OnboardingPage {
             OnboardingFeature(
                 symbol: "applewatch",
                 title: String(localized: "Apple Watch"),
-                description: String(localized: "Already installed. Start timers from your wrist.")
+                description: String(localized: "Start and stop timers from your wrist.")
             )
         ]
     )

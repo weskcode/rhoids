@@ -199,6 +199,25 @@ struct NotificationSchedulingTests {
         }
     }
 
+    @Test func `A superseded daily-reminder enable does not clobber a fresher disable`() async {
+        // Regression: scheduleDailyReminder()/cancelDailyReminder() used to
+        // have no staleness guard at all, unlike schedule()'s .timer/.beep
+        // tokens. Rapidly toggling the reminder switch on-then-off could let
+        // a slow, superseded "enable" call finish after the "disable" that
+        // came after it, leaving a reminder scheduled despite the toggle
+        // showing off.
+        await withCleanNotificationCenter { sut, center in
+            await center.runBeforeNextAddition {
+                await sut.cancelDailyReminder()
+            }
+
+            await sut.scheduleDailyReminder(hour: 9, minute: 0)
+
+            let reminder = await pending(matching: NotificationService.dailyReminderID, in: center)
+            #expect(reminder == nil, "The later cancel must win over the now-stale enable")
+        }
+    }
+
     @Test func `Daily reminder uses stable identifier and selected time`() async throws {
         try await withCleanNotificationCenter { sut, center in
             await sut.scheduleDailyReminder(hour: 18, minute: 45)

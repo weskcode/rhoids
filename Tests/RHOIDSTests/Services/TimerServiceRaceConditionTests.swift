@@ -78,6 +78,52 @@ struct TimerServiceRaceConditionTests {
         #expect(state.endDate == nil)
     }
 
+    @Test("A cancelled start does not permanently block adopting a timer started elsewhere")
+    func cancelledStartDoesNotOrphanPreparingFlag() async {
+        // Uses its own SharedStateService (rather than makeService()'s) so
+        // the test can write a widget/Watch-started timer into it directly.
+        let sharedState = SharedStateService(suiteName: "com.test.rhoids.race-\(UUID().uuidString)")
+        let service = TimerService(
+            notificationService: NotificationService(),
+            liveActivityService: LiveActivityService(),
+            sharedStateService: sharedState,
+            alarmPlayer: AlarmPlayer(),
+            alarmKitService: AlarmKitService(),
+            screenTimeSessionScheduling: NoOpScreenTimeSessionScheduling(),
+            sideEffectsEnabled: false
+        )
+
+        // Simulate start() whose enclosing Task is cancelled while the run
+        // is still active (e.g. a cancelled Siri/App Intent request) -
+        // regression test for the isPreparingTimer/activeRunID guard that
+        // used to conflate "a newer run replaced this one" with "this run
+        // is still active but got cancelled."
+        let task = Task {
+            await service.start(duration: 60, preset: .recommended, preferences: quietPrefs())
+        }
+        task.cancel()
+        await task.value
+
+        #expect(
+            await service.timerState().isRunning == false,
+            "A cancelled start must not leave isPreparingTimer stuck true"
+        )
+
+        // The widget/Watch starts its own timer independently via shared
+        // state. adoptSharedStateIfNeeded() is the concrete caller that a
+        // stuck isPreparingTimer would silently and permanently no-op.
+        let endDate = Date().addingTimeInterval(120)
+        sharedState.setTimer(endDate: endDate, presetName: PresetTimer.maxAllowed.name, duration: 120)
+
+        await service.adoptSharedStateIfNeeded()
+
+        let adopted = await service.timerState()
+        #expect(adopted.isRunning == true, "Should adopt the widget-started timer instead of silently no-oping")
+        #expect(adopted.preset == .maxAllowed)
+
+        await service.stop()
+    }
+
     // MARK: - Event stream lifecycle
 
     @Test("Event stream created before start receives the started event")
