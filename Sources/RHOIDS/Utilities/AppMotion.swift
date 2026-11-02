@@ -21,6 +21,16 @@ enum AppMotion {
         reduceMotion ? .easeOut(duration: 0.12) : .snappy(duration: 0.22)
     }
 
+    /// Press-in for custom buttons. Shorter than `feedback`, which handles the release.
+    static func pressDown(reduceMotion: Bool) -> Animation {
+        reduceMotion ? .easeOut(duration: 0.08) : .snappy(duration: 0.12)
+    }
+
+    /// Exits run faster than `reveal`, which brings the same views in.
+    static func dismissal(reduceMotion: Bool) -> Animation {
+        reduceMotion ? .easeOut(duration: 0.12) : .easeOut(duration: 0.18)
+    }
+
     static func optionSelection(reduceMotion: Bool) -> Animation {
         reduceMotion ? .easeOut(duration: 0.12) : .smooth(duration: 0.24)
     }

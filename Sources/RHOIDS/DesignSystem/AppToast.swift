@@ -34,11 +34,10 @@ private struct ToastModifier: ViewModifier {
                     ToastView(toast: toast)
                         .padding(.horizontal, AppSpacing.xxl)
                         .padding(edge == .top ? .top : .bottom, AppSpacing.sm)
-                        .transition(
-                            reduceMotion
-                                ? .opacity
-                                : .move(edge: edge == .top ? .top : .bottom).combined(with: .opacity)
-                        )
+                        .transition(.asymmetric(
+                            insertion: transition,
+                            removal: transition.animation(AppMotion.dismissal(reduceMotion: reduceMotion))
+                        ))
                         // Never intercept touches on the underlying UI.
                         .allowsHitTesting(false)
                         .task(id: toast.id) {
@@ -49,6 +48,10 @@ private struct ToastModifier: ViewModifier {
                 }
             }
             .animation(AppMotion.reveal(reduceMotion: reduceMotion), value: toast)
+    }
+
+    private var transition: AnyTransition {
+        reduceMotion ? .opacity : .move(edge: edge == .top ? .top : .bottom).combined(with: .opacity)
     }
 }
 

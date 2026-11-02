@@ -57,7 +57,7 @@ struct PresetRow: View {
 
             Circle()
                 .fill(Color.accentColor)
-                .scaleEffect(isSelected ? 1 : 0.2)
+                .scaleEffect(isSelected || reduceMotion ? 1 : 0.5)
                 .opacity(isSelected ? 1 : 0)
 
             Image(systemName: "checkmark")

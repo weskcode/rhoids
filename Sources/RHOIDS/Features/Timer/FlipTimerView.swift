@@ -161,7 +161,6 @@ private struct FlipDigitTile: View {
             anchor: .center,
             perspective: 0.7
         )
-        .scaleEffect(isFlipping && !reduceMotion ? 0.995 : 1)
         .animation(AppMotion.digitFlip(reduceMotion: reduceMotion), value: isFlipping)
         .onChange(of: digit) { _, newDigit in
             updateDigit(newDigit)

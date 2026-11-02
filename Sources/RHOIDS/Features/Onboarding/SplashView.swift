@@ -63,7 +63,7 @@ struct SplashView: View {
             Task {
                 try? await Task.sleep(for: .milliseconds(600))
                 if showGetStarted {
-                    withAnimation(.easeIn(duration: 0.4)) { buttonOpacity = 1 }
+                    withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) { buttonOpacity = 1 }
                 } else {
                     fadeOut()
                 }

@@ -162,7 +162,7 @@ struct WatchRingView: View {
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(
-                    reduceMotion ? nil : .easeInOut(duration: 0.4),
+                    reduceMotion ? nil : .linear(duration: 1),
                     value: progress
                 )
 

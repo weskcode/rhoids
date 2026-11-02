@@ -22,7 +22,12 @@ struct PressableButtonStyle: ButtonStyle {
         var body: some View {
             configuration.label
                 .scaleEffect(reduceMotion || !configuration.isPressed ? 1 : pressedScale)
-                .animation(AppMotion.feedback(reduceMotion: reduceMotion), value: configuration.isPressed)
+                .animation(
+                    configuration.isPressed
+                        ? AppMotion.pressDown(reduceMotion: reduceMotion)
+                        : AppMotion.feedback(reduceMotion: reduceMotion),
+                    value: configuration.isPressed
+                )
                 .contentShape(Rectangle())
         }
     }
