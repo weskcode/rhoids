@@ -16,6 +16,7 @@ struct WatchCustomDurationView: View {
     @FocusState private var isCrownFocused: Bool
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: 12) {
@@ -29,7 +30,7 @@ struct WatchCustomDurationView: View {
                 .font(.system(size: 52, weight: .light, design: .rounded))
                 .monospacedDigit()
                 .contentTransition(.numericText())
-                .animation(.snappy(duration: 0.15), value: Int(minutes))
+                .animation(reduceMotion ? nil : .snappy(duration: 0.15), value: Int(minutes))
 
             Text(Int(minutes) == 1 ? "minute" : "minutes")
                 .font(.body)

@@ -112,7 +112,6 @@ struct WatchTimerView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.brand)
-            .accessibilityLabel("Dismiss timer completion")
         }
     }
 

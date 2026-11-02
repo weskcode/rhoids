@@ -42,6 +42,7 @@ struct PresetRow: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.pressable)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
         .sensoryFeedback(.selection, trigger: isSelected)
         .animation(AppMotion.optionSelection(reduceMotion: reduceMotion), value: isSelected)
     }

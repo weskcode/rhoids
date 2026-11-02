@@ -56,6 +56,7 @@ struct SoundPicker: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(selection == sound ? .isSelected : [])
     }
 
     private func preview(_ sound: AlarmSound) {
