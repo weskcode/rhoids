@@ -345,7 +345,7 @@ actor NotificationService {
 
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Cooldown complete")
-        content.body = String(localized: "Nice work - your selected apps are available again. Take a moment to recognize the break you gave yourself today.")
+        content.body = String(localized: "Your apps are available again. Nice work taking a real break.")
         content.sound = .default
         content.interruptionLevel = .active
         content.threadIdentifier = "rhoids.focusLock"

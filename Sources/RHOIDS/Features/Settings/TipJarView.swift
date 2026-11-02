@@ -23,7 +23,7 @@ struct TipJarView: View {
     var body: some View {
         List {
             Section {
-                Text("RHOIDS is built with care and offered completely free, no ads, no subscriptions. If you find it valuable, a tip goes a long way toward keeping development going.")
+                Text("RHOIDS is free, with no ads or subscriptions. If it helps you, a tip keeps development going.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

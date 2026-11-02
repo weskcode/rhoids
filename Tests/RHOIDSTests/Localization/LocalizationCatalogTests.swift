@@ -22,7 +22,7 @@ struct LocalizationCatalogTests {
     /// their originally published language. Growing this list should be a deliberate,
     /// reviewed decision, not a silent side effect of forgetting to translate a new string.
     private static let exemptKeys: Set<String> = [
-        "%@", "%@ · %@", "%@ min", "%@, %@", "%@%%", "0:00", "R", "RHOIDS", "RHOIDS · %@",
+        "%@", "%@ · %@", "%@ min", "%@, %@", "%lld%%", "0:00", "R", "RHOIDS", "RHOIDS · %@",
         "%@. %@", "%@, %@, %@",
         "Esmaeilnia Shirvani et al., Annals of Medicine, 2025",
         "Hemorrhoids: from basic pathophysiology to clinical management",
@@ -53,6 +53,12 @@ struct LocalizationCatalogTests {
             throw TestError.catalogUnreadable
         }
         return strings
+    }
+
+    /// Counts printf-style specifiers such as `%@`, `%lld`, and `%1$@`; `%%` is a literal percent sign.
+    private func placeholderCount(_ string: String) -> Int {
+        let pattern = /%(?:\d+\$)?(?:@|lld|ld|d|f|\.\d+f)/
+        return string.replacing("%%", with: "").matches(of: pattern).count
     }
 
     private func localizedValue(_ entry: [String: Any], locale: String) -> String? {
@@ -108,10 +114,10 @@ struct LocalizationCatalogTests {
         let strings = try loadCatalog()
         var mismatches: [String] = []
         for (key, entry) in strings {
-            let expectedCount = key.components(separatedBy: "%@").count - 1
+            let expectedCount = placeholderCount(key)
             guard expectedCount > 0 else { continue }
             guard let value = localizedValue(entry, locale: "es") else { continue }
-            let actualCount = value.components(separatedBy: "%@").count - 1
+            let actualCount = placeholderCount(value)
             if actualCount != expectedCount {
                 mismatches.append("\(key) -> es has \(actualCount) placeholder(s), expected \(expectedCount)")
             }
@@ -125,15 +131,50 @@ struct LocalizationCatalogTests {
         let strings = try loadCatalog()
         var mismatches: [String] = []
         for (key, entry) in strings {
-            let expectedCount = key.components(separatedBy: "%@").count - 1
+            let expectedCount = placeholderCount(key)
             guard expectedCount > 0 else { continue }
             guard let value = localizedValue(entry, locale: locale) else { continue }
-            let actualCount = value.components(separatedBy: "%@").count - 1
+            let actualCount = placeholderCount(value)
             if actualCount != expectedCount {
                 mismatches.append("\(key) -> \(actualCount) placeholder(s), expected \(expectedCount)")
             }
         }
         #expect(mismatches.isEmpty, "[\(locale)] placeholder mismatches: \(mismatches)")
+    }
+
+    /// A past bulk edit turned commas and dashes into ". " mid-sentence and swapped
+    /// full-width CJK punctuation for ASCII. Both read as broken text in those locales.
+    @Test func `Translations keep sentence punctuation intact`() throws {
+        let strings = try loadCatalog()
+        let midSentencePeriod = /\. \p{Ll}/
+        let asciiNextToCJK = /[\p{Han}\p{Hiragana}\p{Katakana}][,:;!?]|[,:;!?][\p{Han}\p{Hiragana}\p{Katakana}]/
+        var damaged: [String] = []
+        for (key, entry) in strings {
+            for locale in Self.requiredLocales {
+                guard let value = localizedValue(entry, locale: locale) else { continue }
+                switch locale {
+                case "ja", "zh-Hans":
+                    if value.contains(asciiNextToCJK) { damaged.append("\(key) [\(locale)]") }
+                case "de", "es", "fr", "it", "pt-BR", "ru", "tr":
+                    if value.contains(midSentencePeriod), !value.contains("Min. ") {
+                        damaged.append("\(key) [\(locale)]")
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        #expect(damaged.isEmpty, "Damaged punctuation: \(damaged.sorted())")
+    }
+
+    @Test func `Every streak achievement title is translated`() throws {
+        let strings = try loadCatalog()
+        for achievement in StreakAchievement.all {
+            let key = achievement.title.key
+            let localizations = strings[key]?["localizations"] as? [String: Any] ?? [:]
+            let missing = Self.requiredLocales.filter { localizations[$0] == nil }
+            #expect(missing.isEmpty, "\(key) is missing \(missing)")
+        }
     }
 
     @Test func `Spanish locale is declared in project knownRegions`() throws {

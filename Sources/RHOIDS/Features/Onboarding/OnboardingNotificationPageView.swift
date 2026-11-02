@@ -6,6 +6,7 @@ struct OnboardingNotificationPageView: View {
     let notificationService: NotificationService
 
     @State private var permissionGranted: Bool?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ScrollView {
@@ -44,12 +45,12 @@ struct OnboardingNotificationPageView: View {
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
         .disabled(permissionGranted != nil)
-        .accessibilityHint(Text(permissionGranted != nil
-            ? "Notification permission has already been requested."
-            : "Requests permission to send timer alerts."))
+        .accessibilityHint(permissionGranted != nil
+            ? Text("Notification permission has already been requested.")
+            : Text("Requests permission to send timer alerts."))
     }
 
-    private var permissionButtonTitle: String {
+    private var permissionButtonTitle: LocalizedStringKey {
         switch permissionGranted {
         case true:
             "Notifications Enabled"
@@ -63,7 +64,7 @@ struct OnboardingNotificationPageView: View {
     private func requestPermissions() {
         Task {
             let granted = await permissionService.requestPermission(using: notificationService)
-            withAnimation { permissionGranted = granted }
+            withAnimation(AppMotion.feedback(reduceMotion: reduceMotion)) { permissionGranted = granted }
         }
     }
 }

@@ -166,7 +166,7 @@ struct HistoryView: View {
         let status = session.wasInterrupted ? String(localized: "stopped early") : String(localized: "completed")
         let duration = DurationFormatter.formatted(session.actualDuration)
         let when = formattedSessionDate(session.startedAt)
-        return "\(preset) timer, \(status), \(duration), \(when)"
+        return "\(preset), \(status), \(duration), \(when)"
     }
 }
 
