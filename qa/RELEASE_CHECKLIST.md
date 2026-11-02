@@ -11,7 +11,7 @@ Recorded November 2, 2026 for the 1.1.2 release branch with Xcode 27.2 and Xcode
 - The iPhone suite passed 764 tests with no failures or skips on an iPhone 17e simulator running iOS 27.2.
 - The `RHOIDS` scheme built for the simulator, and a Release build for a generic iOS device succeeded with code signing disabled.
 - The Apple Watch suite passed in Xcode Cloud (PR Check) on Apple Watch Series 10 and Ultra 2 simulators. It was not run locally because the release machine has no watchOS simulator runtime.
-- The iPhone suite failed in Xcode Cloud with 19 `.projectRootNotFound` errors from `LiveActivityDeviceDiagnosticTests`, `LocalizationCatalogTests`, and `TipJarServiceTests`. Those tests read repository files at run time, and Xcode Cloud runs tests on a host without the repository.
+- The iPhone suite failed in Xcode Cloud with 19 `.projectRootNotFound` errors from `LiveActivityDeviceDiagnosticTests`, `LocalizationCatalogTests`, and `TipJarServiceTests`. Those tests read repository files at run time, and Xcode Cloud runs tests on a host without the repository. The test bundle now carries copies of those files under `RepoFiles/` (see `Tests/RHOIDSTests/Utilities/RepoFile.swift`).
 - No iOS 26.0 runtime was available, so the deployment-floor check is still open.
 - The app was exercised in German on the simulator: onboarding, preset selection, a timer start and early stop, the completion sheet, History, streak achievements, and Settings. The completion sheet was also checked at the largest accessibility text size.
 - The privacy manifest passes property-list validation and declares no tracking or collected data.
@@ -20,7 +20,7 @@ Recorded November 2, 2026 for the 1.1.2 release branch with Xcode 27.2 and Xcode
 ## Release Configuration
 
 - Marketing version: `1.1.2`
-- Build number: `5`
+- Build number: `5`, uploaded to TestFlight on November 2, 2026. `project.yml` now holds `6`, which the archive post-action prepared for the next upload.
 - Minimum iOS version: `26.0`
 - Minimum watchOS version: `26.0`
 - iPhone bundle identifier: `com.wesley.RHOIDS`
