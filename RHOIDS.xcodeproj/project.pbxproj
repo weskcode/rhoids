@@ -32,6 +32,7 @@
 		1B02FC0494F892176E0D800B /* UserPreferencesDefaultsResilienceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6EE2A14D6E2843F217BD1 /* UserPreferencesDefaultsResilienceTests.swift */; };
 		1C6918D61D14FED6212D0899 /* SyncedPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EBB85EFFA933713D84CA4A /* SyncedPreferences.swift */; };
 		1C8CA13F23CD94032A524CC4 /* NotificationPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1148EC2A0B1F06AE5E777A /* NotificationPermissionService.swift */; };
+		1CD78BAD14325DD70C90B04E /* RHOIDSWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8FEC7B9ACEC81EBE1CF3677C /* RHOIDSWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1D28AFBB7E48EB0FE4BE52F8 /* TipJarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D2958D266E514615BAC7A9 /* TipJarService.swift */; };
 		1D7E19B5561158FD9508CC2C /* WatchTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995CAC4308E6C071BBB4B69 /* WatchTimerViewModel.swift */; };
 		1F96A4295602802076C60A9A /* WatchWarningScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8DD1EB9A7DD3CB4CA990CE /* WatchWarningScheduleTests.swift */; };
@@ -311,6 +312,13 @@
 			remoteGlobalIDString = BAB21DC35AAEA08F0DFD4D57;
 			remoteInfo = RHOIDS;
 		};
+		B44CB67DDC074A2D09F32D78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DEECD75EBF8CF67FCCA0DC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6AA25977DAD442D629B0F8EF;
+			remoteInfo = RHOIDSWatch;
+		};
 		E24264476BFFF52EDD3A048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2DEECD75EBF8CF67FCCA0DC4 /* Project object */;
@@ -324,32 +332,45 @@
 		0AC87C1644702D79ED22A174 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources;
-			dstSubfolderSpec = 7;
-			files = (
-				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = RepoFiles/RHOIDS.xcodeproj;
-			dstSubfolderSpec = 7;
-			files = (
-				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82F60B18E8CBB62377FFBE00 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = RepoFiles;
 			dstSubfolderSpec = 7;
 			files = (
 				70A12CFA767FE5D68E011501 /* RHOIDS.storekit in CopyFiles */,
 				F3A1ABDA5B618F26D449FA4A /* project.yml in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = RepoFiles/Sources/RHOIDSWidget;
+			dstSubfolderSpec = 7;
+			files = (
+				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
+				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F60B18E8CBB62377FFBE00 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = RepoFiles/Sources/RHOIDS;
+			dstSubfolderSpec = 7;
+			files = (
+				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
+				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9483801A95094E52B052CFFD /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				1CD78BAD14325DD70C90B04E /* RHOIDSWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		99633D8B113C56FABC118A7D /* Embed Foundation Extensions */ = {
@@ -369,32 +390,30 @@
 		9EB7C689D8B8FF553B949737 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
+			dstPath = RepoFiles/RHOIDS.xcodeproj;
 			dstSubfolderSpec = 7;
 			files = (
-				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
+				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A7C9A9796908F641C96E4AE0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDS;
+			dstPath = RepoFiles/Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
-				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B6DB2D127531AE30E4FB664D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget;
+			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
 			dstSubfolderSpec = 7;
 			files = (
-				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
-				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
+				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1460,10 +1479,12 @@
 				712129E58C09C9E141299A40 /* Resources */,
 				696DF7D8C468F9D646A1C227 /* Frameworks */,
 				99633D8B113C56FABC118A7D /* Embed Foundation Extensions */,
+				9483801A95094E52B052CFFD /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				54E7C4FE49DE963B6134069F /* PBXTargetDependency */,
 				433F04DC2D57E7566BF9D7B1 /* PBXTargetDependency */,
 				DBB2E1018F88F755068E44A9 /* PBXTargetDependency */,
 				194CDBD8FF957E84203CC0CA /* PBXTargetDependency */,
@@ -1956,6 +1977,11 @@
 			target = 790A2D1D7FBE52B0B21236D3 /* RHOIDSWidget */;
 			targetProxy = 362085DE6D9781C1A07884F7 /* PBXContainerItemProxy */;
 		};
+		54E7C4FE49DE963B6134069F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6AA25977DAD442D629B0F8EF /* RHOIDSWatch */;
+			targetProxy = B44CB67DDC074A2D09F32D78 /* PBXContainerItemProxy */;
+		};
 		7CF328F8328DCC8BB2E3D9C6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6AA25977DAD442D629B0F8EF /* RHOIDSWatch */;
@@ -2296,7 +2322,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2366,7 +2392,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_NS_ASSERTIONS = NO;

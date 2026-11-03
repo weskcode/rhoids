@@ -17,7 +17,7 @@ settings:
     ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     VERSIONING_SYSTEM: apple-generic
     MARKETING_VERSION: 1.1.2
-    CURRENT_PROJECT_VERSION: 6
+    CURRENT_PROJECT_VERSION: 7
 packages:
   RHOIDSShared:
     path: Sources/RHOIDSShared
@@ -121,6 +121,8 @@ targets:
         CODE_SIGN_ENTITLEMENTS: Sources/RHOIDS/RHOIDS.entitlements
         TARGETED_DEVICE_FAMILY: 1
     dependencies:
+      - target: RHOIDSWatch
+        embed: true
       - target: RHOIDSWidget
         embed: true
       - target: RHOIDSDeviceActivityMonitor
