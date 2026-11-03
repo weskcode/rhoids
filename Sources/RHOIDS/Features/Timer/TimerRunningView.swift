@@ -82,7 +82,6 @@ struct TimerRunningView: View {
                 viewModel: viewModel,
                 timerStyle: timerStyle,
                 maxWidth: max(min(size.width - 48, 400), 0),
-                isStopping: isStopping,
                 reduceMotion: reduceMotion,
                 activationNamespace: activationNamespace
             )
@@ -96,6 +95,7 @@ struct TimerRunningView: View {
 
             StopTimerButton(
                 isStopping: isStopping,
+                isFinished: viewModel.isCountdownFrozen,
                 reduceMotion: reduceMotion,
                 action: beginStopTimer
             )
@@ -111,7 +111,6 @@ struct TimerRunningView: View {
                 viewModel: viewModel,
                 timerStyle: timerStyle,
                 maxWidth: max(min(size.width * 0.45, 360), 0),
-                isStopping: isStopping,
                 reduceMotion: reduceMotion,
                 activationNamespace: activationNamespace
             )
@@ -126,6 +125,7 @@ struct TimerRunningView: View {
 
                 StopTimerButton(
                     isStopping: isStopping,
+                    isFinished: viewModel.isCountdownFrozen,
                     reduceMotion: reduceMotion,
                     action: beginStopTimer
                 )
@@ -138,12 +138,11 @@ struct TimerRunningView: View {
     }
 
     private func beginStopTimer() {
-        guard !isStopping else { return }
+        guard !isStopping, !viewModel.isCountdownFrozen else { return }
         withAnimation(stopAnimation) {
             isStopping = true
-        } completion: {
-            viewModel.stopTimer()
         }
+        viewModel.stopTimer()
     }
 
     private var stopAnimation: Animation {
@@ -155,16 +154,11 @@ private struct RunningTimerVisualization: View {
     let viewModel: TimerViewModel
     let timerStyle: TimerStyle
     let maxWidth: CGFloat
-    let isStopping: Bool
     let reduceMotion: Bool
     let activationNamespace: Namespace.ID?
 
     private var safeWidth: CGFloat {
         (maxWidth.isFinite && maxWidth > 0) ? maxWidth : 300
-    }
-
-    private var shouldApplyGlobalStopAnimation: Bool {
-        isStopping && timerStyle != .card
     }
 
     private var isReady: Bool {
@@ -186,9 +180,6 @@ private struct RunningTimerVisualization: View {
         }
         .frame(maxWidth: safeWidth)
         .timerActivationGeometry(activationNamespace)
-        .scaleEffect(!reduceMotion && shouldApplyGlobalStopAnimation ? 0.96 : 1)
-        .opacity(shouldApplyGlobalStopAnimation ? 0.72 : 1)
-        .animation(AppMotion.feedback(reduceMotion: reduceMotion), value: isStopping)
         .animation(AppMotion.reveal(reduceMotion: reduceMotion), value: isReady)
     }
 
@@ -212,7 +203,6 @@ private struct RunningTimerVisualization: View {
             CardTimerView(
                 endDate: viewModel.safeEndDate,
                 progress: progress,
-                isStopping: isStopping,
                 frozenRemaining: viewModel.frozenRemaining
             )
         case .ring:
@@ -251,6 +241,7 @@ private struct RunningTimerVisualization: View {
 
 private struct StopTimerButton: View {
     let isStopping: Bool
+    let isFinished: Bool
     let reduceMotion: Bool
     let action: () -> Void
 
@@ -265,9 +256,12 @@ private struct StopTimerButton: View {
         .tint(.red)
         .controlSize(.large)
         .frame(maxWidth: 360)
-        .disabled(isStopping)
+        .disabled(isStopping || isFinished)
+        .opacity(isFinished ? 0 : 1)
+        .accessibilityHidden(isFinished)
         .scaleEffect(reduceMotion ? 1 : (isStopping ? 0.97 : 1))
         .animation(AppMotion.feedback(reduceMotion: reduceMotion), value: isStopping)
+        .animation(AppMotion.feedback(reduceMotion: reduceMotion), value: isFinished)
         .accessibilityInputLabels(["Stop Timer", "Stop Early"])
     }
 }
