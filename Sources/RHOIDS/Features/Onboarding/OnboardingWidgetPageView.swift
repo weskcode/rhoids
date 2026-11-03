@@ -19,7 +19,7 @@ struct OnboardingWidgetPageView: View {
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
-        .onAppear { animateSteps() }
+        .task { await animateSteps() }
         .onDisappear { visibleCount = 0 }
     }
 
@@ -65,15 +65,17 @@ struct OnboardingWidgetPageView: View {
         }
     }
 
-    private func animateSteps() {
-        let stepDelay: Duration = reduceMotion ? .zero : .milliseconds(400)
+    /// Reveals the steps one after another. Runs in `.task`, so leaving the
+    /// page cancels any steps still waiting.
+    private func animateSteps() async {
+        let stepDelay: Duration = reduceMotion ? .zero : .milliseconds(150)
         let animation = AppMotion.contextChange(reduceMotion: reduceMotion)
 
         for index in 0 ..< page.features.count {
-            Task {
-                try? await Task.sleep(for: stepDelay * index)
-                withAnimation(animation) { visibleCount = index + 1 }
+            if index > 0 {
+                do { try await Task.sleep(for: stepDelay) } catch { return }
             }
+            withAnimation(animation) { visibleCount = index + 1 }
         }
     }
 }

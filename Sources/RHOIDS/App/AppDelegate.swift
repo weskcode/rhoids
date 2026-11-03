@@ -17,12 +17,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Optional: action buttons on the alarm.
         let snooze = UNNotificationAction(
             identifier: "TIMER_SNOOZE",
-            title: "+1 min",
+            title: String(localized: "+1 min", comment: "Notification button that adds one minute to a finished timer"),
             options: []
         )
         let dismiss = UNNotificationAction(
             identifier: "TIMER_DISMISS",
-            title: "Dismiss",
+            title: String(localized: "Dismiss"),
             options: [.destructive]
         )
         let alarmCategory = UNNotificationCategory(

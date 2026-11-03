@@ -64,7 +64,7 @@ struct CardTimerView: View {
 
             if showsCountdown {
                 TimerCountdownText(endDate: endDate, size: countdownSize, frozenRemaining: frozenRemaining)
-                    .transition(.scale(scale: 0.98))
+                    .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.98)))
             }
         }
         .padding(.horizontal, showsCountdown ? 28 : 0)

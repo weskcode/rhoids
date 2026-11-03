@@ -6,7 +6,7 @@ enum AppStoreInfo {
     static let appID = "6772689484"
 
     /// Destination for the in-app feedback form.
-    static let supportEmail = "wesleyk@duck.com"
+    static let supportEmail = "weskcode@duck.com"
 
     static var writeReviewURL: URL? {
         guard !appID.isEmpty else { return nil }
