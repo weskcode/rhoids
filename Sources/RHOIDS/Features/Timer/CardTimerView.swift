@@ -6,7 +6,6 @@ struct CardTimerView: View {
     let endDate: Date
     let progress: Double
     var showsCountdown = true
-    var isStopping = false
     var frozenRemaining: TimeInterval?
 
     @ScaledMetric private var countdownSize: CGFloat
@@ -19,14 +18,12 @@ struct CardTimerView: View {
         endDate: Date,
         progress: Double,
         showsCountdown: Bool = true,
-        isStopping: Bool = false,
         frozenRemaining: TimeInterval? = nil,
         countdownSize: CGFloat = 72
     ) {
         self.endDate = endDate
         self.progress = progress
         self.showsCountdown = showsCountdown
-        self.isStopping = isStopping
         self.frozenRemaining = frozenRemaining
         self._countdownSize = ScaledMetric(wrappedValue: countdownSize, relativeTo: .largeTitle)
     }
@@ -37,10 +34,7 @@ struct CardTimerView: View {
 
             progressRail
         }
-        .scaleEffect(isStopping && !reduceMotion ? 0.98 : 1)
-        .opacity(isStopping ? 0.76 : 1)
         .animation(AppMotion.reveal(reduceMotion: reduceMotion), value: showsCountdown)
-        .animation(AppMotion.feedback(reduceMotion: reduceMotion), value: isStopping)
     }
 
     private var timerCard: some View {

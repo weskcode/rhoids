@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var viewModel: HomeViewModel
     @State private var isActivatingTimer = false
+    @State private var isReturningHome = false
     @State private var showScience = false
     @State private var widgetSetupExpanded = false
     @State private var toast: AppToast?
@@ -94,6 +95,7 @@ struct HomeView: View {
             }
             .toast($toast, edge: .top)
         }
+        .opacity(isReturningHome ? 0 : 1)
     }
 
     // MARK: - Portrait
@@ -177,10 +179,7 @@ struct HomeView: View {
             services: viewModel.services,
             activationNamespace: reduceMotion ? nil : timerActivationNamespace
         ) {
-            withAnimation(tabTransitionAnimation) {
-                viewModel.shouldShowTimer = false
-                isActivatingTimer = false
-            }
+            returnHome()
         }
         .transition(activeTimerTransition)
     }
@@ -195,6 +194,25 @@ struct HomeView: View {
 
     private var activeTimerTransition: AnyTransition {
         reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.992, anchor: .center))
+    }
+
+    private func returnHome() {
+        guard !isReturningHome else { return }
+        withAnimation(AppMotion.dismissal(reduceMotion: reduceMotion)) {
+            isReturningHome = true
+        } completion: {
+            // Restore the ready layout and bars while hidden so the finished
+            // countdown cannot morph into a different duration or move with them.
+            var transaction = Transaction(animation: nil)
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                viewModel.shouldShowTimer = false
+                isActivatingTimer = false
+            }
+            withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) {
+                isReturningHome = false
+            }
+        }
     }
 
     private var previewPreset: PresetTimer {
