@@ -4,8 +4,8 @@ Use this checklist before App Store submission or any PR that changes timer side
 
 ## Required Device Matrix
 
-- iPhone with Dynamic Island, iOS 26.4 or newer.
-- iPhone without Dynamic Island, iOS 26.4 or newer.
+- iPhone with Dynamic Island, iOS 26.0 or newer.
+- iPhone without Dynamic Island, iOS 26.0 or newer.
 - Paired Apple Watch simulator or physical watch for watch handoff checks.
 
 ## Timer And Alert Flow

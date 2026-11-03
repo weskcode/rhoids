@@ -57,3 +57,7 @@ By contributing, you agree that your contribution is licensed under the reposito
 Commit messages must be professional, concise, and free of emoji, pictographs, decorative Unicode symbols, and emoji presentation characters. This applies to the subject and body, including commits created by automated tools. Conventional Commit prefixes are permitted but optional. Do not include AI attribution or generated-by trailers unless a human contributor explicitly requests them.
 
 The tracked `commit-msg` hook enforces this locally after `scripts/install_git_hooks.sh` is run. Xcode Cloud applies the same validator through `ci_scripts/ci_post_clone.sh`: pull request builds check every commit the pull request introduces, and branch builds check the commit being built.
+
+## Simulator Runtime Policy
+
+iOS 26.0 is the deployment floor. Never download, install, restore, or test iOS 18 or older simulator runtimes. Use existing iOS 27 devices, with iOS 26.0 for floor checks. A missing destination is a blocked check. See [AGENTS.md](AGENTS.md).

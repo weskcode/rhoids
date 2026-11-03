@@ -1,6 +1,6 @@
 # RHOIDS Privacy Policy
 
-Last updated: August 26, 2026
+Last updated: November 2, 2026
 
 RHOIDS is designed to work without an account, advertising, analytics, or cross-app tracking.
 
@@ -36,4 +36,4 @@ This policy may be updated when app behavior or platform requirements change. Th
 
 ## Contact
 
-Privacy questions can be sent to [wesleyk@duck.com](mailto:wesleyk@duck.com).
+Privacy questions can be sent to [weskcode@duck.com](mailto:weskcode@duck.com).

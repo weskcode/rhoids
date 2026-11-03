@@ -1,27 +1,29 @@
 # RHOIDS Release Readiness Checklist
 
-Last updated: August 26, 2026
+Last updated: November 3, 2026
 
 This document separates evidence the repository can prove from checks that require a signed physical device or App Store Connect. Passing local and CI tests is important, but it is not the same as release approval.
 
 ## Current Automated Evidence
 
-- XcodeGen 2.45.4 regenerated `RHOIDS.xcodeproj` from `project.yml` successfully.
-- The iPhone suite passed 746 tests across 70 suites on an iPhone simulator.
-- The Apple Watch suite passed 24 tests across 3 suites on an Apple Watch simulator.
-- GitHub Actions completed project discovery, the iPhone build, iPhone tests, and Apple Watch tests successfully for commit `2b60932`.
-- The privacy manifest passes property-list validation and declares no tracking or collected data.
-- The screenshot generator reproduced and validated ten opaque RGB PNGs with embedded sRGB metadata at 1284 by 2778 pixels.
-- `git diff --check` and Python script compilation passed.
+Recorded for the 1.1.2 update with Xcode 27.2:
 
-The local tests used Xcode beta because the machine's active developer directory pointed to Command Line Tools. CI independently passed with its hosted Xcode installation.
+- The iPhone suite passed 765 tests locally at the tree shipped in PR #4 (`7bc9a9f`).
+- Xcode Cloud iOS and watchOS tests passed on PR #5 at `91c723e`, which adds the Watch app to the iPhone archive.
+- The signed build 7 archive contains the iPhone app, Watch app, iPhone widget, complication, and three Screen Time extensions. All seven bundles report 1.1.2 (7). Companion bundle identifiers match, and `codesign --verify --deep --strict` passed.
+- Build 6 processed successfully in App Store Connect and is attached to the 1.1.2 draft with manual release selected. It lacks the Watch app and must be replaced before submission. Build 7 has not been uploaded.
+- The earlier Xcode Cloud repository-file test failures were fixed by bundling the required files under `RepoFiles/` (see `Tests/RHOIDSTests/Utilities/RepoFile.swift`). Subsequent iOS runs passed.
+- The iOS 26.0 floor check remains blocked by the local runtime policy. Do not install a runtime to satisfy it without named approval.
+- Simulator checks covered German onboarding, preset selection, timer start and early stop, completion, History, achievements, and Settings. Completion was also checked at the largest accessibility text size. Motion checks covered countdown formatting, the completion bounce, and Reduce Motion.
+- Physical-device and TestFlight smoke checks remain pending. A successful archive does not prove these paths.
 
 ## Release Configuration
 
-- Marketing version: `1.1.1`
-- Build number: `4`
-- Minimum iOS version: `26.4`
-- Minimum watchOS version: `11.5`
+- Marketing version: `1.1.2`
+- Uploaded build: `6`, attached to the App Store draft but missing the Watch app.
+- Watch packaging correction: PR #5, `91c723e`; build `7` archived locally, not uploaded. The archive post-action prepares the next build number locally.
+- Minimum iOS version: `26.0`
+- Minimum watchOS version: `26.0`
 - iPhone bundle identifier: `com.wesley.RHOIDS`
 - App Group: `group.com.wesley.RHOIDS`
 - Supported native products: iPhone app, iPhone widgets and Live Activity, Apple Watch app, watch complications, and Screen Time extensions
@@ -52,11 +54,11 @@ Use the focused guides in this directory for App Intents, accessibility, Focus L
 Confirm these items in App Store Connect:
 
 - The selected build matches the intended marketing version and build number.
-- All five consumable tip products exist, have complete metadata and review screenshots, and are attached to the submitted app version.
+- Coffee Tip is the only product currently configured in App Store Connect. Verify it loads and purchases successfully in the sandbox. The other four configured product identifiers are unavailable; adding products requires separate approval.
 - App privacy answers match the shipped binary: no tracking and no collected data.
 - The hosted privacy-policy URL shows the current text from `PRIVACY.md`.
 - The ten iPhone screenshots are assigned to the intended screenshot slot and accepted without conversion errors.
-- App name, subtitle, description, categories, age rating, support URL, and copyright are current.
+- App name, subtitle, description, categories, age rating, support URL, and copyright are current. The age-rating fields `socialMedia` and `socialMediaAgeRestricted` remain unanswered.
 - Export compliance, signing, provisioning, Family Controls entitlement approval, and App Review notes are complete.
 
 ## Final Signoff

@@ -2,7 +2,8 @@ import Foundation
 
 /// Which bathroom-focus experience the user picked, in onboarding or Settings.
 enum FocusLockMode: String, CaseIterable, Codable, Sendable {
-    /// "I want to not be on my phone at all." No Screen Time shielding -     /// just a reminder to put the phone down.
+    /// "I want to not be on my phone at all." No Screen Time shielding,
+    /// just a reminder to put the phone down.
     case phoneFree
     /// "Let me use a few apps, then block them when time's up." Backed by
     /// Screen Time: apps are allowed during the timer, shielded at

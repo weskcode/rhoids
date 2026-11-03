@@ -254,4 +254,58 @@ struct TimerServiceSchedulingRaceTests {
         #expect(pending.isEmpty,
                 "No notification should remain pending after cancelling mid-reschedule; found: \(pending.map(\.identifier))")
     }
+
+    // MARK: - cancelAlertsForNotificationsDisabled()
+
+    @Test("Disabling notifications during an in-flight schedule leaves no pending notification once things settle")
+    func disablingNotificationsDuringInFlightScheduleLeavesNoPendingRequest() async throws {
+        let center = DelayedNotificationSchedulingCenter(addDelay: 0.2)
+        let service = makeService(center: center)
+
+        await service.start(duration: 120, preset: .recommended, preferences: notificationOnlyPrefs())
+
+        // Disable almost immediately - well before the delayed `add()` call
+        // (started inside the fire-and-forget-turned-tracked side-effects
+        // task) has resolved.
+        //
+        // What this test does NOT prove: it cannot show that
+        // cancelAlertsForNotificationsDisabled() awaiting sideEffectsTask is
+        // what keeps this clean. NotificationService carries its own
+        // independent staleness guard (timerSchedulingGeneration/isCurrent),
+        // which self-heals a stale add() once it resolves regardless of how
+        // any external cancel was ordered against it - so this assertion
+        // passes the same way even against the pre-fix code that cancelled
+        // immediately with no wait. The actual bug this method fixes is on
+        // the AlarmKitService side, which has no such self-heal; that path
+        // cannot be exercised here (AlarmKitService is not protocol-based
+        // and short-circuits under #if targetEnvironment(simulator)) and
+        // remains verifiable only on a physical device. This test is kept
+        // because "nothing is left pending once the disable settles" is a
+        // real property worth pinning, not because it guards the ordering
+        // fix - do not read a pass here as proof the race is closed.
+        try? await Task.sleep(for: .milliseconds(20))
+        await service.cancelAlertsForNotificationsDisabled()
+        try? await Task.sleep(for: .milliseconds(100))
+
+        let pending = await center.pendingNotificationRequests()
+        #expect(pending.isEmpty,
+                "No notification should remain pending after disabling notifications mid-schedule; found: \(pending.map(\.identifier))")
+
+        // cancelAlertsForNotificationsDisabled() deliberately leaves the
+        // timer itself running (it only stands down alert side effects), so
+        // clean up explicitly.
+        await service.stop()
+    }
+
+    @Test("Disabling notifications while idle is a safe no-op")
+    func disablingNotificationsWhileIdleIsSafe() async {
+        let center = DelayedNotificationSchedulingCenter(addDelay: 0.05)
+        let service = makeService(center: center)
+
+        await service.cancelAlertsForNotificationsDisabled()
+
+        let pending = await center.pendingNotificationRequests()
+        #expect(pending.isEmpty, "Nothing should be scheduled when no timer is running")
+        #expect(await service.timerState().isRunning == false)
+    }
 }

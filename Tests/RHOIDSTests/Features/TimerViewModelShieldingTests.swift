@@ -4,7 +4,8 @@ import Testing
 
 /// Regression coverage for Focus Lock shielding on timer completion.
 ///
-/// `TimerViewModel` must apply Focus Lock shields when a timer completes - /// on BOTH completion paths - but only while Focus Lock is enabled:
+/// `TimerViewModel` must apply Focus Lock shields when a timer completes,
+/// on BOTH completion paths - but only while Focus Lock is enabled:
 /// 1. The live `.completed` event in `observeTimer()`.
 /// 2. `tryRecoverCompletion()`, the widget-started-timer recovery path that
 ///    runs when the app is opened after a timer already finished. A prior bug

@@ -42,6 +42,7 @@ struct PresetRow: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.pressable)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
         .sensoryFeedback(.selection, trigger: isSelected)
         .animation(AppMotion.optionSelection(reduceMotion: reduceMotion), value: isSelected)
     }
@@ -56,7 +57,7 @@ struct PresetRow: View {
 
             Circle()
                 .fill(Color.accentColor)
-                .scaleEffect(isSelected ? 1 : 0.2)
+                .scaleEffect(isSelected || reduceMotion ? 1 : 0.5)
                 .opacity(isSelected ? 1 : 0)
 
             Image(systemName: "checkmark")

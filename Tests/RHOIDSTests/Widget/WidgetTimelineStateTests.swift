@@ -93,7 +93,8 @@ struct WidgetTimelineStateTests {
     /// Verifies that the exact keys `StartDefaultTimerIntent.perform()` writes are
     /// the same keys `SharedStateService.getTimerState()` reads.
     ///
-    /// If these diverge the intent can set state but the app reads nothing back -     /// the most common cause of "tap the widget, app opens, nothing happens" on device.
+    /// If these diverge the intent can set state but the app reads nothing back;
+    /// the most common cause of "tap the widget, app opens, nothing happens" on device.
     @Test("Intent-written keys match SharedStateService read keys",
           .tags(.widgetContract))
     @MainActor

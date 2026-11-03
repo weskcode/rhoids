@@ -65,7 +65,9 @@ Secondary: Medical
 4+ (No objectionable content)
 
 ## Privacy URL
-(Required: host the repository privacy policy at a public URL.)
+https://rhoids.apphq.online/privacy
+
+Keep the hosted page in sync with `PRIVACY.md`.
 
 ## Copyright
 © 2026 Wesley Keetch
@@ -75,15 +77,12 @@ Secondary: Medical
 ## Screenshot Package
 
 iPhone:
-- Current App Store upload set: `AppStore/Screenshots/upload-ready-1284x2778/`
-- Exact size: 1284 × 2778 portrait, opaque sRGB PNG
+- Upload size: 1284 × 2778 portrait, opaque sRGB PNG
 - Maximum: 10 screenshots
-- Install media dependencies: `python3 -m pip install -r scripts/requirements-media.txt`
-- Regenerate and validate: `python3 scripts/frame_screenshots_v2.py`
 
-The generator also preserves 1320 × 2868 masters in
-`AppStore/Screenshots/masters-1320x2868/`. Do not upload those masters into a slot that
-specifically requests 1284 × 2778 or 1242 × 2688.
+The 1320 × 2868 masters are in `AppStore/Screenshots/masters-1320x2868/`. The upload
+copies and the framing pipeline are kept outside the public repository. Do not upload
+the masters into a slot that specifically requests 1284 × 2778 or 1242 × 2688.
 
 RHOIDS is currently an iPhone and Apple Watch product. Do not prepare or submit
 iPad screenshots unless iPad support is intentionally added and validated.

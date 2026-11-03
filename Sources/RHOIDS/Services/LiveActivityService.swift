@@ -7,10 +7,6 @@ private let log = Logger(subsystem: "com.wesley.RHOIDS", category: "LiveActivity
 actor LiveActivityService {
     private var currentActivityID: String?
 
-    var activitiesEnabled: Bool {
-        ActivityAuthorizationInfo().areActivitiesEnabled
-    }
-
     func start(preset: PresetTimer, duration: TimeInterval, endDate: Date) async throws {
         let authInfo = ActivityAuthorizationInfo()
         log.info("start() - areActivitiesEnabled=\(authInfo.areActivitiesEnabled), frequentPushesEnabled=\(authInfo.frequentPushesEnabled), preset=\(preset.name), duration=\(duration)s")

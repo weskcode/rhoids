@@ -199,6 +199,25 @@ struct NotificationSchedulingTests {
         }
     }
 
+    @Test func `A superseded daily-reminder enable does not clobber a fresher disable`() async {
+        // Regression: scheduleDailyReminder()/cancelDailyReminder() used to
+        // have no staleness guard at all, unlike schedule()'s .timer/.beep
+        // tokens. Rapidly toggling the reminder switch on-then-off could let
+        // a slow, superseded "enable" call finish after the "disable" that
+        // came after it, leaving a reminder scheduled despite the toggle
+        // showing off.
+        await withCleanNotificationCenter { sut, center in
+            await center.runBeforeNextAddition {
+                await sut.cancelDailyReminder()
+            }
+
+            await sut.scheduleDailyReminder(hour: 9, minute: 0)
+
+            let reminder = await pending(matching: NotificationService.dailyReminderID, in: center)
+            #expect(reminder == nil, "The later cancel must win over the now-stale enable")
+        }
+    }
+
     @Test func `Daily reminder uses stable identifier and selected time`() async throws {
         try await withCleanNotificationCenter { sut, center in
             await sut.scheduleDailyReminder(hour: 18, minute: 45)
@@ -590,20 +609,31 @@ struct NotificationSchedulingTests {
         }
     }
 
-    @Test(arguments: [
-        (remaining: 150, expected: "2m 30s"),
-        (remaining: 120, expected: "2 min"),
-        (remaining:  90, expected: "1m 30s"),
-        (remaining:  60, expected: "1 min"),
-    ])
-    func `Beep title formats remaining time correctly`(remaining: Int, expected: String) {
-        let minutes = remaining / 60
-        let seconds = remaining % 60
-        let timeString = minutes > 0
-            ? (seconds > 0 ? "\(minutes)m \(seconds)s" : "\(minutes) min")
-            : "\(seconds)s"
-        #expect(timeString == expected,
-                "Remaining \(remaining)s should format as '\(expected)'")
+    @Test func `Beep titles show the remaining time in the app's duration format`() async {
+        let expectedTitles = [
+            150: "⏱ 2:30 remaining",
+            120: "⏱ 2 min remaining",
+            90: "⏱ 1:30 remaining",
+            60: "⏱ 1 min remaining",
+        ]
+
+        await withCleanNotificationCenter { sut, center in
+            await sut.scheduleBeepNotifications(
+                duration: 180,
+                endDate: Date().addingTimeInterval(180),
+                sound: .systemDefault
+            )
+
+            let beeps = await pending(in: center).filter {
+                $0.identifier.hasPrefix(NotificationService.beepIDPrefix)
+            }
+            #expect(beeps.count == expectedTitles.count)
+            for beep in beeps {
+                let remaining = Int(beep.identifier.dropFirst(NotificationService.beepIDPrefix.count))
+                #expect(beep.content.title == remaining.flatMap { expectedTitles[$0] },
+                        "Unexpected title for \(beep.identifier)")
+            }
+        }
     }
 
     @Test func `Re-scheduling beeps clears previous beeps`() async {

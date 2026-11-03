@@ -10,8 +10,8 @@ RHOIDS is a behavior timer, not a medical device or medical advice. Persistent p
 
 ## Platforms
 
-- iPhone on iOS 26.4 or later
-- Apple Watch on watchOS 11.5 or later
+- iPhone on iOS 26.0 or later
+- Apple Watch on watchOS 26.0 or later
 - iPhone Home Screen and Lock Screen widgets
 - Live Activities and Dynamic Island
 - Apple Watch complications

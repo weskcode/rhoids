@@ -41,7 +41,6 @@ struct TimerDisplayOptionRow: View {
         .buttonStyle(.plain)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(style.displayName), \(style.description)")
-        .accessibilityValue(isSelected ? "Selected" : "Not selected")
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
         .accessibilityHint("Shows the countdown using this style.")
     }

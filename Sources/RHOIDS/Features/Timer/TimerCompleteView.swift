@@ -4,6 +4,7 @@ struct TimerCompleteView: View {
     let outcome: TimerOutcome
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var contentAppeared = false
 
     var body: some View {
@@ -13,11 +14,14 @@ struct TimerCompleteView: View {
             completionIcon
                 .opacity(contentAppeared ? 1 : 0)
                 .scaleEffect(reduceMotion ? 1 : (contentAppeared ? 1 : 0.92))
+                .animation(entrance(step: 0), value: contentAppeared)
 
             VStack(spacing: 12) {
                 Text(outcome.title)
                     .font(.largeTitle.bold())
                     .tracking(2)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
 
                 Text(outcome.quip.body)
@@ -28,11 +32,12 @@ struct TimerCompleteView: View {
             }
             .opacity(contentAppeared ? 1 : 0)
             .offset(y: reduceMotion ? 0 : (contentAppeared ? 0 : 10))
+            .animation(entrance(step: 1), value: contentAppeared)
 
             Spacer(minLength: 0)
 
             Button(action: { dismiss() }) {
-                Label("Dismiss", systemImage: "stop.circle.fill")
+                Label("Dismiss", systemImage: "checkmark")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
@@ -42,18 +47,21 @@ struct TimerCompleteView: View {
             .accessibilityHint("Closes the timer.")
             .opacity(contentAppeared ? 1 : 0)
             .offset(y: reduceMotion ? 0 : (contentAppeared ? 0 : 12))
+            .animation(entrance(step: 2), value: contentAppeared)
         }
         .scenePadding(.horizontal)
         .padding(.vertical, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .presentationDetents([.medium])
+        .presentationDetents(dynamicTypeSize.isAccessibilitySize ? [.large] : [.medium])
         .presentationDragIndicator(.hidden)
         .interactiveDismissDisabled()
-        .task {
-            withAnimation(AppMotion.timerCompletion(reduceMotion: reduceMotion)) {
-                contentAppeared = true
-            }
-        }
+        .task { contentAppeared = true }
+    }
+
+    /// Icon, then text, then button, 60 ms apart. Reduce Motion fades them in together.
+    private func entrance(step: Int) -> Animation {
+        let animation = AppMotion.timerCompletion(reduceMotion: reduceMotion)
+        return reduceMotion ? animation : animation.delay(0.06 * Double(step))
     }
 
     @ViewBuilder
@@ -82,7 +90,7 @@ struct TimerCompleteView: View {
             if reduceMotion {
                 icon
             } else {
-                icon.symbolEffect(.bounce, value: outcome.id)
+                icon.symbolEffect(.bounce, value: contentAppeared)
             }
         }
     }

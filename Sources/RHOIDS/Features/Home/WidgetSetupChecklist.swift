@@ -91,7 +91,7 @@ struct WidgetSetupChecklist: View {
         }
     }
 
-    private func stepRow(_ index: Int, _ text: String) -> some View {
+    private func stepRow(_ index: Int, _ text: LocalizedStringResource) -> some View {
         Button(action: {
             withAnimation(AppMotion.feedback(reduceMotion: reduceMotion)) {
                 steps[index].toggle()
@@ -112,7 +112,7 @@ struct WidgetSetupChecklist: View {
             }
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(text)
+        .accessibilityLabel(Text(text))
         .accessibilityAddTraits(steps[index] ? .isSelected : [])
         .accessibilityHint(
             "Double-tap to mark as \(steps[index] ? String(localized: "incomplete") : String(localized: "complete"))"

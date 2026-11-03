@@ -71,6 +71,43 @@ struct DailyUseTrackerTests {
         #expect(sut.currentStreak == 2)
     }
 
+    @Test func `A device time zone change between calls does not fabricate a day`() {
+        // Regression test: the stored "last use" used to be a raw `Date`,
+        // re-interpreted through whichever calendar/time zone happened to
+        // be live when it was read back. With `.autoupdatingCurrent` (the
+        // real default), a time zone change between two calls - e.g. a
+        // flight landing - could make the previous instant appear to fall
+        // on a different calendar day than it did when it was recorded,
+        // fabricating or swallowing a day. The fix freezes (year, month,
+        // day) at write time instead of storing a reinterpretable `Date`.
+        let defaults = freshDefaults()
+
+        var aucklandCalendar = Calendar(identifier: .gregorian)
+        aucklandCalendar.timeZone = TimeZone(identifier: "Pacific/Auckland")!
+        let beforeFlight = DailyUseTracker(defaults: defaults, calendar: aucklandCalendar)
+
+        // 23:00 NZDT on Jan 10 - local day is Jan 10.
+        let departure = aucklandCalendar.date(
+            from: DateComponents(year: 2026, month: 1, day: 10, hour: 23)
+        )!
+        #expect(beforeFlight.registerUse(on: departure) == 1)
+
+        // Only one real hour later, but the device's time zone has since
+        // changed to Los Angeles (simulating landing mid-flight); a fresh
+        // DailyUseTracker picks up the new live zone the same way the real
+        // app's `.autoupdatingCurrent` calendar would.
+        var losAngelesCalendar = Calendar(identifier: .gregorian)
+        losAngelesCalendar.timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        let afterFlight = DailyUseTracker(defaults: defaults, calendar: losAngelesCalendar)
+        let oneHourLater = departure.addingTimeInterval(3600)
+
+        #expect(
+            afterFlight.registerUse(on: oneHourLater) == 1,
+            "Only ~1 hour of real time passed; the streak must not advance just because the time zone changed"
+        )
+        #expect(afterFlight.longestStreak == 1)
+    }
+
     @Test func `Missed day resets current streak and preserves best streak`() {
         let sut = DailyUseTracker(defaults: freshDefaults(), calendar: calendar)
 

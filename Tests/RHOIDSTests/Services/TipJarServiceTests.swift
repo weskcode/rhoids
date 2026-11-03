@@ -132,24 +132,10 @@ struct TipJarServiceTests {
     }
 
     private func localStoreKitProductIDs() throws -> Set<String> {
-        let url = try findProjectRoot().appendingPathComponent("RHOIDS.storekit")
+        let url = try RepoFile.url("RHOIDS.storekit")
         let data = try Data(contentsOf: url)
         let decoded = try JSONDecoder().decode(StoreKitConfiguration.self, from: data)
         return Set(decoded.products.map(\.productID))
-    }
-
-    private func findProjectRoot() throws -> URL {
-        var url = URL(fileURLWithPath: #filePath)
-
-        while url.path != "/" {
-            let candidate = url.appendingPathComponent("RHOIDS.storekit")
-            if FileManager.default.fileExists(atPath: candidate.path) {
-                return url
-            }
-            url.deleteLastPathComponent()
-        }
-
-        throw TipJarTestError.projectRootNotFound
     }
 
     private struct StoreKitConfiguration: Decodable {
@@ -158,9 +144,5 @@ struct TipJarServiceTests {
 
     private struct StoreKitProduct: Decodable {
         let productID: String
-    }
-
-    private enum TipJarTestError: Error {
-        case projectRootNotFound
     }
 }
