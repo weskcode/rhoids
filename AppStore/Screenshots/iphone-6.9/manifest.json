@@ -1,0 +1,61 @@
+{
+  "locale": "en-US",
+  "dimensions": [
+    1320,
+    2868
+  ],
+  "format": "RGB PNG, sRGB",
+  "appStoreVersion": "1.1.2",
+  "slides": [
+    {
+      "file": "en-US/01_OnTime.png",
+      "headline": "Get off the toilet. On time.",
+      "sha256": "08020733e94c7b9c15abf301f194a53bfbc31433649b289f3ccadfee73e257cb"
+    },
+    {
+      "file": "en-US/02_BathroomMode.png",
+      "headline": "Choose how you disconnect.",
+      "sha256": "dc5aa7bf2d2531bb66f84173777897403e8a00c6060399a1480939f6392648ae"
+    },
+    {
+      "file": "en-US/03_LiveActivity.png",
+      "headline": "Check your Lock Screen.",
+      "sha256": "c467134da1b38cd38d7a3789d64e63b1ba5bf168c074eb31152e54589a1fdf53"
+    },
+    {
+      "file": "en-US/04_TimerStyles.png",
+      "headline": "Choose your timer style.",
+      "sha256": "0ec0db46318eb58c901aa49d98ab92e60ed2743e450c709fadda63bbfd5c318a"
+    },
+    {
+      "file": "en-US/05_PhoneDown.png",
+      "headline": "Put your phone down.",
+      "sha256": "194a4b5d5a10f4bbf560e696e8865e7efa094899ae236fb6091f833d0765bb86"
+    },
+    {
+      "file": "en-US/06_Widgets.png",
+      "headline": "Start from your Home Screen.",
+      "sha256": "a5afd3c46ac04ffe7143f8948ce93ef1673ee750efdb3736385d4799b26b3471"
+    },
+    {
+      "file": "en-US/07_AppleWatch.png",
+      "headline": "Keep time on your wrist.",
+      "sha256": "f7b65ac0107c4f040a85732518de631519ca805951b2c2998cad5e69e03c5a5c"
+    },
+    {
+      "file": "en-US/08_TimesUp.png",
+      "headline": "Time\u2019s up. Get up.",
+      "sha256": "172b18dbb387a1e2cf549ab862cd8837732920717e20eb10dab65abfde9af32e"
+    },
+    {
+      "file": "en-US/09_Research.png",
+      "headline": "Read the research.",
+      "sha256": "0a762867bc0a32da56aa20286a7ff8f679cccec1fb9249626ba168cc6fb188ba"
+    },
+    {
+      "file": "en-US/10_PrivateHistory.png",
+      "headline": "Your history. Kept private.",
+      "sha256": "99f5bb575c0eeeb9701362fe3e7bdd8a9d9f3e01f9f67f4dcd88ea2971df77e7"
+    }
+  ]
+}

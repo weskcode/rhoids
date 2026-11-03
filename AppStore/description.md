@@ -77,12 +77,14 @@ Keep the hosted page in sync with `PRIVACY.md`.
 ## Screenshot Package
 
 iPhone:
-- Upload size: 1284 × 2778 portrait, opaque sRGB PNG
+
+- Current English upload set: `AppStore/Screenshots/iphone-6.9/en-US/`
+- Exact size: 1320 × 2868 portrait, opaque RGB PNG with an sRGB profile
 - Maximum: 10 screenshots
 
-The 1320 × 2868 masters are in `AppStore/Screenshots/masters-1320x2868/`. The upload
-copies and the framing pipeline are kept outside the public repository. Do not upload
-the masters into a slot that specifically requests 1284 × 2778 or 1242 × 2688.
+The ten images are ordered by filename and were verified in App Store Connect for version 1.1.2. Use the 6.9-inch iPhone slot for these assets. The four retained Watch screenshots remain in `AppStore/Screenshots/masters-1320x2868/Watch/`.
+
+Raw captures and the rendering pipeline are kept outside the public repository.
 
 RHOIDS is currently an iPhone and Apple Watch product. Do not prepare or submit
 iPad screenshots unless iPad support is intentionally added and validated.

@@ -33,15 +33,15 @@ RHOIDS is a behavior timer, not a medical device or medical advice. Persistent p
 
 These images are generated from genuine app and simulator captures. The surrounding device frames and captions are marketing artwork; the UI itself is not fabricated.
 
-| iPhone | Focus Lock | Live Activity |
+| iPhone | Bathroom mode | Live Activity |
 |---|---|---|
-| <img src="AppStore/Screenshots/masters-1320x2868/01_iOS_Hero.png" alt="RHOIDS timer presets on iPhone" width="240"> | <img src="AppStore/Screenshots/masters-1320x2868/02_FocusLock.png" alt="RHOIDS Focus Lock settings on iPhone" width="240"> | <img src="AppStore/Screenshots/masters-1320x2868/03_LiveActivity.png" alt="RHOIDS Live Activity on the iPhone Lock Screen" width="240"> |
+| <img src="AppStore/Screenshots/iphone-6.9/en-US/01_OnTime.png" alt="RHOIDS timer presets on iPhone" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/02_BathroomMode.png" alt="RHOIDS Phone-Free and Limited Scrolling settings" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/03_LiveActivity.png" alt="RHOIDS Live Activity on the iPhone Lock Screen" width="240"> |
 
 | Widgets | Apple Watch | Private history |
 |---|---|---|
-| <img src="AppStore/Screenshots/masters-1320x2868/07_Widgets.png" alt="RHOIDS Home Screen and Lock Screen widgets" width="240"> | <img src="AppStore/Screenshots/masters-1320x2868/08_AppleWatch.png" alt="RHOIDS on Apple Watch" width="240"> | <img src="AppStore/Screenshots/masters-1320x2868/10_PrivateByDesign.png" alt="Private on-device RHOIDS history" width="240"> |
+| <img src="AppStore/Screenshots/iphone-6.9/en-US/06_Widgets.png" alt="RHOIDS Home Screen widgets" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/07_AppleWatch.png" alt="RHOIDS on Apple Watch" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/10_PrivateHistory.png" alt="Private on-device RHOIDS history" width="240"> |
 
-Genuine Apple Watch captures are in [`AppStore/Screenshots/masters-1320x2868/Watch`](AppStore/Screenshots/masters-1320x2868/Watch). Raw captures, App Store upload copies, review correspondence, and campaign-production files are intentionally kept out of the public repository.
+Genuine Apple Watch captures are in [`AppStore/Screenshots/masters-1320x2868/Watch`](AppStore/Screenshots/masters-1320x2868/Watch). The complete [current iPhone set](AppStore/Screenshots/iphone-6.9) is ordered as it appears in App Store Connect. Raw captures, review correspondence, and campaign-production files are kept out of the public repository.
 
 ## Project Layout
 
