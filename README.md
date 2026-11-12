@@ -1,37 +1,28 @@
 # RHOIDS
 
-RHOIDS is a focused bathroom timer for iPhone and Apple Watch. It helps people keep toilet sessions short with research-informed presets, persistent system surfaces, optional distraction blocking, and private on-device history. It does one slightly awkward job, takes that job seriously, and tries to make the experience feel friendly instead of clinical.
+RHOIDS is a bathroom timer for iPhone and Apple Watch. It keeps toilet sessions short with research-informed presets, Lock Screen and watch controls, optional distraction blocking, and private on-device history.
 
-## Why This App Exists
+## Why it exists
 
-Phones make it very easy to turn a quick bathroom break into a long scrolling session. A [2025 PLOS One study](https://doi.org/10.1371/journal.pone.0329983) found an association between smartphone use on the toilet and a 46 percent higher risk of hemorrhoids among surveyed adults undergoing screening colonoscopy. RHOIDS turns that research into one practical habit: start a short timer, put the phone down, and get on with your day.
+Phones turn a quick bathroom break into a long scrolling session. A [2025 PLOS One study](https://doi.org/10.1371/journal.pone.0329983) found an association between smartphone use on the toilet and a 46 percent higher risk of hemorrhoids among adults undergoing screening colonoscopy. RHOIDS turns that into one habit: start a short timer, put the phone down, and get on with your day.
 
-RHOIDS is a behavior timer, not a medical device or medical advice. Persistent pain, bleeding, or other symptoms belong in a conversation with a qualified healthcare professional.
+RHOIDS is a behavior timer, not a medical device or medical advice. See a healthcare professional about persistent pain, bleeding, or other symptoms.
 
-## Platforms
-
-- iPhone on iOS 26.0 or later
-- Apple Watch on watchOS 26.0 or later
-- iPhone Home Screen and Lock Screen widgets
-- Live Activities and Dynamic Island
-- Apple Watch complications
-- Screen Time extensions for the optional Focus Lock feature
-
-## Highlights
+## Features
 
 - Three-minute, five-minute, and custom timers
 - Six timer visualizations with optional 30-second warnings
 - AlarmKit completion alarms and local notifications
-- Lock Screen, Dynamic Island, widget, Siri, and Apple Watch controls
-- Optional Focus Lock for selected distracting apps
+- Home Screen and Lock Screen widgets, Live Activities, Dynamic Island, Siri, and Apple Watch controls and complications
+- Optional Focus Lock (Screen Time) for selected distracting apps
 - Local session history and daily streaks
 - StoreKit 2 tip jar
 - 12 non-English localizations
 - No accounts, advertising, analytics, or third-party dependencies
 
-## Screenshots
+Requires iOS 26.0 or later and watchOS 26.0 or later.
 
-These images are generated from genuine app and simulator captures. The surrounding device frames and captions are marketing artwork; the UI itself is not fabricated.
+## Screenshots
 
 | iPhone | Bathroom mode | Live Activity |
 |---|---|---|
@@ -41,9 +32,9 @@ These images are generated from genuine app and simulator captures. The surround
 |---|---|---|
 | <img src="AppStore/Screenshots/iphone-6.9/en-US/06_Widgets.png" alt="RHOIDS Home Screen widgets" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/07_AppleWatch.png" alt="RHOIDS on Apple Watch" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/10_PrivateHistory.png" alt="Private on-device RHOIDS history" width="240"> |
 
-Genuine Apple Watch captures are in [`AppStore/Screenshots/masters-1320x2868/Watch`](AppStore/Screenshots/masters-1320x2868/Watch). The complete [current iPhone set](AppStore/Screenshots/iphone-6.9) is ordered as it appears in App Store Connect. Raw captures, review correspondence, and campaign-production files are kept out of the public repository.
+The UI in these images comes from real app and simulator captures. Only the device frames and captions are marketing artwork. The full iPhone set is in [`AppStore/Screenshots/iphone-6.9`](AppStore/Screenshots/iphone-6.9), and the Apple Watch captures are in [`AppStore/Screenshots/masters-1320x2868/Watch`](AppStore/Screenshots/masters-1320x2868/Watch).
 
-## Project Layout
+## Project layout
 
 ```text
 Sources/
@@ -65,39 +56,37 @@ scripts/                     project and verification tooling
 project.yml                  XcodeGen source of truth
 ```
 
-## Requirements
-
-- macOS with Xcode 26 or later
-- XcodeGen 2.45.4 when regenerating the project
-- An Apple Developer team for signed-device testing
-- Family Controls entitlement approval for Focus Lock on physical devices
-
 ## Build
 
-`project.yml` is the durable project definition. Regenerate the checked-in Xcode project after changing targets, build settings, source membership, or versioning:
+You need:
+
+- macOS with Xcode 26 or later
+- XcodeGen 2.45.4
+- An Apple Developer team, for signed-device testing
+- Family Controls entitlement approval, for Focus Lock on physical devices
+
+`project.yml` defines the project. After changing targets, build settings, source membership, or versioning, regenerate the checked-in Xcode project:
 
 ```bash
 xcodegen generate
 open RHOIDS.xcodeproj
 ```
 
-Select the `RHOIDS` scheme and an iPhone simulator. The included `RHOIDS.storekit` file provides local StoreKit products.
+Select the `RHOIDS` scheme and an iPhone simulator. `RHOIDS.storekit` provides local StoreKit products.
 
 ### Configure a fork
 
-The checked-in project keeps the identifiers used by the shipping app. Before signing a fork:
+The checked-in project keeps the identifiers of the shipping app. Before signing a fork:
 
 1. Change `DEVELOPMENT_TEAM` and `bundleIdPrefix` in `project.yml`.
-2. Replace each `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml` with identifiers owned by your team.
-3. Replace `group.com.wesley.RHOIDS` in every entitlement file and in `Sources/Shared/SharedStateKeys.swift` with an App Group owned by your team.
-4. Run `xcodegen generate` and review the generated project diff.
+2. Replace each `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml` with identifiers your team owns.
+3. Replace `group.com.wesley.RHOIDS` in every entitlement file and in `Sources/Shared/SharedStateKeys.swift` with an App Group your team owns.
+4. Run `xcodegen generate` and review the project diff.
 5. Select your team in Xcode and confirm that every app and extension target signs.
-
-Focus Lock requires Apple-granted Family Controls capabilities and cannot be fully validated in an unsigned simulator build. AlarmKit, notification delivery, Live Activities, and Watch connectivity also require physical-device checks before release claims are appropriate.
 
 ## Tests
 
-Run the iPhone suite:
+iPhone suite:
 
 ```bash
 xcodebuild test \
@@ -106,7 +95,7 @@ xcodebuild test \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
 ```
 
-Run the watch suite with an available Apple Watch simulator:
+Watch suite, on an available Apple Watch simulator:
 
 ```bash
 xcodebuild test \
@@ -115,16 +104,16 @@ xcodebuild test \
   -destination 'platform=watchOS Simulator,name=Apple Watch Series 11 (46mm)'
 ```
 
-Simulator tests do not prove AlarmKit presentation, Screen Time authorization and shielding, notification delivery, watch-to-phone behavior, signing, TestFlight, or App Store acceptance. The release checks in [`qa/`](qa) keep those gates explicit.
+Simulator tests cannot verify AlarmKit presentation, Screen Time authorization and shielding, notification delivery, Live Activities, watch-to-phone behavior, signing, or App Store acceptance. These need a physical device and a signed build, and Focus Lock needs the Apple-granted Family Controls capability. The checklists in [`qa/`](qa) cover them.
 
 ## Privacy
 
-RHOIDS has no account system, advertising, analytics, or tracking. Timer preferences and session history remain on device; Apple system services are used for notifications, Screen Time, Live Activities, widgets, watch connectivity, and optional StoreKit purchases. See [PRIVACY.md](PRIVACY.md).
+RHOIDS has no accounts, advertising, analytics, or tracking. Timer preferences and session history stay on the device. Apple system services handle notifications, Screen Time, Live Activities, widgets, watch connectivity, and optional StoreKit purchases. See [PRIVACY.md](PRIVACY.md).
 
-## Contributing and Security
+## Contributing and security
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes. Please report security or privacy concerns privately as described in [SECURITY.md](SECURITY.md).
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes. Report security or privacy concerns privately, as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
-The source code is available under the [MIT License](LICENSE). The RHOIDS name, app icon, screenshots, and App Store marketing artwork are not granted for use as the identity of a redistributed app. Forks should use their own product name and artwork.
+The source code is available under the [MIT License](LICENSE). The RHOIDS name, app icon, screenshots, and App Store marketing artwork are not licensed for use as the identity of a redistributed app. Forks should use their own name and artwork.
