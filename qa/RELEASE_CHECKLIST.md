@@ -1,6 +1,6 @@
 # RHOIDS Release Readiness Checklist
 
-Last updated: November 3, 2026
+Last updated: November 12, 2026
 
 This document separates evidence the repository can prove from checks that require a signed physical device or App Store Connect. Passing local and CI tests is important, but it is not the same as release approval.
 
@@ -11,7 +11,7 @@ Recorded for the 1.1.2 update with Xcode 27.2:
 - The iPhone suite passed 765 tests locally at the tree shipped in PR #4 (`7bc9a9f`).
 - Xcode Cloud iOS and watchOS tests passed on PR #5 at `91c723e`, which adds the Watch app to the iPhone archive.
 - The signed build 7 archive contains the iPhone app, Watch app, iPhone widget, complication, and three Screen Time extensions. All seven bundles report 1.1.2 (7). Companion bundle identifiers match, and `codesign --verify --deep --strict` passed.
-- Build 6 processed successfully in App Store Connect and is attached to the 1.1.2 draft with manual release selected. It lacks the Watch app and must be replaced before submission. Build 7 has not been uploaded.
+- Build 7 was archived from the tree of `04fb1bf`, exported with an App Store distribution profile for each of the seven bundles, and uploaded on November 3, 2026. App Store Connect reports it VALID, and it is in the internal TestFlight group. It is attached to the 1.1.2 draft with manual release selected. Build 6 lacks the Watch app and the completion fix, so it is superseded.
 - The earlier Xcode Cloud repository-file test failures were fixed by bundling the required files under `RepoFiles/` (see `Tests/RHOIDSTests/Utilities/RepoFile.swift`). Subsequent iOS runs passed.
 - The iOS 26.0 floor check remains blocked by the local runtime policy. Do not install a runtime to satisfy it without named approval.
 - Simulator checks covered German onboarding, preset selection, timer start and early stop, completion, History, achievements, and Settings. Completion was also checked at the largest accessibility text size. Motion checks covered countdown formatting, the completion bounce, and Reduce Motion.
@@ -20,8 +20,8 @@ Recorded for the 1.1.2 update with Xcode 27.2:
 ## Release Configuration
 
 - Marketing version: `1.1.2`
-- Uploaded build: `6`, attached to the App Store draft but missing the Watch app.
-- Watch packaging correction: PR #5, `91c723e`; build `7` archived locally, not uploaded. The archive post-action prepares the next build number locally.
+- Uploaded build: `7`, attached to the App Store draft. Build `6` is superseded.
+- Watch packaging correction: PR #5, `91c723e`. The archive post-action prepares the next build number locally, so the working copy may show a higher number than the uploaded build.
 - Minimum iOS version: `26.0`
 - Minimum watchOS version: `26.0`
 - iPhone bundle identifier: `com.wesley.RHOIDS`
@@ -58,6 +58,7 @@ Confirm these items in App Store Connect:
 - App privacy answers match the shipped binary: no tracking and no collected data.
 - The hosted privacy-policy URL shows the current text from `PRIVACY.md`.
 - The ten iPhone screenshots are assigned to the intended screenshot slot and accepted without conversion errors.
+- Four Apple Watch screenshots (416 x 496) are assigned to the Series 10 slot. App Review requires a Watch screenshot because the build embeds the Watch app.
 - App name, subtitle, description, categories, age rating, support URL, and copyright are current. The age-rating fields `socialMedia` and `socialMediaAgeRestricted` remain unanswered.
 - Export compliance, signing, provisioning, Family Controls entitlement approval, and App Review notes are complete.
 
