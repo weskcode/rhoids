@@ -12,7 +12,7 @@ import os.log
 private let log = Logger(subsystem: "com.wesley.RHOIDS", category: "PhoneConnectivity")
 
 @MainActor
-final class PhoneConnectivityService: NSObject, ObservableObject, Sendable {
+final class PhoneConnectivityService: NSObject, Sendable {
 
     private let session: WCSession
 
@@ -94,12 +94,21 @@ final class PhoneConnectivityService: NSObject, ObservableObject, Sendable {
     }
 
     /// Respond to a state request from the Watch with the current timer state.
-    func sendStateResponse(endDate: Date?, isRunning: Bool, presetName: String?, duration: TimeInterval) {
+    func sendStateResponse(
+        endDate: Date?,
+        isRunning: Bool,
+        presetName: String?,
+        duration: TimeInterval,
+        runID: UUID? = nil,
+        sentAt: Date? = Date()
+    ) {
         let response = WatchMessage.stateResponse(
             endDate: endDate,
             isRunning: isRunning,
             presetName: presetName,
-            duration: duration
+            duration: duration,
+            runID: runID,
+            sentAt: sentAt
         )
         send(response)
     }

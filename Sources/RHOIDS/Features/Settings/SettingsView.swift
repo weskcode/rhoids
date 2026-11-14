@@ -7,9 +7,9 @@ struct SettingsView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     // Read here only to show each row's current value.
-    @AppStorage("defaultPreset", store: UserDefaults(suiteName: PresetPreferences.suiteName))
+    @AppStorage(PresetPreferences.defaultPresetKey, store: UserDefaults(suiteName: PresetPreferences.suiteName))
     private var defaultPreset = PresetTimer.recommended.id.uuidString
-    @AppStorage("appearanceMode") private var appearanceMode: AppearanceMode = .system
+    @AppStorage(UserPreferences.appearanceModeKey) private var appearanceMode: AppearanceMode = .system
     @AppStorage(
         FocusLockPreferences.modeKey,
         store: UserDefaults(suiteName: SharedStateKeys.suiteName)
@@ -169,23 +169,21 @@ private struct SettingsHubRow: View {
 
 /// Keeps the daily reminder honest when notification access is revoked in iOS Settings,
 /// whichever Settings page happens to be showing.
-private let dailyReminderEnabledKey = "dailyReminderEnabled.v1"
-
 @MainActor
 private enum DailyReminderPermissionSync {
     static func reconcile(_ notificationService: NotificationService) async {
-        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        let status = await notificationService.authorizationStatus()
         let defaults = UserDefaults.standard
-        guard status == .denied, defaults.bool(forKey: dailyReminderEnabledKey) else { return }
-        defaults.set(false, forKey: dailyReminderEnabledKey)
+        guard status == .denied, defaults.bool(forKey: UserPreferences.dailyReminderEnabledKey) else { return }
+        defaults.set(false, forKey: UserPreferences.dailyReminderEnabledKey)
         await notificationService.cancelDailyReminder()
     }
 }
 
 private struct TimerSettingsPage: View {
-    @AppStorage("defaultPreset", store: UserDefaults(suiteName: PresetPreferences.suiteName))
+    @AppStorage(PresetPreferences.defaultPresetKey, store: UserDefaults(suiteName: PresetPreferences.suiteName))
     private var defaultPreset = PresetTimer.recommended.id.uuidString
-    @AppStorage("hapticsEnabled") private var hapticsEnabled = true
+    @AppStorage(UserPreferences.hapticsEnabledKey) private var hapticsEnabled = true
 
     var body: some View {
         Form {
@@ -211,7 +209,7 @@ private struct TimerSettingsPage: View {
 }
 
 private struct AppearanceSettingsPage: View {
-    @AppStorage("appearanceMode") private var appearanceMode: AppearanceMode = .system
+    @AppStorage(UserPreferences.appearanceModeKey) private var appearanceMode: AppearanceMode = .system
     @AppStorage(UserPreferences.timerStyleKey) private var timerStyle: TimerStyle = .card
 
     var body: some View {
@@ -286,12 +284,12 @@ private struct NotificationSettingsPage: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
 
-    @AppStorage("notificationsEnabled") private var notificationsEnabled = true
-    @AppStorage("warningEnabled") private var warningEnabled = true
+    @AppStorage(UserPreferences.notificationsEnabledKey) private var notificationsEnabled = true
+    @AppStorage(UserPreferences.warningEnabledKey) private var warningEnabled = true
     @AppStorage(UserPreferences.warningModeKey) private var warningMode: WarningMode = .endOnly
-    @AppStorage(dailyReminderEnabledKey) private var dailyReminderEnabled = false
-    @AppStorage("dailyReminderHour.v1") private var dailyReminderHour = 9
-    @AppStorage("dailyReminderMinute.v1") private var dailyReminderMinute = 0
+    @AppStorage(UserPreferences.dailyReminderEnabledKey) private var dailyReminderEnabled = false
+    @AppStorage(UserPreferences.dailyReminderHourKey) private var dailyReminderHour = 9
+    @AppStorage(UserPreferences.dailyReminderMinuteKey) private var dailyReminderMinute = 0
 
     @State private var alarmSelection: AlarmSound = SoundPreferences.alarm
     @State private var warningSelection: AlarmSound = SoundPreferences.warning
@@ -372,8 +370,11 @@ private struct NotificationSettingsPage: View {
                 Text("Daily Use")
             } footer: {
                 if permissionStatus == .denied {
-                    Text("Notifications are turned off for RHOIDS. Enable them in Settings to use a daily reminder.")
-                        .foregroundStyle(.red)
+                    Label(
+                        "Notifications are turned off for RHOIDS. Enable them in Settings to use a daily reminder.",
+                        systemImage: "exclamationmark.triangle.fill"
+                    )
+                    .foregroundStyle(.red)
                 } else {
                     Text("A single daily reminder to open RHOIDS and keep your usage streak going.")
                 }
@@ -384,7 +385,7 @@ private struct NotificationSettingsPage: View {
                     HStack {
                         Text("Dynamic Island / Lock Screen")
                         Spacer()
-                        Text("Disabled")
+                        Label("Disabled", systemImage: "xmark.circle.fill")
                             .foregroundStyle(.red)
                     }
                     Button("Open Settings") {
@@ -395,8 +396,11 @@ private struct NotificationSettingsPage: View {
                 } header: {
                     Text("Live Activities")
                 } footer: {
-                    Text("Live Activities are disabled for RHOIDS. Enable them in Settings > RHOIDS > Live Activities to see the timer on your Lock Screen and Dynamic Island.")
-                        .foregroundStyle(.red)
+                    Label(
+                        "Live Activities are disabled for RHOIDS. Enable them in Settings > RHOIDS > Live Activities to see the timer on your Lock Screen and Dynamic Island.",
+                        systemImage: "exclamationmark.triangle.fill"
+                    )
+                    .foregroundStyle(.red)
                 }
             }
         }
@@ -464,8 +468,11 @@ private struct NotificationSettingsPage: View {
     private var permissionFooter: some View {
         switch permissionStatus {
         case .denied:
-            Text("Notifications are turned off for RHOIDS. Enable them in Settings to hear the alarm.")
-                .foregroundStyle(.red)
+            Label(
+                "Notifications are turned off for RHOIDS. Enable them in Settings to hear the alarm.",
+                systemImage: "exclamationmark.triangle.fill"
+            )
+            .foregroundStyle(.red)
         case .notDetermined:
             Text("RHOIDS will request notification permission the first time you start a timer.")
         case .authorized, .provisional, .ephemeral:
@@ -476,7 +483,7 @@ private struct NotificationSettingsPage: View {
     }
 
     private func refreshPermissionStatus() async {
-        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        let status = await notificationService.authorizationStatus()
         permissionStatus = status
 
         // The user can revoke notification access in Settings while RHOIDS is

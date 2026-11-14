@@ -10,12 +10,9 @@ import os.log
 private let log = Logger(subsystem: "com.wesley.RHOIDS.watch", category: "Connectivity")
 
 @MainActor
-final class WatchConnectivityService: NSObject, ObservableObject, Sendable {
+final class WatchConnectivityService: NSObject, Sendable {
 
     private let session: WCSession
-
-    /// Published so views can react to preference updates.
-    @Published private(set) var lastSyncDate: Date?
 
     /// Callback for timer events received from the iPhone.
     var onPhoneTimerEvent: (@MainActor @Sendable (WatchMessage) -> Void)?
@@ -62,7 +59,6 @@ final class WatchConnectivityService: NSObject, ObservableObject, Sendable {
             return
         }
         prefs.applyToLocalDefaults()
-        lastSyncDate = Date()
         log.debug("preferences applied from iPhone")
     }
 }
@@ -92,7 +88,6 @@ extension WatchConnectivityService: WCSessionDelegate {
         Task { @MainActor in
             if let prefs {
                 prefs.applyToLocalDefaults()
-                self.lastSyncDate = Date()
                 log.debug("preferences applied from iPhone (delegate path)")
             }
         }

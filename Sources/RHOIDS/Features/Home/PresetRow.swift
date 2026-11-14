@@ -34,7 +34,7 @@ struct PresetRow: View {
                 selectionIndicator
             }
             .padding(.horizontal, AppSpacing.xl)
-            .padding(.vertical, AppSpacing.lg)
+            .padding(.vertical, AppSpacing.md)
             .background {
                 RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous)
                     .fill(Color.accentColor.opacity(isSelected ? 0.08 : 0))
@@ -43,6 +43,7 @@ struct PresetRow: View {
         }
         .buttonStyle(.pressable)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityRemoveTraits(isSelected ? [] : .isSelected)
         .sensoryFeedback(.selection, trigger: isSelected)
         .animation(AppMotion.optionSelection(reduceMotion: reduceMotion), value: isSelected)
     }

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ScienceView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
         List {
             Section {
@@ -34,9 +36,18 @@ struct ScienceView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("A 2025 study from Harvard Medical School (Ramprasad et al., published in PLOS One) surveyed patients getting screening colonoscopies and found that using your phone on the toilet is linked to a 46% higher risk of hemorrhoids.")
 
-                    HStack(alignment: .top, spacing: 12) {
-                        StatBlock(value: "37%", caption: "of phone users exceeded 5 min per visit")
-                        StatBlock(value: "7%", caption: "of non-phone users exceeded 5 min")
+                    Group {
+                        if dynamicTypeSize.isAccessibilitySize {
+                            VStack(spacing: 12) {
+                                StatBlock(value: "37%", caption: "of phone users exceeded 5 min per visit")
+                                StatBlock(value: "7%", caption: "of non-phone users exceeded 5 min")
+                            }
+                        } else {
+                            HStack(alignment: .top, spacing: 12) {
+                                StatBlock(value: "37%", caption: "of phone users exceeded 5 min per visit")
+                                StatBlock(value: "7%", caption: "of non-phone users exceeded 5 min")
+                            }
+                        }
                     }
                     .padding(.vertical, 4)
 

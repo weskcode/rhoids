@@ -7,6 +7,7 @@ struct FlipTimerView: View {
     let progress: Double
     var showsCountdown = true
     var frozenRemaining: TimeInterval?
+    var maxWidth: CGFloat?
 
     @ScaledMetric(relativeTo: .largeTitle) private var tileWidth: CGFloat = 52
     @ScaledMetric(relativeTo: .largeTitle) private var tileHeight: CGFloat = 72
@@ -15,11 +16,18 @@ struct FlipTimerView: View {
     @State private var reservesHourColumn: Bool
     @State private var previewTotalSeconds: Int
 
-    init(endDate: Date, progress: Double, showsCountdown: Bool = true, frozenRemaining: TimeInterval? = nil) {
+    init(
+        endDate: Date,
+        progress: Double,
+        showsCountdown: Bool = true,
+        frozenRemaining: TimeInterval? = nil,
+        maxWidth: CGFloat? = nil
+    ) {
         self.endDate = endDate
         self.progress = progress
         self.showsCountdown = showsCountdown
         self.frozenRemaining = frozenRemaining
+        self.maxWidth = maxWidth
 
         let initialRemaining = max(Int(ceil(frozenRemaining ?? endDate.timeIntervalSinceNow)), 0)
         self._reservesHourColumn = State(initialValue: initialRemaining >= 3600)
@@ -27,35 +35,13 @@ struct FlipTimerView: View {
     }
 
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1)) { context in
-            let remaining = max(endDate.timeIntervalSince(context.date), 0)
-            let liveTotalSeconds = Int(ceil(remaining))
-            let frozenTotalSeconds = frozenRemaining.map { max(Int(ceil($0)), 0) }
-            let totalSeconds = frozenTotalSeconds ?? (showsCountdown ? liveTotalSeconds : previewTotalSeconds)
-            let hours = totalSeconds / 3600
-            let minutes = (totalSeconds % 3600) / 60
-            let seconds = totalSeconds % 60
-
-            VStack(spacing: 20) {
-                HStack(spacing: 4) {
-                    if reservesHourColumn {
-                        digitPair(hours)
-                            .opacity(hours > 0 ? 1 : 0)
-                            .accessibilityHidden(hours <= 0)
-                        colonSeparator
-                            .opacity(hours > 0 ? 1 : 0)
-                            .accessibilityHidden(hours <= 0)
-                    }
-
-                    digitPair(minutes)
-                    colonSeparator
-                    digitPair(seconds)
+        Group {
+            if frozenRemaining != nil || !showsCountdown {
+                flipContent(at: .now)
+            } else {
+                TimelineView(.periodic(from: .now, by: 1)) { context in
+                    flipContent(at: context.date)
                 }
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(
-                    accessibilityText(hours: hours, minutes: minutes, seconds: seconds)
-                )
-
             }
         }
         .onChange(of: endDate) { _, newEndDate in
@@ -63,20 +49,67 @@ struct FlipTimerView: View {
         }
     }
 
+    private func flipContent(at date: Date) -> some View {
+        let remaining = max(endDate.timeIntervalSince(date), 0)
+        let liveTotalSeconds = Int(ceil(remaining))
+        let frozenTotalSeconds = frozenRemaining.map { max(Int(ceil($0)), 0) }
+        let totalSeconds = frozenTotalSeconds ?? (showsCountdown ? liveTotalSeconds : previewTotalSeconds)
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds % 3600) / 60
+        let seconds = totalSeconds % 60
+        let tileSize = resolvedTileDimensions
+
+        return VStack(spacing: 20) {
+            HStack(spacing: 4) {
+                if reservesHourColumn {
+                    digitPair(hours, tileSize: tileSize)
+                        .opacity(hours > 0 ? 1 : 0)
+                        .accessibilityHidden(hours <= 0)
+                    colonSeparator
+                        .opacity(hours > 0 ? 1 : 0)
+                        .accessibilityHidden(hours <= 0)
+                }
+
+                digitPair(minutes, tileSize: tileSize)
+                colonSeparator
+                digitPair(seconds, tileSize: tileSize)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(
+                accessibilityText(hours: hours, minutes: minutes, seconds: seconds)
+            )
+        }
+    }
+
+    private var resolvedTileDimensions: (width: CGFloat, height: CGFloat) {
+        let baseWidth = min(tileWidth, 72)
+        let baseHeight = min(tileHeight, 100)
+        guard let maxWidth, maxWidth.isFinite, maxWidth > 0 else {
+            return (baseWidth, baseHeight)
+        }
+        let tileCount: CGFloat = reservesHourColumn ? 6 : 4
+        let chromeWidth: CGFloat = reservesHourColumn ? 48 : 26
+        let availableForTiles = max(maxWidth - chromeWidth, tileCount * 24)
+        let fittedWidth = min(baseWidth, floor(availableForTiles / tileCount))
+        let ratio = baseWidth > 0 ? (fittedWidth / baseWidth) : 1
+        let fittedHeight = max(baseHeight * ratio, 36)
+        return (fittedWidth, fittedHeight)
+    }
+
     // MARK: - Subviews
 
-    private func digitPair(_ value: Int) -> some View {
+    private func digitPair(_ value: Int, tileSize: (width: CGFloat, height: CGFloat)) -> some View {
         HStack(spacing: 4) {
             FlipDigitTile(
                 digit: value / 10,
-                width: tileWidth,
-                height: tileHeight,
+                width: tileSize.width,
+                height: tileSize.height,
                 reduceMotion: reduceMotion
             )
             FlipDigitTile(
                 digit: value % 10,
-                width: tileWidth,
-                height: tileHeight,
+                width: tileSize.width,
+                height: tileSize.height,
                 reduceMotion: reduceMotion
             )
         }

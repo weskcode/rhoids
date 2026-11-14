@@ -168,10 +168,16 @@ private struct RunningTimerVisualization: View {
     var body: some View {
         ZStack {
             if isReady {
-                TimelineView(.periodic(from: .now, by: timelineInterval)) { context in
-                    timerContent(progress: progress(at: context.date))
+                Group {
+                    if viewModel.isCountdownFrozen {
+                        timerContent(progress: viewModel.progress)
+                    } else {
+                        TimelineView(.periodic(from: .now, by: timelineInterval)) { context in
+                            timerContent(progress: progress(at: context.date))
+                        }
+                    }
                 }
-                    .transition(.opacity)
+                .transition(.opacity)
             } else {
                 ProgressView()
                     .controlSize(.large)
@@ -193,7 +199,7 @@ private struct RunningTimerVisualization: View {
     }
 
     private var timelineInterval: TimeInterval {
-        reduceMotion ? 1 : 0.25
+        (reduceMotion || timerStyle == .flip || timerStyle == .gauge) ? 1 : 0.25
     }
 
     @ViewBuilder
@@ -209,7 +215,8 @@ private struct RunningTimerVisualization: View {
             RingTimerView(
                 endDate: viewModel.safeEndDate,
                 progress: progress,
-                frozenRemaining: viewModel.frozenRemaining
+                frozenRemaining: viewModel.frozenRemaining,
+                maxDiameter: safeWidth
             )
         case .progress:
             ProgressTimerView(
@@ -221,13 +228,15 @@ private struct RunningTimerVisualization: View {
             FlipTimerView(
                 endDate: viewModel.safeEndDate,
                 progress: progress,
-                frozenRemaining: viewModel.frozenRemaining
+                frozenRemaining: viewModel.frozenRemaining,
+                maxWidth: safeWidth
             )
         case .dial:
             DialTimerView(
                 endDate: viewModel.safeEndDate,
                 progress: progress,
-                frozenRemaining: viewModel.frozenRemaining
+                frozenRemaining: viewModel.frozenRemaining,
+                maxSize: safeWidth
             )
         case .gauge:
             GaugeTimerView(

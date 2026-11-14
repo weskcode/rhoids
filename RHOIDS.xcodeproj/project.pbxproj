@@ -71,6 +71,7 @@
 		3CD37F7A1B3794E598ACAE72 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0FF5F8B01F8F1EFCF314C /* WatchConnectivityService.swift */; };
 		3FCACFCCB634BC6607AAEC88 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 55C9E61B813F5B508719CB1A /* InfoPlist.xcstrings */; };
 		3FFF37F0D27059D22DAF5069 /* AlarmKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E4E08FCD248C9E0AB8DE3 /* AlarmKitService.swift */; };
+		4205AD15374E1FFF1317801D /* WatchTimerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D936A5A18CB1E9EB673018E /* WatchTimerServiceTests.swift */; };
 		42246EAB6445A23E3FEBA2F8 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED5158E087B05A97D0E282 /* StatCard.swift */; };
 		42BD6E5BD8537507722F0FA4 /* ReviewPromptServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D022192714C2165E0CEEAFF /* ReviewPromptServiceTests.swift */; };
 		4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */ = {isa = PBXBuildFile; fileRef = E6E131B6F43DD80BEBE19A1C /* RHOIDS.entitlements */; };
@@ -332,26 +333,14 @@
 		0AC87C1644702D79ED22A174 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles;
+			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
 			dstSubfolderSpec = 7;
 			files = (
-				70A12CFA767FE5D68E011501 /* RHOIDS.storekit in CopyFiles */,
-				F3A1ABDA5B618F26D449FA4A /* project.yml in CopyFiles */,
+				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget;
-			dstSubfolderSpec = 7;
-			files = (
-				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
-				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82F60B18E8CBB62377FFBE00 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = RepoFiles/Sources/RHOIDS;
@@ -359,6 +348,17 @@
 			files = (
 				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
 				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F60B18E8CBB62377FFBE00 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = RepoFiles;
+			dstSubfolderSpec = 7;
+			files = (
+				70A12CFA767FE5D68E011501 /* RHOIDS.storekit in CopyFiles */,
+				F3A1ABDA5B618F26D449FA4A /* project.yml in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,10 +410,11 @@
 		B6DB2D127531AE30E4FB664D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
+			dstPath = RepoFiles/Sources/RHOIDSWidget;
 			dstSubfolderSpec = 7;
 			files = (
-				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
+				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
+				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +512,7 @@
 		5B8F5543C8D0570A1987EF85 /* TimerRunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunningView.swift; sourceTree = "<group>"; };
 		5C07FC5D785D556DEE100AC5 /* TimerSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionTests.swift; sourceTree = "<group>"; };
 		5D3A22B0DF50EA61FAAA07BA /* LiveActivityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityServiceTests.swift; sourceTree = "<group>"; };
+		5D936A5A18CB1E9EB673018E /* WatchTimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerServiceTests.swift; sourceTree = "<group>"; };
 		5E747FE5E595DB530F43C136 /* NotificationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceTests.swift; sourceTree = "<group>"; };
 		5ECC2888533BF2403CE1F954 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F8BF4578506E62D47192AC3 /* AdaptiveLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLayoutTests.swift; sourceTree = "<group>"; };
@@ -928,6 +930,7 @@
 		5EED73CBCD97DC3FC2423F8F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5D936A5A18CB1E9EB673018E /* WatchTimerServiceTests.swift */,
 				0B8DD1EB9A7DD3CB4CA990CE /* WatchWarningScheduleTests.swift */,
 			);
 			path = Services;
@@ -1729,6 +1732,7 @@
 				28E21CF98E9DACD1AD0E5D0B /* SharedStateKeys.swift in Sources */,
 				B2DFB616E0BCE995F325A234 /* TimerComplication.swift in Sources */,
 				18F18C515F30FD82DB5D0F5F /* WatchTimerEntryTests.swift in Sources */,
+				4205AD15374E1FFF1317801D /* WatchTimerServiceTests.swift in Sources */,
 				B312D0E373F90FE784C87153 /* WatchTimerViewModelTests.swift in Sources */,
 				1F96A4295602802076C60A9A /* WatchWarningScheduleTests.swift in Sources */,
 			);

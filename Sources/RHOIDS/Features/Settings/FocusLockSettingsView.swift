@@ -40,12 +40,7 @@ struct FocusLockSettingsView: View {
                 NavigationLink {
                     FocusLockAppPickerView(screenTimeService: screenTimeService)
                 } label: {
-                    HStack {
-                        Text("Blocked Apps")
-                        Spacer()
-                        Text(appCountLabel)
-                            .foregroundStyle(.secondary)
-                    }
+                    LabeledContent("Blocked Apps", value: appCountLabel)
                 }
 
                 Picker("Cooldown", selection: $cooldownDuration) {
@@ -65,8 +60,11 @@ struct FocusLockSettingsView: View {
                 if isLimitedScrolling {
                     Text("During your timer, your chosen apps stay open. When it ends, they're blocked for the cooldown period. You can always unlock early from the Timer tab.")
                     if !isEnabled {
-                        Text("Screen Time access is needed to actually block apps. Switch to Phone-Free and back to retry, or grant access in Settings \u{2192} Screen Time.")
-                            .foregroundStyle(.red)
+                        Label(
+                            "Screen Time access is needed to actually block apps. Switch to Phone-Free and back to retry, or grant access in Settings \u{2192} Screen Time.",
+                            systemImage: "exclamationmark.triangle.fill"
+                        )
+                        .foregroundStyle(.red)
                     }
                 } else {
                     Text("We'll remind you to put your phone down when the timer starts. No Screen Time access needed.")

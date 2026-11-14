@@ -3,17 +3,59 @@ import os.log
 
 private let log = Logger(subsystem: "com.wesley.RHOIDS", category: "Notifications")
 
+enum NotificationIdentifiers {
+    static let completeID = "rhoids.timer.complete"
+    static let warningID = "rhoids.timer.warning"
+    static let startReminderID = "rhoids.timer.startReminder"
+    static let cooldownCompleteID = "rhoids.focusLock.cooldownComplete"
+    static let dailyReminderID = "rhoids.daily.reminder"
+    static let beepIDPrefix = "rhoids.timer.beep."
+
+    static let timerThreadID = "rhoids.timer"
+    static let dailyThreadID = "rhoids.daily"
+    static let focusLockThreadID = "rhoids.focusLock"
+
+    static let timerCompleteCategoryID = "TIMER_COMPLETE"
+    static let timerWarningCategoryID = "TIMER_WARNING"
+    static let timerBeepCategoryID = "TIMER_BEEP"
+    static let timerDismissActionID = "TIMER_DISMISS"
+    static let timerSnoozeActionID = "TIMER_SNOOZE"
+}
+
 extension UNNotificationRequest: @retroactive @unchecked Sendable {}
-extension UNUserNotificationCenter: @retroactive @unchecked Sendable {}
 
 protocol NotificationSchedulingCenter: Sendable {
     func add(_ request: UNNotificationRequest) async throws
     func removePendingRequests(withIdentifiers identifiers: [String]) async
+    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool
+    func authorizationStatus() async -> UNAuthorizationStatus
 }
 
-extension UNUserNotificationCenter: NotificationSchedulingCenter {
+extension NotificationSchedulingCenter {
+    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool {
+        false
+    }
+
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        .notDetermined
+    }
+}
+
+private actor SystemNotificationCenter: NotificationSchedulingCenter {
+    func add(_ request: UNNotificationRequest) async throws {
+        try await UNUserNotificationCenter.current().add(request)
+    }
+
     func removePendingRequests(withIdentifiers identifiers: [String]) async {
-        removePendingNotificationRequests(withIdentifiers: identifiers)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+    }
+
+    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool {
+        try await UNUserNotificationCenter.current().requestAuthorization(options: options)
+    }
+
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
     }
 }
 
@@ -32,17 +74,17 @@ extension UNUserNotificationCenter: NotificationSchedulingCenter {
 ///   special entitlement from Apple (`com.apple.developer.usernotifications.critical-alerts`).
 ///   `.timeSensitive` is the right level for a personal timer.
 actor NotificationService {
-    static let dailyReminderID = "rhoids.daily.reminder"
+    static let dailyReminderID = NotificationIdentifiers.dailyReminderID
 
     private let center: any NotificationSchedulingCenter
-    private let completeID = "rhoids.timer.complete"
-    private let warningID = "rhoids.timer.warning"
-    private let startReminderID = "rhoids.timer.startReminder"
-    private let cooldownCompleteID = "rhoids.focusLock.cooldownComplete"
+    private let completeID = NotificationIdentifiers.completeID
+    private let warningID = NotificationIdentifiers.warningID
+    private let startReminderID = NotificationIdentifiers.startReminderID
+    private let cooldownCompleteID = NotificationIdentifiers.cooldownCompleteID
 
     /// Prefix for the 30-second boundary beep notifications.
     /// Full identifier is `rhoids.timer.beep.150`, `.beep.120`, etc.
-    static let beepIDPrefix = "rhoids.timer.beep."
+    static let beepIDPrefix = NotificationIdentifiers.beepIDPrefix
 
     /// Tracks scheduled beep IDs so we can cancel them precisely.
     private var scheduledBeepIDs: [String] = []
@@ -56,7 +98,7 @@ actor NotificationService {
         case dailyReminder(UInt)
     }
 
-    init(center: any NotificationSchedulingCenter = UNUserNotificationCenter.current()) {
+    init(center: any NotificationSchedulingCenter = SystemNotificationCenter()) {
         self.center = center
     }
 
@@ -72,12 +114,16 @@ actor NotificationService {
     /// Settings → Notifications → RHOIDS → Time Sensitive Notifications.
     @discardableResult
     func requestAuthorization() async throws -> Bool {
-        let center = UNUserNotificationCenter.current()
         let granted = try await center.requestAuthorization(
             options: [.alert, .sound, .badge]
         )
         log.debug("requestAuthorization - granted=\(granted)")
         return granted
+    }
+
+    /// Reads the current authorization status without prompting.
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        await center.authorizationStatus()
     }
 
     /// Bumps the daily-reminder scheduling generation and returns a token for
@@ -102,7 +148,7 @@ actor NotificationService {
         content.title = String(localized: "Keep your streak going")
         content.body = String(localized: "Open RHOIDS for today's check-in.")
         content.sound = .default
-        content.threadIdentifier = "rhoids.daily"
+        content.threadIdentifier = NotificationIdentifiers.dailyThreadID
 
         var dateComponents = DateComponents()
         dateComponents.hour = hour
@@ -176,7 +222,7 @@ actor NotificationService {
         content.title = copy.title
         content.body = copy.body
         content.interruptionLevel = .timeSensitive
-        content.threadIdentifier = "rhoids.timer"
+        content.threadIdentifier = NotificationIdentifiers.timerThreadID
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
         let request = UNNotificationRequest(identifier: startReminderID, content: content, trigger: trigger)
@@ -222,8 +268,8 @@ actor NotificationService {
             content.body = TimerQuip.randomBeep().body
             content.sound = sound.notificationSound()
             content.interruptionLevel = .timeSensitive
-            content.categoryIdentifier = "TIMER_BEEP"
-            content.threadIdentifier = "rhoids.timer"
+            content.categoryIdentifier = NotificationIdentifiers.timerBeepCategoryID
+            content.threadIdentifier = NotificationIdentifiers.timerThreadID
 
             let id = "\(Self.beepIDPrefix)\(Int(remaining))"
             let trigger = UNTimeIntervalNotificationTrigger(
@@ -303,8 +349,8 @@ actor NotificationService {
         content.sound = sound.notificationSound()
         content.interruptionLevel = .timeSensitive
         content.relevanceScore = 1.0
-        content.categoryIdentifier = "TIMER_COMPLETE"
-        content.threadIdentifier = "rhoids.timer"
+        content.categoryIdentifier = NotificationIdentifiers.timerCompleteCategoryID
+        content.threadIdentifier = NotificationIdentifiers.timerThreadID
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(identifier: completeID, content: content, trigger: trigger)
@@ -324,8 +370,8 @@ actor NotificationService {
         content.body = TimerQuip.randomWarning().body
         content.sound = sound.notificationSound()
         content.interruptionLevel = .timeSensitive
-        content.categoryIdentifier = "TIMER_WARNING"
-        content.threadIdentifier = "rhoids.timer"
+        content.categoryIdentifier = NotificationIdentifiers.timerWarningCategoryID
+        content.threadIdentifier = NotificationIdentifiers.timerThreadID
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(identifier: warningID, content: content, trigger: trigger)
@@ -344,7 +390,7 @@ actor NotificationService {
         content.body = String(localized: "Your apps are available again. Nice work taking a real break.")
         content.sound = .default
         content.interruptionLevel = .active
-        content.threadIdentifier = "rhoids.focusLock"
+        content.threadIdentifier = NotificationIdentifiers.focusLockThreadID
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(

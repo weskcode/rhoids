@@ -119,6 +119,24 @@ struct NotificationServiceTests {
                 "Completion should not be scheduled when endDate is in the past")
     }
 
+    @Test func `authorizationStatus delegates to injected notification center`() async {
+        let center = FakeAuthNotificationCenter(status: .denied, requestResult: false)
+        let sut = NotificationService(center: center)
+
+        let status = await sut.authorizationStatus()
+        #expect(status == .denied)
+    }
+
+    @Test func `requestAuthorization forwards options and returns center result`() async throws {
+        let center = FakeAuthNotificationCenter(status: .notDetermined, requestResult: true)
+        let sut = NotificationService(center: center)
+
+        let granted = try await sut.requestAuthorization()
+        #expect(granted == true)
+        let captured = await center.requestedOptions
+        #expect(captured == [.alert, .sound, .badge])
+    }
+
     // MARK: - Helpers
 
     /// Mirrors the beep boundary calculation from NotificationService.scheduleBeepNotifications
@@ -135,5 +153,28 @@ struct NotificationServiceTests {
             secondsFromStart += 30
         }
         return boundaries
+    }
+}
+
+private actor FakeAuthNotificationCenter: NotificationSchedulingCenter {
+    let status: UNAuthorizationStatus
+    let requestResult: Bool
+    private(set) var requestedOptions: UNAuthorizationOptions?
+
+    init(status: UNAuthorizationStatus, requestResult: Bool) {
+        self.status = status
+        self.requestResult = requestResult
+    }
+
+    func add(_ request: UNNotificationRequest) async throws {}
+    func removePendingRequests(withIdentifiers identifiers: [String]) async {}
+
+    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool {
+        requestedOptions = options
+        return requestResult
+    }
+
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        status
     }
 }

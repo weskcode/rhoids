@@ -34,6 +34,7 @@ struct CardTimerView: View {
 
             progressRail
         }
+        .padding(.horizontal, showsCountdown ? 20 : 0)
         .animation(AppMotion.reveal(reduceMotion: reduceMotion), value: showsCountdown)
     }
 
@@ -61,7 +62,6 @@ struct CardTimerView: View {
                     .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.98)))
             }
         }
-        .padding(.horizontal, showsCountdown ? 28 : 0)
         .frame(maxWidth: .infinity)
         .frame(height: cardHeight)
         .accessibilityHidden(!showsCountdown)

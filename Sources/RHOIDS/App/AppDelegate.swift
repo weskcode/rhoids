@@ -16,29 +16,29 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private func registerCategories(center: UNUserNotificationCenter) {
         // Optional: action buttons on the alarm.
         let snooze = UNNotificationAction(
-            identifier: "TIMER_SNOOZE",
+            identifier: NotificationIdentifiers.timerSnoozeActionID,
             title: String(localized: "+1 min", comment: "Notification button that adds one minute to a finished timer"),
             options: []
         )
         let dismiss = UNNotificationAction(
-            identifier: "TIMER_DISMISS",
+            identifier: NotificationIdentifiers.timerDismissActionID,
             title: String(localized: "Dismiss"),
             options: [.destructive]
         )
         let alarmCategory = UNNotificationCategory(
-            identifier: "TIMER_COMPLETE",
+            identifier: NotificationIdentifiers.timerCompleteCategoryID,
             actions: [snooze, dismiss],
             intentIdentifiers: [],
             options: [.customDismissAction]
         )
         let warningCategory = UNNotificationCategory(
-            identifier: "TIMER_WARNING",
+            identifier: NotificationIdentifiers.timerWarningCategoryID,
             actions: [],
             intentIdentifiers: [],
             options: []
         )
         let beepCategory = UNNotificationCategory(
-            identifier: "TIMER_BEEP",
+            identifier: NotificationIdentifiers.timerBeepCategoryID,
             actions: [],
             intentIdentifiers: [],
             options: []
@@ -49,9 +49,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Sendable {
     static let shared = NotificationDelegate()
-    static let timerCompleteCategoryID = "TIMER_COMPLETE"
-    static let timerDismissActionID = "TIMER_DISMISS"
-    static let timerSnoozeActionID = "TIMER_SNOOZE"
+    static let timerCompleteCategoryID = NotificationIdentifiers.timerCompleteCategoryID
+    static let timerDismissActionID = NotificationIdentifiers.timerDismissActionID
+    static let timerSnoozeActionID = NotificationIdentifiers.timerSnoozeActionID
 
     /// When the app is foregrounded, our in-app UI handles timer alerts:
     /// the 30-second warning beeps fire from TimerService and the completion
@@ -62,9 +62,9 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Se
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let id = notification.request.identifier
         let isTimerNotification =
-            id == "rhoids.timer.complete" ||
-            id == "rhoids.timer.warning" ||
-            id.hasPrefix(NotificationService.beepIDPrefix)
+            id == NotificationIdentifiers.completeID ||
+            id == NotificationIdentifiers.warningID ||
+            id.hasPrefix(NotificationIdentifiers.beepIDPrefix)
 
         if isTimerNotification {
             // App is in foreground - the in-app beep/alarm handles audio.
@@ -103,12 +103,7 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Se
         switch actionID {
         case Self.timerDismissActionID:
             log.debug("TIMER_DISMISS action")
-            await services.timerService.stop()
-            services.sharedStateService.clearTimer()
-            await services.liveActivityService.end()
-            await services.alarmPlayer.stopAlarm()
-            await services.notificationService.cancelAll()
-            await services.alarmKitService.cancelActive()
+            await services.timerService.handleExternalAlarmStop()
 
         case Self.timerSnoozeActionID:
             log.debug("TIMER_SNOOZE action (+60s)")

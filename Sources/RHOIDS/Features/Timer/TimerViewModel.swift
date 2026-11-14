@@ -15,7 +15,6 @@ final class TimerViewModel {
     var startDate: Date = Date()
     var plannedDuration: TimeInterval = 0
     var presetName: String = ""
-    var presetIcon: String = ""
     var isCountdownFrozen = false
     var frozenRemaining: TimeInterval?
 
@@ -156,7 +155,6 @@ final class TimerViewModel {
         startDate = currentEnd.addingTimeInterval(-state.duration)
         plannedDuration = state.duration
         presetName = currentPreset.name
-        presetIcon = currentPreset.systemImage
         elapsed = max(state.duration - currentEnd.timeIntervalSinceNow, 0)
     }
 
@@ -173,7 +171,6 @@ final class TimerViewModel {
         let preset = PresetTimer.all.first { $0.name == state.presetName } ?? .recommended
         plannedDuration = state.duration
         presetName = preset.name
-        presetIcon = preset.systemImage
         endDate = recoveredEndDate
         startDate = recoveredEndDate.addingTimeInterval(-state.duration)
         elapsed = state.duration
@@ -182,8 +179,10 @@ final class TimerViewModel {
 
         logSession(wasInterrupted: false)
         recordSuccessfulTimerForReview()
-        startCompletionAlarmIfNeeded()
-        Task { await alarmKitService.cancelActive() }
+        if UIApplication.shared.applicationState == .active {
+            startCompletionAlarmIfNeeded()
+            Task { await alarmKitService.cancelActive() }
+        }
         if focusLockPreferences.isEnabled {
             screenTimeService.applyShields()
         }
@@ -208,7 +207,6 @@ final class TimerViewModel {
                 startDate = Date()
                 plannedDuration = duration
                 presetName = preset.name
-                presetIcon = preset.systemImage
                 elapsed = 0
             case .tick:
                 break
