@@ -12,7 +12,7 @@ struct ReadyTimerVisualization: View {
     var body: some View {
         VStack(spacing: 12) {
             visual
-                .frame(width: visualDimension, height: visualDimension)
+                .frame(width: visualWidth, height: visualHeight)
                 .scaleEffect(!reduceMotion && isPromoted ? promotedScale : 1)
                 .timerActivationGeometry(activationNamespace)
         }
@@ -50,20 +50,45 @@ struct ReadyTimerVisualization: View {
         case .progress:
             ProgressTimerView(endDate: previewEndDate, progress: 0, showsCountdown: false)
         case .flip:
-            FlipTimerView(endDate: previewEndDate, progress: 0, showsCountdown: false)
+            FlipTimerView(
+                endDate: previewEndDate,
+                progress: 0,
+                showsCountdown: false,
+                maxWidth: visualWidth
+            )
         case .dial:
-            DialTimerView(endDate: previewEndDate, progress: 0, showsCountdown: false)
+            DialTimerView(
+                endDate: previewEndDate,
+                progress: 0,
+                showsCountdown: false,
+                maxSize: visualWidth
+            )
         case .gauge:
             GaugeTimerView(endDate: previewEndDate, progress: 0, showsCountdown: false)
         }
     }
 
-    private var visualDimension: CGFloat {
+    private var visualWidth: CGFloat {
         switch timerStyle {
         case .ring:
             isPromoted ? 260 : 184
-        default:
-            isPromoted ? 260 : 220
+        case .card, .progress, .gauge:
+            isPromoted ? 280 : 248
+        case .flip, .dial:
+            isPromoted ? 260 : 200
+        }
+    }
+
+    private var visualHeight: CGFloat {
+        switch timerStyle {
+        case .ring:
+            isPromoted ? 260 : 184
+        case .card:
+            isPromoted ? 200 : 164
+        case .progress, .gauge:
+            isPromoted ? 180 : 140
+        case .flip, .dial:
+            isPromoted ? 260 : 200
         }
     }
 

@@ -11,10 +11,8 @@ final class TipJarService {
     var showThankYou = false
     var errorMessage: String?
 
-    // nonisolated(unsafe) so deinit can cancel without actor isolation.
-    // Safe because Task.cancel() is thread-safe and we only write from @MainActor methods.
     @ObservationIgnored
-    nonisolated(unsafe) private var transactionListener: Task<Void, Never>?
+    private var transactionListener: Task<Void, Never>?
 
     nonisolated static let productIDs: [String] = [
         "com.wesley.RHOIDS.tip.coffee",
@@ -107,7 +105,7 @@ final class TipJarService {
         }
     }
 
-    deinit {
+    isolated deinit {
         transactionListener?.cancel()
     }
 }

@@ -12,7 +12,7 @@ struct WatchCustomDurationView: View {
     @Binding var timerVM: WatchTimerViewModel?
 
     @State private var minutes: Double = 3.0
-    @AppStorage("lastCustomDuration") private var savedDuration: Double = 180
+    @AppStorage(UserPreferences.lastCustomDurationKey) private var savedDuration: Double = 180
     @FocusState private var isCrownFocused: Bool
 
     @Environment(\.dismiss) private var dismiss

@@ -84,23 +84,25 @@ final class AppServices {
         watchConnectivityObserver = Task { [weak self] in
             while !Task.isCancelled {
                 guard let self else { return }
-                for await event in await self.timerService.eventStream() {
+                for await event in await self.timerService.syncEventStream() {
                     switch event {
-                    case .started(let endDate, let preset, let duration):
+                    case .started(let runID, let endDate, let preset, let duration, let sentAt):
                         self.phoneConnectivityService.send(.timerStarted(
                             endDate: endDate,
                             presetName: preset.name,
-                            duration: duration
+                            duration: duration,
+                            runID: runID,
+                            sentAt: sentAt
                         ))
-                    case .completed(let preset, let duration):
+                    case .completed(let runID, let preset, let duration, let sentAt):
                         self.phoneConnectivityService.send(.timerCompleted(
                             presetName: preset?.name ?? "Unknown",
-                            duration: duration
+                            duration: duration,
+                            runID: runID,
+                            sentAt: sentAt
                         ))
-                    case .cancelled:
-                        self.phoneConnectivityService.send(.timerCancelled)
-                    case .tick:
-                        break // Don't spam the Watch with every tick
+                    case .cancelled(let runID, let sentAt):
+                        self.phoneConnectivityService.send(.timerCancelled(runID: runID, sentAt: sentAt))
                     }
                 }
                 // Stream ended after a terminal event - loop to re-subscribe
@@ -111,7 +113,7 @@ final class AppServices {
         phoneConnectivityService.onWatchTimerEvent = { [weak self] message in
             guard let self else { return }
             switch message {
-            case .timerStarted(let endDate, let presetName, let duration):
+            case .timerStarted(let endDate, let presetName, let duration, let runID, let sentAt):
                 // Watch started a timer - adopt it with the Watch's own
                 // endDate so both devices finish at the same instant. A
                 // fallback preset preserves the carried name (e.g. localized
@@ -127,22 +129,30 @@ final class AppServices {
                     )
                 log.debug("Watch started timer - adopting: \(presetName), ends \(endDate)")
                 Task {
-                    await self.timerService.adopt(endDate: endDate, preset: preset, duration: duration)
+                    await self.timerService.adopt(
+                        endDate: endDate,
+                        preset: preset,
+                        duration: duration,
+                        remoteRunID: runID,
+                        sentAt: sentAt
+                    )
                 }
 
-            case .timerCancelled:
+            case .timerCancelled(let runID, _):
                 log.debug("Watch cancelled timer")
-                Task { await self.timerService.stop() }
+                Task { await self.timerService.stopFromWatch(runID: runID) }
 
             case .requestState:
                 // Watch is asking for current timer state
                 Task {
-                    let state = await self.timerService.timerState()
+                    let state = await self.timerService.syncState()
                     self.phoneConnectivityService.sendStateResponse(
                         endDate: state.endDate,
                         isRunning: state.isRunning,
                         presetName: state.preset?.name,
-                        duration: state.duration
+                        duration: state.duration,
+                        runID: state.runID,
+                        sentAt: Date()
                     )
                 }
 

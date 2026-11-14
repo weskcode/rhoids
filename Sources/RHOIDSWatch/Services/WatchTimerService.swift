@@ -15,11 +15,16 @@ private let log = Logger(subsystem: "com.wesley.RHOIDS.watch", category: "TimerS
 
 actor WatchTimerService {
     private static let complicationKind = "RHOIDSWatchComplication"
+    private static let maxRetiredSyncRunIDs = 64
 
     private var countdownTask: Task<Void, Never>?
     private var activeRunID: UUID?
+    private var activeSyncRunID: UUID?
+    private var currentRunStartedAt: Date?
+    private var retiredSyncRunIDs: [UUID] = []
     private var extendedSession: WKExtendedRuntimeSession?
     private var extendedSessionRunID: UUID?
+    private var extendedSessionTask: Task<Void, Never>?
     private var listeners: [UUID: AsyncStream<WatchTimerEvent>.Continuation] = [:]
 
     private(set) var currentEndDate: Date?
@@ -50,6 +55,16 @@ actor WatchTimerService {
         listeners.removeValue(forKey: id)
     }
 
+    private func retireSyncRunID(_ id: UUID?) {
+        guard let id else { return }
+        if !retiredSyncRunIDs.contains(id) {
+            retiredSyncRunIDs.append(id)
+            if retiredSyncRunIDs.count > Self.maxRetiredSyncRunIDs {
+                retiredSyncRunIDs.removeFirst(retiredSyncRunIDs.count - Self.maxRetiredSyncRunIDs)
+            }
+        }
+    }
+
     private func broadcast(_ event: WatchTimerEvent) {
         for continuation in listeners.values {
             continuation.yield(event)
@@ -60,12 +75,16 @@ actor WatchTimerService {
 
     func start(duration: TimeInterval, preset: PresetTimer) async {
         log.debug("start - duration=\(duration)s, preset=\(preset.name)")
+        retireSyncRunID(activeSyncRunID ?? activeRunID)
         countdownTask?.cancel()
         countdownTask = nil
         let runID = UUID()
+        let startedAt = Date()
         activeRunID = runID
+        activeSyncRunID = runID
+        currentRunStartedAt = startedAt
 
-        let endDate = Date().addingTimeInterval(duration)
+        let endDate = startedAt.addingTimeInterval(duration)
         currentEndDate = endDate
         currentPreset = preset
         currentDuration = duration
@@ -79,7 +98,9 @@ actor WatchTimerService {
             connectivityService.send(.timerStarted(
                 endDate: endDate,
                 presetName: preset.name,
-                duration: duration
+                duration: duration,
+                runID: runID,
+                sentAt: startedAt
             ))
         }
         guard activeRunID == runID else { return }
@@ -95,18 +116,40 @@ actor WatchTimerService {
 
     // MARK: - Adopt from iPhone
 
-    /// Adopt a timer that was started on the iPhone.
-    func adopt(endDate: Date, presetName: String, duration: TimeInterval) async {
-        guard endDate > Date() else { return }
+    /// Adopt a timer that was started on the iPhone, ignoring expired,
+    /// retired, or superseded messages.
+    @discardableResult
+    func adopt(
+        endDate: Date,
+        presetName: String,
+        duration: TimeInterval,
+        remoteRunID: UUID? = nil,
+        sentAt: Date? = nil
+    ) async -> Bool {
+        guard endDate > Date() else { return false }
+        if let remoteRunID, retiredSyncRunIDs.contains(remoteRunID) {
+            log.debug("adopt skipped - runID \(remoteRunID.uuidString.prefix(8)) is already retired")
+            return false
+        }
 
         // The iPhone echoes back timers the Watch itself started (Watch start →
         // iPhone adopts → iPhone broadcasts .started → message to Watch). If we
-        // are already counting down to the same endDate, don't restart the
-        // countdown, haptics, or extended runtime session.
-        if countdownTask != nil, let current = currentEndDate,
-           abs(current.timeIntervalSince(endDate)) < 1 {
-            log.debug("adopt skipped - already tracking this timer")
-            return
+        // are already counting down this run (or same endDate for legacy
+        // payloads without runID), don't restart the countdown, haptics, or
+        // extended runtime session.
+        if countdownTask != nil {
+            if let remoteRunID, remoteRunID == activeSyncRunID {
+                log.debug("adopt skipped - already tracking runID \(remoteRunID.uuidString.prefix(8))")
+                return false
+            }
+            if remoteRunID == nil, let current = currentEndDate, abs(current.timeIntervalSince(endDate)) < 1 {
+                log.debug("adopt skipped - already tracking this timer")
+                return false
+            }
+            if let sentAt, let currentRunStartedAt, sentAt < currentRunStartedAt {
+                log.debug("adopt skipped - sentAt \(sentAt) predates active Watch timer")
+                return false
+            }
         }
 
         // Preserve the carried preset name if it isn't one of the built-ins
@@ -123,22 +166,26 @@ actor WatchTimerService {
 
         log.debug("adopting iPhone timer - endDate=\(endDate), preset=\(preset.name)")
 
+        retireSyncRunID(activeSyncRunID ?? activeRunID)
         countdownTask?.cancel()
         countdownTask = nil
         let runID = UUID()
         activeRunID = runID
+        activeSyncRunID = remoteRunID ?? runID
+        currentRunStartedAt = sentAt ?? Date()
         currentEndDate = endDate
         currentPreset = preset
         currentDuration = duration
 
         await persistComplicationState(endDate: endDate, presetName: preset.name, duration: duration)
-        guard activeRunID == runID else { return }
+        guard activeRunID == runID else { return false }
         broadcast(.started(endDate: endDate, preset: preset, duration: duration))
         startExtendedSession(runID: runID)
 
         // Seed the warning schedule with the time *remaining* at adoption so the
         // beep cadence lines up with the iPhone and no reminders are skipped.
         runCountdown(runID: runID, endDate: endDate, remainingAtStart: endDate.timeIntervalSinceNow)
+        return true
     }
 
     // MARK: - Countdown
@@ -182,9 +229,13 @@ actor WatchTimerService {
     func stop() async {
         log.debug("stop()")
         let runID = activeRunID
+        let syncID = activeSyncRunID ?? runID
+        retireSyncRunID(syncID)
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
+        activeSyncRunID = nil
+        currentRunStartedAt = nil
         currentEndDate = nil
         currentPreset = nil
         currentDuration = 0
@@ -195,13 +246,22 @@ actor WatchTimerService {
         broadcast(.cancelled)
 
         await MainActor.run {
-            connectivityService.send(.timerCancelled)
+            connectivityService.send(.timerCancelled(runID: syncID, sentAt: Date()))
         }
     }
 
     /// Clear a timer cancelled by the iPhone without echoing another
-    /// cancellation message back over WatchConnectivity.
-    func cancelFromPhone() async {
+    /// cancellation message back over WatchConnectivity. Ignores mismatched
+    /// run IDs so a delayed stop for an older run never cancels a newer timer.
+    func cancelFromPhone(runID: UUID? = nil) async {
+        if let runID {
+            retireSyncRunID(runID)
+            let activeSyncID = activeSyncRunID ?? activeRunID
+            if countdownTask != nil, activeSyncID != runID {
+                log.debug("cancelFromPhone ignored - runID \(runID.uuidString.prefix(8)) does not match active run \(activeSyncID?.uuidString.prefix(8) ?? "nil")")
+                return
+            }
+        }
         log.debug("phone cancelled timer")
         let wasRunning = countdownTask != nil || currentEndDate != nil
         resetRunningState()
@@ -215,8 +275,17 @@ actor WatchTimerService {
     }
 
     /// Complete a timer reported by the iPhone without turning the event into a
-    /// local cancellation. This keeps phone and Watch state convergent.
-    func completeFromPhone(presetName: String, duration: TimeInterval) async {
+    /// local cancellation. Ignores mismatched run IDs so a delayed completion
+    /// never finishes a newer timer.
+    func completeFromPhone(presetName: String, duration: TimeInterval, runID: UUID? = nil) async {
+        if let runID {
+            retireSyncRunID(runID)
+            let activeSyncID = activeSyncRunID ?? activeRunID
+            if countdownTask != nil, activeSyncID != runID {
+                log.debug("completeFromPhone ignored - runID \(runID.uuidString.prefix(8)) does not match active run \(activeSyncID?.uuidString.prefix(8) ?? "nil")")
+                return
+            }
+        }
         let preset = PresetTimer.all.first { $0.name == presetName } ?? currentPreset
         log.debug("phone completed timer - preset=\(preset?.name ?? "nil")")
         let wasRunning = countdownTask != nil || currentEndDate != nil
@@ -232,6 +301,25 @@ actor WatchTimerService {
         broadcast(.completed(preset: preset, duration: duration))
     }
 
+    /// Reconciles local Watch state when the iPhone replies to `.requestState`
+    /// with `isRunning == false`. Ignores responses sent before the Watch's
+    /// active timer started.
+    func reconcileInactivePhoneState(phoneResponseSentAt: Date? = nil) async {
+        let wasRunning = countdownTask != nil || currentEndDate != nil
+        if wasRunning {
+            if let phoneResponseSentAt, let currentRunStartedAt, phoneResponseSentAt < currentRunStartedAt {
+                log.debug("reconcileInactivePhoneState ignored - phone response predates active Watch timer")
+                return
+            }
+            retireSyncRunID(activeSyncRunID ?? activeRunID)
+            resetRunningState()
+            await clearComplicationState()
+            broadcast(.cancelled)
+        } else {
+            await clearComplicationState()
+        }
+    }
+
     // MARK: - Completion
 
     private func handleCompletion(runID: UUID) async {
@@ -241,6 +329,8 @@ actor WatchTimerService {
         }
         let preset = currentPreset
         let duration = currentDuration
+        let syncID = activeSyncRunID ?? runID
+        retireSyncRunID(syncID)
 
         log.debug("timer completed - preset=\(preset?.name ?? "nil")")
         currentEndDate = nil
@@ -248,6 +338,8 @@ actor WatchTimerService {
         currentDuration = 0
         countdownTask = nil
         activeRunID = nil
+        activeSyncRunID = nil
+        currentRunStartedAt = nil
         endExtendedSession(runID: runID)
         await clearComplicationState()
 
@@ -259,19 +351,30 @@ actor WatchTimerService {
         await MainActor.run {
             connectivityService.send(.timerCompleted(
                 presetName: preset?.name ?? "Unknown",
-                duration: duration
+                duration: duration,
+                runID: syncID,
+                sentAt: Date()
             ))
         }
     }
 
     // MARK: - Extended Runtime Session
 
-    private nonisolated func startExtendedSession(runID: UUID) {
-        Task { @MainActor in
+    private func startExtendedSession(runID: UUID) {
+        let previousTask = extendedSessionTask
+        extendedSessionTask = Task {
+            await previousTask?.value
+            await self.performStartExtendedSession(runID: runID)
+        }
+    }
+
+    private func performStartExtendedSession(runID: UUID) async {
+        guard activeRunID == runID else { return }
+        await Task { @MainActor in
             let session = WKExtendedRuntimeSession()
             session.start()
             await self.setExtendedSession(session, runID: runID)
-        }
+        }.value
     }
 
     private func setExtendedSession(_ session: WKExtendedRuntimeSession, runID: UUID) {
@@ -288,25 +391,21 @@ actor WatchTimerService {
         log.debug("extended runtime session started")
     }
 
-    // endExtendedSession schedules its cleanup via two async hops (its own
-    // Task, then a MainActor round-trip) before actually invalidating, so a
-    // new run's startExtendedSession()/setExtendedSession() can easily land
-    // first. Threading the ending run's ID through and re-checking it
-    // against `extendedSessionRunID` (rather than unconditionally clearing
-    // whatever is currently stored) stops that deferred cleanup from tearing
-    // down a newer run's already-live session.
-    private nonisolated func endExtendedSession(runID: UUID?) {
-        Task { @MainActor in
-            await self.invalidateExtendedSession(runID: runID)
+    private func endExtendedSession(runID: UUID?) {
+        let previousTask = extendedSessionTask
+        extendedSessionTask = Task {
+            await previousTask?.value
+            await self.performEndExtendedSession(runID: runID)
         }
     }
 
+    private func performEndExtendedSession(runID: UUID?) async {
+        await Task { @MainActor in
+            await self.invalidateExtendedSession(runID: runID)
+        }.value
+    }
+
     private func invalidateExtendedSession(runID: UUID?) {
-        // Deliberately no `runID == nil` escape hatch: a nil-runID cleanup
-        // (from stop()/resetRunningState() capturing activeRunID before it
-        // was ever set) must still lose to a newer run's live session, or it
-        // reopens the exact bug this runID-threading was written to close -
-        // just via the nil entry point instead of a mismatched UUID.
         guard extendedSessionRunID == runID else {
             log.debug("skipped invalidating extended runtime session - it now belongs to a newer run")
             return
@@ -322,6 +421,8 @@ actor WatchTimerService {
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
+        activeSyncRunID = nil
+        currentRunStartedAt = nil
         currentEndDate = nil
         currentPreset = nil
         currentDuration = 0

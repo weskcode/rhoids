@@ -5,7 +5,7 @@ import SwiftData
 struct RHOIDSApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var services = AppServices()
-    @AppStorage("appearanceMode") private var appearanceMode: AppearanceMode = .system
+    @AppStorage(UserPreferences.appearanceModeKey) private var appearanceMode: AppearanceMode = .system
 
     var body: some Scene {
         WindowGroup {

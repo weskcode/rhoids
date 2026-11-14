@@ -91,18 +91,30 @@ struct HistoryView: View {
 
     private var weeklyStatsSection: some View {
         let stats = weeklyStats
+        let cards = Group {
+            StatCard(
+                icon: "calendar",
+                value: "\(stats.count)",
+                label: "Sessions"
+            )
+            StatCard(
+                icon: "clock",
+                value: DurationFormatter.formatted(stats.averageDuration),
+                label: "Avg. time"
+            )
+        }
+
         return Section("This week") {
-            HStack(spacing: AppSpacing.md) {
-                StatCard(
-                    icon: "calendar",
-                    value: "\(stats.count)",
-                    label: "Sessions"
-                )
-                StatCard(
-                    icon: "clock",
-                    value: DurationFormatter.formatted(stats.averageDuration),
-                    label: "Avg. time"
-                )
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(spacing: AppSpacing.md) {
+                        cards
+                    }
+                } else {
+                    HStack(spacing: AppSpacing.md) {
+                        cards
+                    }
+                }
             }
             .listRowInsets(EdgeInsets(
                 top: AppSpacing.xs,
@@ -126,24 +138,50 @@ struct HistoryView: View {
     }
 
     private func sessionRow(_ session: TimerSession) -> some View {
-        HStack(spacing: 12) {
-            Image(systemName: session.wasInterrupted ? "xmark.circle.fill" : "checkmark.circle.fill")
-                .foregroundStyle(session.wasInterrupted ? Color.orange : Color.accentColor)
-                .font(.body)
+        let statusText = session.wasInterrupted
+            ? String(localized: "Stopped early")
+            : String(localized: "Completed")
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(session.presetName ?? "Custom")
-                    .font(.body)
-                Text(formattedSessionDate(session.startedAt))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+        return Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    HStack(spacing: AppSpacing.sm) {
+                        Image(systemName: session.wasInterrupted ? "xmark.circle.fill" : "checkmark.circle.fill")
+                            .foregroundStyle(session.wasInterrupted ? Color.orange : Color.accentColor)
+                            .font(.body)
+                        Text(session.presetName ?? "Custom")
+                            .font(.body.weight(.medium))
+                    }
+
+                    Text("\(statusText) · \(DurationFormatter.formatted(session.actualDuration))")
+                        .font(.callout.monospacedDigit())
+                        .foregroundStyle(.secondary)
+
+                    Text(formattedSessionDate(session.startedAt))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            } else {
+                HStack(spacing: 12) {
+                    Image(systemName: session.wasInterrupted ? "xmark.circle.fill" : "checkmark.circle.fill")
+                        .foregroundStyle(session.wasInterrupted ? Color.orange : Color.accentColor)
+                        .font(.body)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(session.presetName ?? "Custom")
+                            .font(.body)
+                        Text(formattedSessionDate(session.startedAt))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer(minLength: 0)
+
+                    Text(DurationFormatter.formatted(session.actualDuration))
+                        .font(.callout.monospacedDigit().weight(.medium))
+                        .foregroundStyle(.secondary)
+                }
             }
-
-            Spacer(minLength: 0)
-
-            Text(DurationFormatter.formatted(session.actualDuration))
-                .font(.callout.monospacedDigit().weight(.medium))
-                .foregroundStyle(.secondary)
         }
         .padding(.vertical, 2)
         .accessibilityElement(children: .combine)

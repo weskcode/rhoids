@@ -11,13 +11,16 @@ struct RingTimerView: View {
     /// size; the settings preview passes a smaller value to match its shrunk ring.
     var countdownSize: CGFloat = 48
     var frozenRemaining: TimeInterval?
+    var maxDiameter: CGFloat?
 
     @ScaledMetric(relativeTo: .largeTitle) private var defaultRingSize: CGFloat = 260
     @ScaledMetric(relativeTo: .largeTitle) private var defaultLineWidth: CGFloat = 12
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var effectiveRingSize: CGFloat { diameter ?? defaultRingSize }
+    private var effectiveRingSize: CGFloat {
+        min(diameter ?? defaultRingSize, maxDiameter ?? 320)
+    }
     private var effectiveLineWidth: CGFloat { strokeWidth ?? defaultLineWidth }
 
     var body: some View {
@@ -39,6 +42,7 @@ struct RingTimerView: View {
             // Countdown
             if showsCountdown {
                 TimerCountdownText(endDate: endDate, size: countdownSize, weight: .light, frozenRemaining: frozenRemaining)
+                    .padding(.horizontal, effectiveLineWidth + 16)
             }
         }
         .frame(width: effectiveRingSize, height: effectiveRingSize)

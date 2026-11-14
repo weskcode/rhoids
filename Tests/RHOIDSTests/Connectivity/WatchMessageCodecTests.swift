@@ -13,12 +13,14 @@ struct WatchMessageCodecTests {
         let dict = msg.toDictionary()
         let decoded = try #require(WatchMessage.from(dictionary: dict))
 
-        guard case .timerStarted(let d, let name, let dur) = decoded else {
+        guard case .timerStarted(let d, let name, let dur, let runID, let sentAt) = decoded else {
             Issue.record("Expected .timerStarted"); return
         }
         #expect(abs(d.timeIntervalSince(endDate)) < 0.01)
         #expect(name == "Recommended")
         #expect(dur == 180)
+        #expect(runID == nil)
+        #expect(sentAt == nil)
     }
 
     @Test("timerCompleted survives dictionary round-trip")
@@ -27,20 +29,24 @@ struct WatchMessageCodecTests {
         let dict = msg.toDictionary()
         let decoded = try #require(WatchMessage.from(dictionary: dict))
 
-        guard case .timerCompleted(let name, let dur) = decoded else {
+        guard case .timerCompleted(let name, let dur, let runID, let sentAt) = decoded else {
             Issue.record("Expected .timerCompleted"); return
         }
         #expect(name == "Max")
         #expect(dur == 300)
+        #expect(runID == nil)
+        #expect(sentAt == nil)
     }
 
     @Test("timerCancelled survives dictionary round-trip")
     func timerCancelledRoundTrip() throws {
-        let msg = WatchMessage.timerCancelled
+        let msg = WatchMessage.timerCancelled()
         let decoded = try #require(WatchMessage.from(dictionary: msg.toDictionary()))
-        guard case .timerCancelled = decoded else {
+        guard case .timerCancelled(let runID, let sentAt) = decoded else {
             Issue.record("Expected .timerCancelled"); return
         }
+        #expect(runID == nil)
+        #expect(sentAt == nil)
     }
 
     @Test("requestState survives dictionary round-trip")
@@ -56,7 +62,7 @@ struct WatchMessageCodecTests {
     func stateResponseNilEndDate() throws {
         let msg = WatchMessage.stateResponse(endDate: nil, isRunning: false, presetName: nil, duration: 0)
         let decoded = try #require(WatchMessage.from(dictionary: msg.toDictionary()))
-        guard case .stateResponse(let ed, let running, let name, let dur) = decoded else {
+        guard case .stateResponse(let ed, let running, let name, let dur, _, _) = decoded else {
             Issue.record("Expected .stateResponse"); return
         }
         #expect(ed == nil)
@@ -68,15 +74,98 @@ struct WatchMessageCodecTests {
     @Test("stateResponse with all fields populated survives round-trip")
     func stateResponseFullPayload() throws {
         let endDate = Date().addingTimeInterval(120)
-        let msg = WatchMessage.stateResponse(endDate: endDate, isRunning: true, presetName: "Custom", duration: 240)
+        let runID = UUID()
+        let sentAt = Date(timeIntervalSince1970: 1_700_000_050)
+        let msg = WatchMessage.stateResponse(
+            endDate: endDate,
+            isRunning: true,
+            presetName: "Custom",
+            duration: 240,
+            runID: runID,
+            sentAt: sentAt
+        )
         let decoded = try #require(WatchMessage.from(dictionary: msg.toDictionary()))
-        guard case .stateResponse(let ed, let running, let name, let dur) = decoded else {
+        guard case .stateResponse(let ed, let running, let name, let dur, let decodedRunID, let decodedSentAt) = decoded else {
             Issue.record("Expected .stateResponse"); return
         }
         #expect(ed != nil)
         #expect(running == true)
         #expect(name == "Custom")
         #expect(dur == 240)
+        #expect(decodedRunID == runID)
+        let unwrappedSentAt = try #require(decodedSentAt)
+        #expect(abs(unwrappedSentAt.timeIntervalSince(sentAt)) < 0.01)
+    }
+
+    @Test("runID and sentAt survive round-trip on lifecycle messages")
+    func syncMetadataRoundTrip() throws {
+        let runID = UUID()
+        let sentAt = Date(timeIntervalSince1970: 1_700_000_123)
+        let endDate = Date(timeIntervalSince1970: 1_700_000_303)
+
+        let started = try #require(WatchMessage.from(dictionary: WatchMessage.timerStarted(
+            endDate: endDate,
+            presetName: "Recommended",
+            duration: 180,
+            runID: runID,
+            sentAt: sentAt
+        ).toDictionary()))
+        guard case .timerStarted(_, _, _, let sRunID, let sSentAt) = started else {
+            Issue.record("Expected .timerStarted"); return
+        }
+        #expect(sRunID == runID)
+        #expect(abs((try #require(sSentAt)).timeIntervalSince(sentAt)) < 0.01)
+
+        let completed = try #require(WatchMessage.from(dictionary: WatchMessage.timerCompleted(
+            presetName: "Max",
+            duration: 300,
+            runID: runID,
+            sentAt: sentAt
+        ).toDictionary()))
+        guard case .timerCompleted(_, _, let cRunID, let cSentAt) = completed else {
+            Issue.record("Expected .timerCompleted"); return
+        }
+        #expect(cRunID == runID)
+        #expect(abs((try #require(cSentAt)).timeIntervalSince(sentAt)) < 0.01)
+
+        let cancelled = try #require(WatchMessage.from(dictionary: WatchMessage.timerCancelled(
+            runID: runID,
+            sentAt: sentAt
+        ).toDictionary()))
+        guard case .timerCancelled(let xRunID, let xSentAt) = cancelled else {
+            Issue.record("Expected .timerCancelled"); return
+        }
+        #expect(xRunID == runID)
+        #expect(abs((try #require(xSentAt)).timeIntervalSince(sentAt)) < 0.01)
+    }
+
+    @Test("Legacy payloads without runID or sentAt decode with nil metadata")
+    func legacyPayloadsDecode() throws {
+        let legacyCancel: [String: Any] = ["watchMessage": ["type": "timerCancelled"]]
+        let decodedCancel = try #require(WatchMessage.from(dictionary: legacyCancel))
+        guard case .timerCancelled(let runID, let sentAt) = decodedCancel else {
+            Issue.record("Expected .timerCancelled"); return
+        }
+        #expect(runID == nil)
+        #expect(sentAt == nil)
+
+        let legacyState: [String: Any] = [
+            "watchMessage": [
+                "type": "stateResponse",
+                "isRunning": false,
+                "duration": 0
+            ]
+        ]
+        let decodedState = try #require(WatchMessage.from(dictionary: legacyState))
+        guard case .stateResponse(let endDate, let isRunning, let presetName, let duration, let stateRunID, let stateSentAt) = decodedState else {
+            Issue.record("Expected .stateResponse"); return
+        }
+        #expect(endDate == nil)
+        #expect(isRunning == false)
+        #expect(presetName == nil)
+        #expect(duration == 0)
+        #expect(stateRunID == nil)
+        #expect(stateSentAt == nil)
     }
 
     @Test("timerTick with zero remaining survives round-trip")
@@ -151,7 +240,7 @@ struct WatchMessageCodecTests {
             .timerStarted(endDate: Date(), presetName: "Recommended", duration: 180),
             .timerTick(remaining: 90),
             .timerCompleted(presetName: "Max", duration: 300),
-            .timerCancelled,
+            .timerCancelled(),
             .requestState,
             .stateResponse(endDate: Date(), isRunning: true, presetName: "Custom", duration: 120),
             .stateResponse(endDate: nil, isRunning: false, presetName: nil, duration: 0)
@@ -165,16 +254,17 @@ struct WatchMessageCodecTests {
             let decoded = try decoder.decode(WatchMessage.self, from: data)
 
             switch (original, decoded) {
-            case (.timerStarted(_, let n1, let d1), .timerStarted(_, let n2, let d2)):
-                #expect(n1 == n2); #expect(d1 == d2)
+            case (.timerStarted(_, let n1, let d1, let r1, _), .timerStarted(_, let n2, let d2, let r2, _)):
+                #expect(n1 == n2); #expect(d1 == d2); #expect(r1 == r2)
             case (.timerTick(let r1), .timerTick(let r2)):
                 #expect(abs(r1 - r2) < 0.001)
-            case (.timerCompleted(let n1, let d1), .timerCompleted(let n2, let d2)):
-                #expect(n1 == n2); #expect(d1 == d2)
-            case (.timerCancelled, .timerCancelled): break
+            case (.timerCompleted(let n1, let d1, let r1, _), .timerCompleted(let n2, let d2, let r2, _)):
+                #expect(n1 == n2); #expect(d1 == d2); #expect(r1 == r2)
+            case (.timerCancelled(let r1, _), .timerCancelled(let r2, _)):
+                #expect(r1 == r2)
             case (.requestState, .requestState): break
-            case (.stateResponse(_, let r1, _, let d1), .stateResponse(_, let r2, _, let d2)):
-                #expect(r1 == r2); #expect(d1 == d2)
+            case (.stateResponse(_, let run1, _, let d1, let r1, _), .stateResponse(_, let run2, _, let d2, let r2, _)):
+                #expect(run1 == run2); #expect(d1 == d2); #expect(r1 == r2)
             default:
                 Issue.record("Type mismatch: original and decoded don't match")
             }
@@ -189,7 +279,7 @@ struct WatchMessageCodecTests {
             .timerStarted(endDate: Date(), presetName: "", duration: 0),
             .timerTick(remaining: 0),
             .timerCompleted(presetName: "", duration: 0),
-            .timerCancelled,
+            .timerCancelled(),
             .requestState,
             .stateResponse(endDate: nil, isRunning: false, presetName: nil, duration: 0)
         ]

@@ -52,6 +52,7 @@ struct SplashView: View {
                 buttonOpacity = 1
             } else {
                 try? await Task.sleep(for: .milliseconds(500))
+                guard !Task.isCancelled else { return }
                 onComplete()
             }
             return
@@ -59,25 +60,28 @@ struct SplashView: View {
 
         withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) {
             titleOpacity = 1
-        } completion: {
-            Task {
-                try? await Task.sleep(for: .milliseconds(600))
-                if showGetStarted {
-                    withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) { buttonOpacity = 1 }
-                } else {
-                    fadeOut()
-                }
+        }
+
+        try? await Task.sleep(for: .milliseconds(880))
+        guard !Task.isCancelled else { return }
+
+        if showGetStarted {
+            withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) {
+                buttonOpacity = 1
             }
+        } else {
+            await fadeOut()
         }
     }
 
     @MainActor
-    private func fadeOut() {
+    private func fadeOut() async {
         withAnimation(AppMotion.reveal(reduceMotion: reduceMotion)) {
             titleOpacity = 0
-        } completion: {
-            onComplete()
         }
+        try? await Task.sleep(for: .milliseconds(280))
+        guard !Task.isCancelled else { return }
+        onComplete()
     }
 }
 

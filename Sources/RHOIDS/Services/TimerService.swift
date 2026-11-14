@@ -11,7 +11,15 @@ enum TimerEvent: Sendable {
     case cancelled
 }
 
+enum TimerSyncEvent: Sendable {
+    case started(runID: UUID, endDate: Date, preset: PresetTimer, duration: TimeInterval, sentAt: Date)
+    case completed(runID: UUID, preset: PresetTimer?, duration: TimeInterval, sentAt: Date)
+    case cancelled(runID: UUID, sentAt: Date)
+}
+
 actor TimerService {
+    private static let maxRetiredSyncRunIDs = 64
+
     private var countdownTask: Task<Void, Never>?
     /// Tracks the in-flight AlarmKit/notification/shared-state scheduling
     /// (or, for adopted timers, its full side-effect setup) started by
@@ -23,7 +31,11 @@ actor TimerService {
     /// schedule that lands moments later.
     private var sideEffectsTask: Task<Void, Never>?
     private var listeners: [UUID: AsyncStream<TimerEvent>.Continuation] = [:]
+    private var syncListeners: [UUID: AsyncStream<TimerSyncEvent>.Continuation] = [:]
     private var activeRunID: UUID?
+    private var syncRunID: UUID?
+    private var currentRunStartedAt: Date?
+    private var retiredSyncRunIDs: [UUID] = []
     private var isPreparingTimer = false
 
     private(set) var currentEndDate: Date?
@@ -68,12 +80,42 @@ actor TimerService {
         return stream
     }
 
+    func syncEventStream() -> AsyncStream<TimerSyncEvent> {
+        let id = UUID()
+        log.debug("creating sync event stream for listener \(id.uuidString.prefix(8))")
+        let (stream, continuation) = AsyncStream.makeStream(of: TimerSyncEvent.self)
+        syncListeners[id] = continuation
+        continuation.onTermination = { [id] _ in
+            log.debug("sync listener \(id.uuidString.prefix(8)) terminated")
+            Task { await self.removeSyncListener(id: id) }
+        }
+        return stream
+    }
+
     func timerState() -> (endDate: Date?, isRunning: Bool, preset: PresetTimer?, duration: TimeInterval) {
         (currentEndDate, isRunning, currentPreset, currentDuration)
     }
 
+    func syncState() -> (endDate: Date?, isRunning: Bool, preset: PresetTimer?, duration: TimeInterval, runID: UUID?) {
+        (currentEndDate, isRunning, currentPreset, currentDuration, syncRunID ?? activeRunID)
+    }
+
     private func removeListener(id: UUID) {
         listeners.removeValue(forKey: id)
+    }
+
+    private func removeSyncListener(id: UUID) {
+        syncListeners.removeValue(forKey: id)
+    }
+
+    private func retireSyncRunID(_ id: UUID?) {
+        guard let id else { return }
+        if !retiredSyncRunIDs.contains(id) {
+            retiredSyncRunIDs.append(id)
+            if retiredSyncRunIDs.count > Self.maxRetiredSyncRunIDs {
+                retiredSyncRunIDs.removeFirst(retiredSyncRunIDs.count - Self.maxRetiredSyncRunIDs)
+            }
+        }
     }
 
     private func broadcast(_ event: TimerEvent) {
@@ -83,6 +125,12 @@ actor TimerService {
             log.debug("broadcasting \(String(describing: event)) to \(self.listeners.count) listener(s)")
         }
         for continuation in listeners.values {
+            continuation.yield(event)
+        }
+    }
+
+    private func broadcastSync(_ event: TimerSyncEvent) {
+        for continuation in syncListeners.values {
             continuation.yield(event)
         }
     }
@@ -97,6 +145,14 @@ actor TimerService {
         }
         listeners.removeAll()
         log.debug("finished \(count) listener(s) after terminal event")
+    }
+
+    private func broadcastSyncTerminal(_ event: TimerSyncEvent) {
+        broadcastSync(event)
+        for continuation in syncListeners.values {
+            continuation.finish()
+        }
+        syncListeners.removeAll()
     }
 
     struct TimerPreferences: Sendable {
@@ -155,15 +211,19 @@ actor TimerService {
 
     func start(duration: TimeInterval, preset: PresetTimer, preferences: TimerPreferences = TimerPreferences()) async {
         log.debug("start() called - duration=\(duration)s, preset=\(preset.name), listeners=\(self.listeners.count)")
+        retireSyncRunID(syncRunID ?? activeRunID)
         countdownTask?.cancel()
         countdownTask = nil
         sideEffectsTask?.cancel()
         await sideEffectsTask?.value
         sideEffectsTask = nil
         let runID = UUID()
+        let startedAt = Date()
         activeRunID = runID
+        syncRunID = runID
+        currentRunStartedAt = startedAt
         isPreparingTimer = true
-        let endDate = Date().addingTimeInterval(duration)
+        let endDate = startedAt.addingTimeInterval(duration)
 
         currentEndDate = endDate
         currentPreset = preset
@@ -201,6 +261,8 @@ actor TimerService {
         guard !Task.isCancelled else {
             log.debug("start cancelled after Live Activity setup - tearing down the orphaned Live Activity")
             activeRunID = nil
+            syncRunID = nil
+            currentRunStartedAt = nil
             isPreparingTimer = false
             currentEndDate = nil
             currentPreset = nil
@@ -212,6 +274,7 @@ actor TimerService {
         }
 
         broadcast(.started(endDate: endDate, preset: preset, duration: duration))
+        broadcastSync(.started(runID: runID, endDate: endDate, preset: preset, duration: duration, sentAt: Date()))
 
         isPreparingTimer = false
         startCountdownTask(
@@ -219,6 +282,7 @@ actor TimerService {
             endDate: endDate,
             preset: preset,
             duration: duration,
+            initialRemaining: duration,
             beepsEnabled: preferences.timerWarningEnabled,
             warningMode: preferences.warningMode,
             hapticsEnabled: preferences.timerAlertHapticsEnabled,
@@ -253,9 +317,47 @@ actor TimerService {
         log.debug("[\(tag)] shared state set ✓")
         guard activeRunID == runID, !Task.isCancelled else { return }
 
+        await applyTimerSideEffects(
+            runID: runID,
+            endDate: endDate,
+            preset: preset,
+            alertDuration: duration,
+            preferences: preferences,
+            stopExistingScreenTimeFirst: false,
+            cancelAlertsWhenDisabled: false,
+            includeStartReminder: true,
+            logPrefix: ""
+        )
+    }
+
+    /// Shared Screen Time, AlarmKit, and Notification scheduling used across
+    /// `start()`, `adopt()`, and `rescheduleForFocusLockChange()`. Every
+    /// irreversible external call is preceded by `activeRunID == runID && !Task.isCancelled`.
+    private func applyTimerSideEffects(
+        runID: UUID,
+        endDate: Date,
+        preset: PresetTimer,
+        alertDuration: TimeInterval,
+        preferences: TimerPreferences,
+        stopExistingScreenTimeFirst: Bool,
+        cancelAlertsWhenDisabled: Bool,
+        includeStartReminder: Bool,
+        logPrefix: String
+    ) async {
+        let tag = runID.uuidString.prefix(8)
+        guard activeRunID == runID, !Task.isCancelled else { return }
+
+        if stopExistingScreenTimeFirst {
+            // Stand down any previously-scheduled bathroom session monitoring
+            // before deciding whether to reschedule it under the new mode -
+            // the old schedule may no longer reflect the user's current choice.
+            await screenTimeSessionScheduling.stopBathroomSessionMonitoring()
+            guard activeRunID == runID, !Task.isCancelled else { return }
+        }
+
         if preferences.focusLockBlockingWillEngage {
-            log.debug("[\(tag)] starting bathroom session monitoring...")
-            await screenTimeSessionScheduling.startBathroomSessionMonitoring(duration: duration)
+            log.debug("[\(tag)] \(logPrefix)starting bathroom session monitoring...")
+            await screenTimeSessionScheduling.startBathroomSessionMonitoring(duration: alertDuration)
         }
         guard activeRunID == runID, !Task.isCancelled else { return }
 
@@ -263,23 +365,27 @@ actor TimerService {
 
         let alarmKitHandling: Bool
         if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] scheduling AlarmKit...")
+            log.debug("[\(tag)] \(logPrefix)scheduling AlarmKit...")
             let alarmKitID = await alarmKitService.scheduleTimer(
-                duration: duration,
+                duration: alertDuration,
                 presetName: preset.name,
                 messagingMode: messagingMode,
                 cooldownMinutes: preferences.focusLockCooldownMinutes
             )
             alarmKitHandling = alarmKitID != nil
-            log.debug("[\(tag)] AlarmKit done ✓ (id=\(alarmKitID?.uuidString.prefix(8) ?? "nil"), handling=\(alarmKitHandling))")
+            log.debug("[\(tag)] \(logPrefix)AlarmKit done ✓ (id=\(alarmKitID?.uuidString.prefix(8) ?? "nil"), handling=\(alarmKitHandling))")
         } else {
             alarmKitHandling = false
-            log.debug("[\(tag)] AlarmKit skipped - timer alerts disabled")
+            if cancelAlertsWhenDisabled {
+                await alarmKitService.cancelActive()
+            } else {
+                log.debug("[\(tag)] \(logPrefix)AlarmKit skipped - timer alerts disabled")
+            }
         }
         guard activeRunID == runID, !Task.isCancelled else { return }
 
         if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] scheduling notifications...")
+            log.debug("[\(tag)] \(logPrefix)scheduling notifications...")
             await notificationService.schedule(
                 endDate: endDate,
                 presetName: preset.name,
@@ -292,15 +398,17 @@ actor TimerService {
             )
             if preferences.timerWarningEnabled && preferences.warningMode == .recurring {
                 await notificationService.scheduleBeepNotifications(
-                    duration: duration,
+                    duration: alertDuration,
                     endDate: endDate,
                     sound: preferences.warningSound
                 )
             }
-            if preferences.focusLockMode == .phoneFree {
+            if includeStartReminder && preferences.focusLockMode == .phoneFree {
                 await notificationService.scheduleStartReminder(mode: .phoneFree)
             }
-            log.debug("[\(tag)] notifications scheduled ✓")
+            log.debug("[\(tag)] \(logPrefix)notifications scheduled ✓")
+        } else if cancelAlertsWhenDisabled {
+            await notificationService.cancelAll()
         }
     }
 
@@ -316,6 +424,7 @@ actor TimerService {
         endDate: Date,
         preset: PresetTimer,
         duration: TimeInterval,
+        initialRemaining: TimeInterval,
         beepsEnabled: Bool,
         warningMode: WarningMode = .endOnly,
         hapticsEnabled: Bool,
@@ -325,12 +434,12 @@ actor TimerService {
             // End-only: single beep at T-30. Recurring: beep at every 30s boundary.
             var nextBeepAt: TimeInterval
             if warningMode == .endOnly {
-                nextBeepAt = min(30, duration)
+                nextBeepAt = min(30, initialRemaining)
             } else {
-                nextBeepAt = floor(duration / 30) * 30
-                if nextBeepAt >= duration { nextBeepAt -= 30 }
+                nextBeepAt = floor(initialRemaining / 30) * 30
+                if nextBeepAt >= initialRemaining { nextBeepAt -= 30 }
             }
-            log.debug("beep schedule: first beep at \(nextBeepAt)s remaining (duration=\(duration)s, mode=\(warningMode.rawValue), haptics=\(hapticsEnabled))")
+            log.debug("beep schedule: first beep at \(nextBeepAt)s remaining (duration=\(duration)s, initialRemaining=\(String(format: "%.1f", initialRemaining))s, mode=\(warningMode.rawValue), haptics=\(hapticsEnabled))")
 
             var naturalCompletion = false
             while !Task.isCancelled {
@@ -390,12 +499,30 @@ actor TimerService {
     /// shared state, or Watch-started via WatchConnectivity), preserving its
     /// original `endDate` so both devices stay in lockstep. Replaces any
     /// locally running timer - the adopted timer is the user's most recent
-    /// explicit start. Expired timers (e.g. a queued WatchConnectivity
-    /// message delivered long after the fact) are ignored.
-    func adopt(endDate: Date, preset: PresetTimer, duration: TimeInterval) async {
+    /// explicit start. Expired, retired, or superseded timers (e.g. a queued
+    /// WatchConnectivity message delivered long after the fact) are ignored.
+    func adopt(
+        endDate: Date,
+        preset: PresetTimer,
+        duration: TimeInterval,
+        remoteRunID: UUID? = nil,
+        sentAt: Date? = nil
+    ) async {
         let remaining = endDate.timeIntervalSince(Date())
         guard remaining > 0 else {
             log.debug("adopt skipped - timer already expired (\(String(format: "%.0f", remaining))s)")
+            return
+        }
+        if let remoteRunID, retiredSyncRunIDs.contains(remoteRunID) {
+            log.debug("adopt skipped - runID \(remoteRunID.uuidString.prefix(8)) is already retired")
+            return
+        }
+        if isRunning, let remoteRunID, remoteRunID == syncRunID {
+            log.debug("adopt skipped - already running runID \(remoteRunID.uuidString.prefix(8))")
+            return
+        }
+        if isRunning, let sentAt, let currentRunStartedAt, sentAt < currentRunStartedAt {
+            log.debug("adopt skipped - message sentAt \(sentAt) predates active run \(currentRunStartedAt)")
             return
         }
 
@@ -406,14 +533,29 @@ actor TimerService {
         sideEffectsTask?.cancel()
         await sideEffectsTask?.value
         sideEffectsTask = nil
+
+        if let remoteRunID, retiredSyncRunIDs.contains(remoteRunID) {
+            log.debug("adopt skipped after teardown - runID \(remoteRunID.uuidString.prefix(8)) was retired while awaiting")
+            return
+        }
+        if isRunning, let sentAt, let currentRunStartedAt, sentAt < currentRunStartedAt {
+            log.debug("adopt skipped after teardown - newer local run superseded it")
+            return
+        }
+
+        retireSyncRunID(syncRunID ?? activeRunID)
         let runID = UUID()
+        let effectiveSyncRunID = remoteRunID ?? runID
         activeRunID = runID
+        syncRunID = effectiveSyncRunID
+        currentRunStartedAt = sentAt ?? Date()
         isPreparingTimer = true
         currentEndDate = endDate
         currentPreset = preset
         currentDuration = duration
 
         broadcast(.started(endDate: endDate, preset: preset, duration: duration))
+        broadcastSync(.started(runID: effectiveSyncRunID, endDate: endDate, preset: preset, duration: duration, sentAt: Date()))
 
         // Read user preferences for the services we're about to start.
         let adoptedPreferences = await TimerPreferences.current()
@@ -447,52 +589,19 @@ actor TimerService {
             }
         }
 
-        let player = alarmPlayer
-
         guard activeRunID == runID else { return }
         isPreparingTimer = false
-        countdownTask = Task {
-            let currentRemaining = endDate.timeIntervalSince(Date())
-            var nextBeepAt: TimeInterval
-            if adoptedPreferences.warningMode == .endOnly {
-                nextBeepAt = min(30, currentRemaining)
-            } else {
-                nextBeepAt = floor(currentRemaining / 30) * 30
-                if nextBeepAt >= currentRemaining { nextBeepAt -= 30 }
-            }
-            log.debug("adopted: first beep at \(nextBeepAt)s remaining (currentRemaining=\(String(format: "%.1f", currentRemaining))s, mode=\(adoptedPreferences.warningMode.rawValue))")
-
-            var naturalCompletion = false
-            while !Task.isCancelled {
-                guard activeRunID == runID else { break }
-                let remaining = endDate.timeIntervalSince(Date())
-                if remaining <= 0 {
-                    naturalCompletion = true
-                    break
-                }
-
-                if nextBeepAt > 0, remaining <= nextBeepAt {
-                    log.debug("adopted: 30s boundary crossed - \(Int(nextBeepAt))s mark, remaining=\(String(format: "%.1f", remaining))s")
-                    if adoptedBeepsEnabled {
-                        await player.playWarningBeep(withHaptic: adoptedPreferences.timerAlertHapticsEnabled)
-                    }
-                    if adoptedPreferences.warningMode == .recurring {
-                        nextBeepAt -= 30
-                    } else {
-                        nextBeepAt = 0
-                    }
-                }
-
-                try? await Task.sleep(for: .seconds(1))
-                if Task.isCancelled { break }
-            }
-
-            if naturalCompletion, activeRunID == runID {
-                await handleTimerComplete(preset: preset, duration: duration)
-            } else if activeRunID == runID {
-                log.debug("adopted countdown task ended early (cancelled) - skipping completion")
-            }
-        }
+        startCountdownTask(
+            runID: runID,
+            endDate: endDate,
+            preset: preset,
+            duration: duration,
+            initialRemaining: endDate.timeIntervalSince(Date()),
+            beepsEnabled: adoptedBeepsEnabled,
+            warningMode: adoptedPreferences.warningMode,
+            hapticsEnabled: adoptedPreferences.timerAlertHapticsEnabled,
+            player: alarmPlayer
+        )
     }
 
     /// Schedules AlarmKit, notifications, and shared state for an adopted
@@ -510,58 +619,17 @@ actor TimerService {
         preferences: TimerPreferences
     ) async {
         let tag = runID.uuidString.prefix(8)
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        if preferences.focusLockBlockingWillEngage {
-            log.debug("[\(tag)] adopted: starting bathroom session monitoring...")
-            await screenTimeSessionScheduling.startBathroomSessionMonitoring(duration: remaining)
-        }
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        let messagingMode = resolvedMessagingMode(preferences)
-
-        // Schedule AlarmKit with remaining time so the alarm fires at the right moment.
-        let alarmKitID: UUID?
-        if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] adopted: scheduling AlarmKit...")
-            alarmKitID = await alarmKitService.scheduleTimer(
-                duration: remaining,
-                presetName: preset.name,
-                messagingMode: messagingMode,
-                cooldownMinutes: preferences.focusLockCooldownMinutes
-            )
-            log.debug("[\(tag)] adopted: AlarmKit done ✓ (id=\(alarmKitID?.uuidString.prefix(8) ?? "nil"))")
-        } else {
-            alarmKitID = nil
-        }
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        // Schedule notifications; skip completion alert if AlarmKit is handling it.
-        if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] adopted: scheduling notifications...")
-            await notificationService.schedule(
-                endDate: endDate,
-                presetName: preset.name,
-                warningEnabled: preferences.timerWarningEnabled,
-                alarmSound: preferences.alarmSound,
-                warningSound: preferences.warningSound,
-                includeCompletion: alarmKitID == nil,
-                messagingMode: messagingMode,
-                cooldownMinutes: preferences.focusLockCooldownMinutes
-            )
-            // Recurring mode: schedule drop-down banner beeps for adopted timer.
-            if preferences.timerWarningEnabled && preferences.warningMode == .recurring {
-                await notificationService.scheduleBeepNotifications(
-                    duration: remaining,
-                    endDate: endDate,
-                    sound: preferences.warningSound
-                )
-            }
-            if preferences.focusLockMode == .phoneFree {
-                await notificationService.scheduleStartReminder(mode: .phoneFree)
-            }
-            log.debug("[\(tag)] adopted: notifications scheduled ✓")
-        }
+        await applyTimerSideEffects(
+            runID: runID,
+            endDate: endDate,
+            preset: preset,
+            alertDuration: remaining,
+            preferences: preferences,
+            stopExistingScreenTimeFirst: false,
+            cancelAlertsWhenDisabled: false,
+            includeStartReminder: true,
+            logPrefix: "adopted: "
+        )
         guard activeRunID == runID, !Task.isCancelled else { return }
 
         // Write shared state so the widget shows the running timer. For a
@@ -630,64 +698,20 @@ actor TimerService {
         preferences: TimerPreferences
     ) async {
         let tag = runID.uuidString.prefix(8)
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        // Stand down any previously-scheduled bathroom session monitoring
-        // before deciding whether to reschedule it under the new mode - the
-        // old schedule may no longer reflect the user's current choice.
-        await screenTimeSessionScheduling.stopBathroomSessionMonitoring()
-        if preferences.focusLockBlockingWillEngage {
-            log.debug("[\(tag)] reschedule: starting bathroom session monitoring...")
-            await screenTimeSessionScheduling.startBathroomSessionMonitoring(duration: remaining)
-        }
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        let messagingMode = resolvedMessagingMode(preferences)
-
-        let alarmKitHandling: Bool
-        if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] reschedule: scheduling AlarmKit...")
-            let alarmKitID = await alarmKitService.scheduleTimer(
-                duration: remaining,
-                presetName: preset.name,
-                messagingMode: messagingMode,
-                cooldownMinutes: preferences.focusLockCooldownMinutes
-            )
-            alarmKitHandling = alarmKitID != nil
-        } else {
-            alarmKitHandling = false
-            await alarmKitService.cancelActive()
-        }
-        guard activeRunID == runID, !Task.isCancelled else { return }
-
-        if preferences.timerAlertsEnabled {
-            log.debug("[\(tag)] reschedule: scheduling notifications...")
-            await notificationService.schedule(
-                endDate: endDate,
-                presetName: preset.name,
-                warningEnabled: preferences.timerWarningEnabled,
-                alarmSound: preferences.alarmSound,
-                warningSound: preferences.warningSound,
-                includeCompletion: !alarmKitHandling,
-                messagingMode: messagingMode,
-                cooldownMinutes: preferences.focusLockCooldownMinutes
-            )
-            // Re-derive beep boundaries from the remaining time, not the
-            // original full duration - mirrors how `adopt()` schedules beeps
-            // for a timer that's already partway through.
-            if preferences.timerWarningEnabled && preferences.warningMode == .recurring {
-                await notificationService.scheduleBeepNotifications(
-                    duration: remaining,
-                    endDate: endDate,
-                    sound: preferences.warningSound
-                )
-            }
-            // Deliberately does NOT re-fire `scheduleStartReminder` - that's
-            // a timer-*start* message, not a timer-end one, and re-sending it
-            // mid-session on every settings tweak would be spammy/confusing.
-        } else {
-            await notificationService.cancelAll()
-        }
+        // Deliberately does NOT re-fire `scheduleStartReminder` - that's
+        // a timer-*start* message, not a timer-end one, and re-sending it
+        // mid-session on every settings tweak would be spammy/confusing.
+        await applyTimerSideEffects(
+            runID: runID,
+            endDate: endDate,
+            preset: preset,
+            alertDuration: remaining,
+            preferences: preferences,
+            stopExistingScreenTimeFirst: true,
+            cancelAlertsWhenDisabled: true,
+            includeStartReminder: false,
+            logPrefix: "reschedule: "
+        )
         log.debug("[\(tag)] reschedule complete ✓")
     }
 
@@ -725,12 +749,33 @@ actor TimerService {
         await alarmKitService.cancelActive()
     }
 
+    /// Stops the active timer only if it matches the Watch's `runID` (or if
+    /// `runID` is `nil` from a legacy Watch payload). Always retires a non-nil
+    /// `runID` so an out-of-order `.timerStarted` for that same run can never
+    /// resurrect it later.
+    func stopFromWatch(runID: UUID? = nil) async {
+        if let runID {
+            retireSyncRunID(runID)
+            let activeSyncID = syncRunID ?? activeRunID
+            if isRunning, activeSyncID != runID {
+                log.debug("stopFromWatch ignored - runID \(runID.uuidString.prefix(8)) does not match active run \(activeSyncID?.uuidString.prefix(8) ?? "nil")")
+                return
+            }
+        }
+        guard isRunning else { return }
+        await stop()
+    }
+
     func stop() async {
         let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
         log.debug("stop() called - runID=\(tag)")
+        let stoppedSyncRunID = syncRunID ?? activeRunID
+        retireSyncRunID(stoppedSyncRunID)
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
+        syncRunID = nil
+        currentRunStartedAt = nil
         isPreparingTimer = false
         currentEndDate = nil
         currentPreset = nil
@@ -747,7 +792,7 @@ actor TimerService {
         if sideEffectsEnabled {
             await alarmKitService.cancelActive()
         }
-        await handleCancelled()
+        await handleCancelled(syncRunID: stoppedSyncRunID)
     }
 
     /// The user stopped the system alarm from *outside* the app (e.g. the
@@ -762,9 +807,12 @@ actor TimerService {
     func handleExternalAlarmStop() async {
         let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
         log.debug("handleExternalAlarmStop - runID=\(tag)")
+        retireSyncRunID(syncRunID ?? activeRunID)
         countdownTask?.cancel()
         countdownTask = nil
         activeRunID = nil
+        syncRunID = nil
+        currentRunStartedAt = nil
         isPreparingTimer = false
         currentEndDate = nil
         currentPreset = nil
@@ -788,8 +836,12 @@ actor TimerService {
     private func handleTimerComplete(preset: PresetTimer? = nil, duration: TimeInterval = 0) async {
         let tag = activeRunID?.uuidString.prefix(8) ?? "nil"
         log.debug("handleTimerComplete - runID=\(tag), preset=\(preset?.name ?? "nil")")
+        let completedSyncRunID = syncRunID ?? activeRunID
+        retireSyncRunID(completedSyncRunID)
         countdownTask = nil
         activeRunID = nil
+        syncRunID = nil
+        currentRunStartedAt = nil
         isPreparingTimer = false
         currentEndDate = nil
         currentPreset = nil
@@ -814,12 +866,17 @@ actor TimerService {
         // the app is in the foreground (the in-app alarm takes over), or
         // when the user opens the app and dismisses the completion sheet.
         broadcastTerminal(.completed(preset: preset, duration: duration))
+        if let completedSyncRunID {
+            broadcastSyncTerminal(.completed(runID: completedSyncRunID, preset: preset, duration: duration, sentAt: Date()))
+        }
     }
 
-    private func handleCancelled() async {
+    private func handleCancelled(syncRunID: UUID?) async {
         log.debug("handleCancelled")
         countdownTask = nil
         activeRunID = nil
+        self.syncRunID = nil
+        currentRunStartedAt = nil
         isPreparingTimer = false
         if sideEffectsEnabled {
             await sharedStateService.clearTimer()
@@ -828,5 +885,8 @@ actor TimerService {
             await screenTimeSessionScheduling.stopBathroomSessionMonitoring()
         }
         broadcastTerminal(.cancelled)
+        if let syncRunID {
+            broadcastSyncTerminal(.cancelled(runID: syncRunID, sentAt: Date()))
+        }
     }
 }

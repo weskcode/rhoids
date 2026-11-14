@@ -7,6 +7,7 @@ struct DialTimerView: View {
     let progress: Double
     var showsCountdown = true
     var frozenRemaining: TimeInterval?
+    var maxSize: CGFloat?
 
     @ScaledMetric(relativeTo: .largeTitle) private var dialSize: CGFloat = 260
     @ScaledMetric(relativeTo: .largeTitle) private var arcWidth: CGFloat = 8
@@ -16,7 +17,15 @@ struct DialTimerView: View {
     private static let tickCount = 60
     private static let majorInterval = 5
 
+    private var effectiveDialSize: CGFloat {
+        min(dialSize, maxSize ?? 320)
+    }
+
     var body: some View {
+        let scale = effectiveDialSize / 260
+        let arcPadding = 20 * scale
+        let countdownSize = 42 * scale
+
         ZStack {
             // Tick marks
             tickMarks
@@ -30,14 +39,15 @@ struct DialTimerView: View {
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(AppMotion.progress(reduceMotion: reduceMotion), value: progress)
-                .padding(20)
+                .padding(arcPadding)
 
             // Center countdown
             if showsCountdown {
-                TimerCountdownText(endDate: endDate, size: 42, weight: .light, frozenRemaining: frozenRemaining)
+                TimerCountdownText(endDate: endDate, size: countdownSize, weight: .light, frozenRemaining: frozenRemaining)
+                    .padding(.horizontal, arcPadding + arcWidth + 12)
             }
         }
-        .frame(width: dialSize, height: dialSize)
+        .frame(width: effectiveDialSize, height: effectiveDialSize)
     }
 
     // MARK: - Tick Marks

@@ -16,7 +16,6 @@ struct HomeView: View {
 
     private var screenTimeService: ScreenTimeService
     private let widgetSetupBottomID = "widgetSetupBottom"
-    private let portraitScrollBottomPadding: CGFloat = 128
 
     init(services: AppServices) {
         _viewModel = State(initialValue: HomeViewModel(services: services))
@@ -35,7 +34,7 @@ struct HomeView: View {
                     } else if isLandscape {
                         landscapeLayout(size: geo.size)
                     } else {
-                        portraitLayout(size: geo.size, isRegularWidth: isRegularWidth)
+                        portraitLayout(isRegularWidth: isRegularWidth)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -43,7 +42,20 @@ struct HomeView: View {
                     if !viewModel.shouldShowTimer {
                         startButton
                             .padding(.horizontal, 24)
+                            .padding(.top, 8)
                             .padding(.bottom, 8)
+                            .background {
+                                LinearGradient(
+                                    colors: [
+                                        Color(.systemBackground).opacity(0),
+                                        Color(.systemBackground).opacity(0.92),
+                                        Color(.systemBackground)
+                                    ],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                                .ignoresSafeArea(edges: .bottom)
+                            }
                             .opacity(isActivatingTimer ? 0.55 : 1)
                             .transition(AppMotion.edgeFade(.bottom, reduceMotion: reduceMotion))
                     }
@@ -100,10 +112,10 @@ struct HomeView: View {
 
     // MARK: - Portrait
 
-    private func portraitLayout(size: CGSize, isRegularWidth: Bool) -> some View {
+    private func portraitLayout(isRegularWidth: Bool) -> some View {
         ScrollViewReader { scrollProxy in
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 18) {
                     readyVisualization
                         .padding(.bottom, readyVisualizationBottomSpacing)
 
@@ -136,11 +148,10 @@ struct HomeView: View {
                         .id(widgetSetupBottomID)
                 }
                 .opacity(isActivatingTimer ? 0.72 : 1)
-                .frame(minHeight: max(size.height - 120, 0))
                 .frame(maxWidth: isRegularWidth ? 560 : .infinity)
                 .padding(.horizontal, 24)
-                .padding(.top, 24)
-                .padding(.bottom, portraitScrollBottomPadding)
+                .padding(.top, 12)
+                .padding(.bottom, 16)
             }
             .scrollBounceBehavior(.basedOnSize)
             .scrollIndicators(.hidden)

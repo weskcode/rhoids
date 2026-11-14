@@ -101,6 +101,64 @@ struct TimerServiceTests {
                 "A timer that reached its end must not be reported as stopped early")
     }
 
+    // MARK: - Watch Sync Guards
+
+    @Test("stopFromWatch ignores mismatched runID and retires it")
+    func stopFromWatchIgnoresMismatchedAndRetires() async {
+        let service = makeService()
+        await service.start(duration: 180, preset: .recommended, preferences: quietPreferences())
+
+        let staleRunID = UUID()
+        await service.stopFromWatch(runID: staleRunID)
+
+        let state = await service.timerState()
+        #expect(state.isRunning == true, "Stale Watch stop must not cancel a newer active timer")
+        await service.stop()
+
+        // An out-of-order .timerStarted for the retired runID must not resurrect it.
+        await service.adopt(
+            endDate: Date().addingTimeInterval(180),
+            preset: .recommended,
+            duration: 180,
+            remoteRunID: staleRunID,
+            sentAt: Date()
+        )
+        let stateAfterDelayedStart = await service.timerState()
+        #expect(stateAfterDelayedStart.isRunning == false,
+                "A retired runID must never be adopted out of order")
+    }
+
+    @Test("stopFromWatch stops the active timer when runID matches")
+    func stopFromWatchStopsMatchingRunID() async {
+        let service = makeService()
+        await service.start(duration: 180, preset: .recommended, preferences: quietPreferences())
+
+        let syncState = await service.syncState()
+        await service.stopFromWatch(runID: syncState.runID)
+
+        let state = await service.timerState()
+        #expect(state.isRunning == false, "Matching Watch stop should cancel active timer")
+    }
+
+    @Test("adopt rejects older remote timer when sentAt predates active timer")
+    func adoptRejectsStaleSentAt() async {
+        let service = makeService()
+        await service.start(duration: 180, preset: .recommended, preferences: quietPreferences())
+
+        let staleSentAt = Date().addingTimeInterval(-30)
+        await service.adopt(
+            endDate: Date().addingTimeInterval(300),
+            preset: .maxAllowed,
+            duration: 300,
+            remoteRunID: UUID(),
+            sentAt: staleSentAt
+        )
+
+        let state = await service.timerState()
+        #expect(state.duration == 180, "Older Watch message must not overwrite a newer running timer")
+        await service.stop()
+    }
+
     // MARK: - Helpers
 
     private func quietPreferences() -> TimerService.TimerPreferences {

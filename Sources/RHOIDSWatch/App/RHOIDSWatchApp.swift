@@ -6,7 +6,7 @@ private let log = Logger(subsystem: "com.wesley.RHOIDS.watch", category: "App")
 @main
 struct RHOIDSWatchApp: App {
     @State private var appState = WatchAppState()
-    @AppStorage("appearanceMode") private var appearanceMode = "system"
+    @AppStorage(UserPreferences.appearanceModeKey) private var appearanceMode = "system"
 
     var body: some Scene {
         WindowGroup {

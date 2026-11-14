@@ -15,8 +15,8 @@ struct WatchHomeView: View {
     @State private var timerVM: WatchTimerViewModel?
     @State private var showCustomPicker = false
 
-    @AppStorage("defaultPreset") private var defaultPresetID = ""
-    @AppStorage("hapticsEnabled") private var hapticsEnabled = true
+    @AppStorage(PresetPreferences.defaultPresetKey) private var defaultPresetID = ""
+    @AppStorage(UserPreferences.hapticsEnabledKey) private var hapticsEnabled = true
 
     private var defaultPreset: PresetTimer {
         PresetTimer.all.first { $0.id.uuidString == defaultPresetID } ?? .recommended
@@ -138,22 +138,35 @@ struct WatchHomeView: View {
         guard duration > 0 else { return }
 
         let endDate = Date().addingTimeInterval(duration)
-
-        let vm = WatchTimerViewModel(timerService: appState.timerService)
-        // Set initial state synchronously to avoid race with the event stream.
-        // The event stream will update these values when it receives .started,
-        // but this ensures the view has valid data immediately.
-        vm.endDate = endDate
-        vm.plannedDuration = duration
-        vm.presetName = selectedPreset.name
-        vm.presetIcon = selectedPreset.systemImage
-
-        timerVM = vm
-        appState.showTimer = true
+        presentTimer(
+            endDate: endDate,
+            duration: duration,
+            presetName: selectedPreset.name,
+            presetIcon: selectedPreset.systemImage
+        )
 
         Task {
             await appState.timerService.start(duration: duration, preset: selectedPreset)
         }
+    }
+
+    private func presentTimer(
+        endDate: Date,
+        duration: TimeInterval,
+        presetName: String,
+        presetIcon: String,
+        elapsed: TimeInterval = 0
+    ) {
+        let vm = WatchTimerViewModel(timerService: appState.timerService)
+        // Set initial state synchronously to avoid race with the event stream.
+        vm.endDate = endDate
+        vm.plannedDuration = duration
+        vm.presetName = presetName
+        vm.presetIcon = presetIcon
+        vm.elapsed = elapsed
+
+        timerVM = vm
+        appState.showTimer = true
     }
 
     /// If the app launches while a timer is already running (e.g. started from iPhone),
@@ -172,49 +185,64 @@ struct WatchHomeView: View {
     private func setupConnectivityHandler() {
         appState.connectivityService.onPhoneTimerEvent = { [appState] message in
             switch message {
-            case .timerStarted(let endDate, let presetName, let duration):
+            case .timerStarted(let endDate, let presetName, let duration, let runID, let sentAt):
                 let preset = PresetTimer.all.first { $0.name == presetName } ?? .recommended
-                let vm = WatchTimerViewModel(timerService: appState.timerService)
-                vm.endDate = endDate
-                vm.plannedDuration = duration
-                vm.presetName = presetName
-                vm.presetIcon = preset.systemImage
-                self.timerVM = vm
-                appState.showTimer = true
-
                 Task {
-                    await appState.timerService.adopt(endDate: endDate, presetName: presetName, duration: duration)
+                    let adopted = await appState.timerService.adopt(
+                        endDate: endDate,
+                        presetName: presetName,
+                        duration: duration,
+                        remoteRunID: runID,
+                        sentAt: sentAt
+                    )
+                    if adopted, !appState.showTimer || timerVM == nil {
+                        presentTimer(
+                            endDate: endDate,
+                            duration: duration,
+                            presetName: presetName,
+                            presetIcon: preset.systemImage,
+                            elapsed: max(duration - endDate.timeIntervalSinceNow, 0)
+                        )
+                    }
                 }
 
-            case .timerCancelled:
-                Task { await appState.timerService.cancelFromPhone() }
+            case .timerCancelled(let runID, _):
+                Task { await appState.timerService.cancelFromPhone(runID: runID) }
 
-            case .timerCompleted(let presetName, let duration):
+            case .timerCompleted(let presetName, let duration, let runID, _):
                 Task {
                     await appState.timerService.completeFromPhone(
                         presetName: presetName,
-                        duration: duration
+                        duration: duration,
+                        runID: runID
                     )
                 }
 
-            case .stateResponse(let endDate, let isRunning, let presetName, let duration):
+            case .stateResponse(let endDate, let isRunning, let presetName, let duration, let runID, let sentAt):
                 if isRunning, let endDate, endDate > Date() {
-                    let preset = PresetTimer.all.first { $0.name == (presetName ?? "") } ?? .recommended
-                    let vm = WatchTimerViewModel(timerService: appState.timerService)
-                    vm.endDate = endDate
-                    vm.plannedDuration = duration
-                    vm.presetName = presetName ?? preset.name
-                    vm.presetIcon = preset.systemImage
-                    vm.elapsed = max(duration - endDate.timeIntervalSinceNow, 0)
-                    self.timerVM = vm
-                    appState.showTimer = true
-
+                    let resolvedName = presetName ?? PresetTimer.recommended.name
+                    let preset = PresetTimer.all.first { $0.name == resolvedName } ?? .recommended
                     Task {
-                        await appState.timerService.adopt(
+                        let adopted = await appState.timerService.adopt(
                             endDate: endDate,
-                            presetName: presetName ?? "Recommended",
-                            duration: duration
+                            presetName: resolvedName,
+                            duration: duration,
+                            remoteRunID: runID,
+                            sentAt: sentAt
                         )
+                        if adopted, !appState.showTimer || timerVM == nil {
+                            presentTimer(
+                                endDate: endDate,
+                                duration: duration,
+                                presetName: resolvedName,
+                                presetIcon: preset.systemImage,
+                                elapsed: max(duration - endDate.timeIntervalSinceNow, 0)
+                            )
+                        }
+                    }
+                } else {
+                    Task {
+                        await appState.timerService.reconcileInactivePhoneState(phoneResponseSentAt: sentAt)
                     }
                 }
 

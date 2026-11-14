@@ -16,6 +16,9 @@ enum UserPreferences {
     static let warningModeKey = "warningMode"
     static let timerStyleKey = "timerStyle"
     static let appearanceModeKey = "appearanceMode"
+    static let dailyReminderEnabledKey = "dailyReminderEnabled.v1"
+    static let dailyReminderHourKey = "dailyReminderHour.v1"
+    static let dailyReminderMinuteKey = "dailyReminderMinute.v1"
 
     // MARK: - Accessors
     //
