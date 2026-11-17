@@ -336,21 +336,20 @@
 		0AC87C1644702D79ED22A174 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDS;
+			dstPath = RepoFiles/Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
-				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources;
+			dstPath = RepoFiles/RHOIDS.xcodeproj;
 			dstSubfolderSpec = 7;
 			files = (
-				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
+				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,31 +392,32 @@
 		9EB7C689D8B8FF553B949737 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
+			dstPath = RepoFiles/Sources/RHOIDSWidget;
 			dstSubfolderSpec = 7;
 			files = (
-				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
+				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
+				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A7C9A9796908F641C96E4AE0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/RHOIDS.xcodeproj;
+			dstPath = RepoFiles/Sources/RHOIDS;
 			dstSubfolderSpec = 7;
 			files = (
-				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
+				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
+				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B6DB2D127531AE30E4FB664D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget;
+			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
 			dstSubfolderSpec = 7;
 			files = (
-				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
-				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
+				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2338,7 +2338,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2358,7 +2358,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2408,7 +2408,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2422,7 +2422,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
