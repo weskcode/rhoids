@@ -1,109 +1,68 @@
 import SwiftUI
 
+/// The Science hub: the 3 and 5 minute marks up top, then one row per topic. Each row opens a
+/// reading page in `ScienceTopicPages.swift` that holds the full text and its sources.
 struct ScienceView: View {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
     var body: some View {
         List {
             Section {
-                Text("Every timer in this app is based on published medical research. Here's what the doctors say and why it matters.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                ScienceHero()
             }
 
-            Section("The 5-minute rule") {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("About 1 in 4 adults have hemorrhoids at any given time. A 2025 meta-analysis in the Annals of Medicine looked at 150 studies covering nearly 9 million people and landed on a global prevalence of 26%. The single most preventable cause? Sitting on the toilet too long.")
-
-                    Text("Multiple doctors from different institutions independently arrived at the same number. Cleveland Clinic colorectal surgeon Dr. Michael Valente: \"Five minutes really should be the maximum.\" Harvard gastroenterologist Dr. Trisha Pasricha: \"If the magic is not happening within five minutes, it's not going to happen.\"")
-
-                    Text("RHOIDS sets the Recommended timer at 3 minutes (a comfortable buffer) and the Max at 5 (the clinical ceiling).")
-                        .fontWeight(.medium)
-                }
-                .font(.subheadline)
-            }
-
-            Section("Why the toilet seat is different") {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("A toilet isn't shaped like a chair. The open cutout lets gravity pull blood down into the rectal veins, and without normal pelvic floor support, pressure builds fast. Sit there long enough and those veins swell. That's a hemorrhoid.")
-
-                    Text("Hunching forward over a phone makes it worse. Dr. Kalakota at Houston Methodist explains that the posture changes the angle where the rectum meets the anus, increasing pressure on the blood vessels even further.")
-                }
-                .font(.subheadline)
-            }
-
-            Section("Your phone is the problem") {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("A 2025 study from Harvard Medical School (Ramprasad et al., published in PLOS One) surveyed patients getting screening colonoscopies and found that using your phone on the toilet is linked to a 46% higher risk of hemorrhoids.")
-
-                    Group {
-                        if dynamicTypeSize.isAccessibilitySize {
-                            VStack(spacing: 12) {
-                                StatBlock(value: "37%", caption: "of phone users exceeded 5 min per visit")
-                                StatBlock(value: "7%", caption: "of non-phone users exceeded 5 min")
-                            }
-                        } else {
-                            HStack(alignment: .top, spacing: 12) {
-                                StatBlock(value: "37%", caption: "of phone users exceeded 5 min per visit")
-                                StatBlock(value: "7%", caption: "of non-phone users exceeded 5 min")
-                            }
-                        }
-                    }
-                    .padding(.vertical, 4)
-
-                    Text("The researchers controlled for straining, fiber intake, and exercise. Phone use, not straining, was the independent predictor. The most common activities? Reading news and scrolling social media.")
-                }
-                .font(.subheadline)
-            }
-
-            Section("Timer values") {
-                LabeledContent("Recommended (3 min)") {
-                    Text("Safe buffer below the clinical ceiling")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                LabeledContent("Max (5 min)") {
-                    Text("Consensus limit from Cleveland Clinic and Harvard")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                LabeledContent("Custom") {
-                    Text("Your call, but the science is clear past 5")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            Section("References") {
-                Link(destination: URL(string: "https://doi.org/10.1371/journal.pone.0329983")!) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Smartphone use on the toilet and the risk of hemorrhoids")
-                            .font(.subheadline)
-                        Text("Ramprasad et al., PLOS One, 2025")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+            Section {
+                NavigationLink {
+                    FiveMinuteRulePage()
+                } label: {
+                    ScienceTopicRow(
+                        title: "The 5-minute rule",
+                        subtitle: "Several doctors from different institutions arrived at five minutes as the maximum.",
+                        systemImage: "timer"
+                    )
                 }
 
-                Link(destination: URL(string: "https://doi.org/10.1080/07853890.2025.2606433")!) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Worldwide prevalence of haemorrhoids")
-                            .font(.subheadline)
-                        Text("Esmaeilnia Shirvani et al., Annals of Medicine, 2025")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+                NavigationLink {
+                    ToiletSeatPage()
+                } label: {
+                    ScienceTopicRow(
+                        title: "Why the toilet seat is different",
+                        subtitle: "A toilet isn't shaped like a chair.",
+                        systemImage: "toilet"
+                    )
                 }
 
-                Link(destination: URL(string: "https://doi.org/10.3748/wjg.v18.i17.2009")!) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Hemorrhoids: from basic pathophysiology to clinical management")
-                            .font(.subheadline)
-                        Text("Lohsiriwat, World J. Gastroenterology, 2012")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+                NavigationLink {
+                    PhonePage()
+                } label: {
+                    ScienceTopicRow(
+                        title: "Your phone is the problem",
+                        subtitle: "Phone use on the toilet is linked to a 46% higher risk of hemorrhoids.",
+                        systemImage: "iphone"
+                    )
                 }
+
+                NavigationLink {
+                    TimerValuesPage()
+                } label: {
+                    ScienceTopicRow(
+                        title: "Timer values",
+                        subtitle: "How 3 and 5 minutes were chosen.",
+                        systemImage: "slider.horizontal.3",
+                        tint: .gray
+                    )
+                }
+
+                NavigationLink {
+                    ReferencesPage()
+                } label: {
+                    ScienceTopicRow(
+                        title: "References",
+                        subtitle: "The published research behind these numbers.",
+                        systemImage: "text.book.closed",
+                        tint: .gray
+                    )
+                }
+            } footer: {
+                Text("Not medical advice. If you have bleeding, pain, or symptoms that do not go away, talk with a qualified healthcare professional.")
             }
         }
         .navigationTitle("The Science")
@@ -111,21 +70,97 @@ struct ScienceView: View {
     }
 }
 
-private struct StatBlock: View {
-    let value: String
-    let caption: String
+/// The intro line, the two timer marks and a gauge that shows where 3 sits on the way to 5.
+private struct ScienceHero: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        VStack(spacing: 4) {
-            Text(value)
-                .font(.title.weight(.bold))
-                .foregroundStyle(Color.accentColor)
-            Text(caption)
-                .font(.caption)
+        VStack(alignment: .leading, spacing: AppSpacing.lg) {
+            Text("Every timer in this app is based on published medical research. Here's what the doctors say and why it matters.")
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+
+            VStack(alignment: .leading, spacing: AppSpacing.md) {
+                marks {
+                    MinuteMark(minutes: ScienceContent.recommendedMinutes, label: "Recommended")
+                    MinuteMark(minutes: ScienceContent.maxMinutes, label: "Max")
+                }
+
+                Gauge(value: ScienceContent.recommendedFraction) {
+                    EmptyView()
+                }
+                .gaugeStyle(.linearCapacity)
+                .tint(.brand)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Recommended: \(ScienceContent.recommendedMinutes) min. Max: \(ScienceContent.maxMinutes) min."))
         }
-        .frame(maxWidth: .infinity)
+        .padding(.vertical, AppSpacing.xs)
+    }
+
+    /// Side by side at normal sizes; stacked at accessibility sizes so neither mark gets squeezed.
+    private var marksLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: AppSpacing.md))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: AppSpacing.xxxl))
+    }
+
+    private func marks<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        marksLayout { content() }
+    }
+}
+
+private struct MinuteMark: View {
+    let minutes: Int
+    let label: LocalizedStringKey
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.xxs) {
+            Text("\(minutes) min")
+                .font(.title.weight(.bold))
+                .monospacedDigit()
+            Text(label)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+    }
+}
+
+/// A hub row: symbol tile, title, a one-line takeaway and the disclosure chevron the
+/// enclosing `NavigationLink` draws.
+private struct ScienceTopicRow: View {
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey
+    let systemImage: String
+    var tint: Color = .brand
+
+    @ScaledMetric(relativeTo: .body) private var tileSize: CGFloat = 29
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        // At accessibility sizes the tile moves above the text so the words get the full row
+        // width instead of wrapping one or two to a line.
+        let layout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: AppSpacing.sm))
+            : AnyLayout(HStackLayout(spacing: AppSpacing.md))
+
+        layout {
+            Image(systemName: systemImage)
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.white)
+                .frame(width: tileSize, height: tileSize)
+                .background(tint.gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+                .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: AppSpacing.xxs) {
+                Text(title)
+                Text(subtitle)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, AppSpacing.xxs)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -134,5 +169,12 @@ private struct StatBlock: View {
     NavigationStack {
         ScienceView()
     }
+}
+
+#Preview("Largest text") {
+    NavigationStack {
+        ScienceView()
+    }
+    .dynamicTypeSize(.accessibility5)
 }
 #endif

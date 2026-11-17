@@ -1349,6 +1349,82 @@
         }
       }
     },
+    "A toilet isn't shaped like a chair." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المرحاض ليس بشكل الكرسي."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Toilette ist nicht wie ein Stuhl geformt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un inodoro no tiene forma de silla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des toilettes n’ont pas la forme d’une chaise."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शौचालय कुर्सी की तरह नहीं बना होता।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il water non ha la forma di una sedia."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "便器は椅子のような形ではありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변기는 의자 모양이 아닙니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O vaso não tem o formato de uma cadeira."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унитаз устроен не как стул."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klozet, sandalye gibi şekillenmemiştir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "马桶不是椅子的形状。"
+          }
+        }
+      }
+    },
     "A toilet isn't shaped like a chair. The open cutout lets gravity pull blood down into the rectal veins, and without normal pelvic floor support, pressure builds fast. Sit there long enough and those veins swell. That's a hemorrhoid." : {
       "localizations" : {
         "ar" : {
@@ -6487,6 +6563,158 @@
         }
       }
     },
+    "Dr. Michael Valente, colorectal surgeon, Cleveland Clinic" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدكتور Michael Valente، جرّاح القولون والمستقيم، Cleveland Clinic"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Michael Valente, Kolorektalchirurg, Cleveland Clinic"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Michael Valente, cirujano colorrectal, Cleveland Clinic"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr Michael Valente, chirurgien colorectal, Cleveland Clinic"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डॉ. Michael Valente, कोलोरेक्टल सर्जन, Cleveland Clinic"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dott. Michael Valente, chirurgo colorettale, Cleveland Clinic"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Michael Valente医師、大腸外科医、Cleveland Clinic"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Michael Valente 박사, 대장항문외과의, Cleveland Clinic"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Michael Valente, cirurgião colorretal, Cleveland Clinic"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "доктор Michael Valente, колоректальный хирург, Cleveland Clinic"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Michael Valente, kolorektal cerrah, Cleveland Clinic"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Michael Valente，结直肠外科医生，克利夫兰诊所"
+          }
+        }
+      }
+    },
+    "Dr. Trisha Pasricha, gastroenterologist, Harvard" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدكتورة Trisha Pasricha، اختصاصية الجهاز الهضمي، Harvard"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Trisha Pasricha, Gastroenterologin, Harvard"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dra. Trisha Pasricha, gastroenteróloga, Harvard"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dre Trisha Pasricha, gastro-entérologue, Harvard"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डॉ. Trisha Pasricha, गैस्ट्रोएंटेरोलॉजिस्ट, Harvard"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dott.ssa Trisha Pasricha, gastroenterologa, Harvard"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trisha Pasricha医師、消化器内科医、Harvard"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trisha Pasricha 박사, 소화기내과의, Harvard"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dra. Trisha Pasricha, gastroenterologista, Harvard"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "доктор Trisha Pasricha, гастроэнтеролог, Harvard"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Trisha Pasricha, gastroenterolog, Harvard"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trisha Pasricha，胃肠科医生，哈佛"
+          }
+        }
+      }
+    },
     "Duration" : {
       "localizations" : {
         "ar" : {
@@ -7096,6 +7324,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "结束介绍并打开 App。"
+          }
+        }
+      }
+    },
+    "Five minutes really should be the maximum." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خمس دقائق ينبغي حقًا أن تكون الحد الأقصى."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fünf Minuten sollten wirklich das Maximum sein."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cinco minutos deberían ser de verdad el máximo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cinq minutes devraient vraiment être le maximum."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पांच मिनट ही सचमुच अधिकतम होनी चाहिए।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cinque minuti dovrebbero davvero essere il massimo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5分が本当に上限であるべきです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5분이 정말 최대치여야 합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cinco minutos deveria mesmo ser o máximo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пять минут действительно должны быть максимумом."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beş dakika gerçekten azami süre olmalı."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五分钟确实应该是上限。"
           }
         }
       }
@@ -8560,6 +8864,82 @@
         }
       }
     },
+    "How 3 and 5 minutes were chosen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيف تم اختيار 3 و5 دقائق."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie die 3 und 5 Minuten gewählt wurden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cómo se eligieron los 3 y 5 minutos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment les durées de 3 et 5 minutes ont été choisies."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 और 5 मिनट कैसे चुने गए।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come sono stati scelti 3 e 5 minuti."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3分と5分の決め方。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3분과 5분을 정한 방법이에요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como os 3 e 5 minutos foram escolhidos."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как выбраны 3 и 5 минут."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 ve 5 dakikanın nasıl seçildiği."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 分钟和 5 分钟是怎么定的。"
+          }
+        }
+      }
+    },
     "How long do you need?" : {
       "localizations" : {
         "ar" : {
@@ -8708,6 +9088,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "弓背低头看手机会让情况更糟。休斯顿卫理公会医院的 Kalakota 医生解释说，这种姿势会改变直肠与肛门相接处的角度，进一步增加血管所受的压力。"
+          }
+        }
+      }
+    },
+    "If the magic is not happening within five minutes, it's not going to happen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا لم يحدث السحر خلال خمس دقائق، فلن يحدث."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn das Wunder nicht innerhalb von fünf Minuten geschieht, geschieht es gar nicht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si la magia no ocurre en cinco minutos, no va a ocurrir."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si la magie n’opère pas en cinq minutes, elle n’opérera pas."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगर जादू पांच मिनट में नहीं हो रहा, तो होगा ही नहीं।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se la magia non avviene entro cinque minuti, non avverrà."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5分以内に起きないなら、それは起きません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5분 안에 일어나지 않으면, 일어나지 않습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se a mágica não acontece em cinco minutos, não vai acontecer."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если за пять минут чуда не случилось, оно не случится."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sihir beş dakika içinde olmuyorsa, hiç olmayacak."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果五分钟内没有出现奇迹，那就不会出现了。"
           }
         }
       }
@@ -10018,7 +10474,6 @@
       }
     },
     "Max" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -10633,78 +11088,78 @@
         }
       }
     },
-    "Multiple doctors from different institutions independently arrived at the same number. Cleveland Clinic colorectal surgeon Dr. Michael Valente: \"Five minutes really should be the maximum.\" Harvard gastroenterologist Dr. Trisha Pasricha: \"If the magic is not happening within five minutes, it's not going to happen.\"" : {
+    "Multiple doctors from different institutions independently arrived at the same number." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "توصّل عدة أطباء من مؤسسات مختلفة بشكل مستقل إلى الرقم نفسه. جرّاح القولون والمستقيم في Cleveland Clinic الدكتور Michael Valente: «خمس دقائق ينبغي حقًا أن تكون الحد الأقصى.» اختصاصي الجهاز الهضمي في Harvard الدكتورة Trisha Pasricha: «إذا لم يحدث السحر خلال خمس دقائق، فلن يحدث.»"
+            "value" : "توصّل عدة أطباء من مؤسسات مختلفة بشكل مستقل إلى الرقم نفسه."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mehrere Ärzte verschiedener Einrichtungen kamen unabhängig voneinander auf dieselbe Zahl. Der Kolorektalchirurg Dr. Michael Valente von der Cleveland Clinic: „Fünf Minuten sollten wirklich das Maximum sein.“ Die Harvard-Gastroenterologin Dr. Trisha Pasricha: „Wenn das Wunder nicht innerhalb von fünf Minuten geschieht, geschieht es gar nicht.“"
+            "value" : "Mehrere Ärzte verschiedener Einrichtungen kamen unabhängig voneinander auf dieselbe Zahl."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varios médicos de distintas instituciones llegaron de forma independiente a la misma cifra. El cirujano colorrectal de Cleveland Clinic, Dr. Michael Valente: «Cinco minutos deberían ser de verdad el máximo». La gastroenteróloga de Harvard, Dra. Trisha Pasricha: «Si la magia no ocurre en cinco minutos, no va a ocurrir»."
+            "value" : "Varios médicos de distintas instituciones llegaron de forma independiente a la misma cifra."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plusieurs médecins de différentes institutions sont parvenus indépendamment au même chiffre. Le chirurgien colorectal de la Cleveland Clinic, le Dr Michael Valente : « Cinq minutes devraient vraiment être le maximum. » La gastro-entérologue de Harvard, la Dre Trisha Pasricha : « Si la magie n’opère pas en cinq minutes, elle n’opérera pas. »"
+            "value" : "Plusieurs médecins de différentes institutions sont parvenus indépendamment au même chiffre."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "विभिन्न संस्थानों के कई डॉक्टर स्वतंत्र रूप से एक ही संख्या पर पहुंचे। Cleveland Clinic के कोलोरेक्टल सर्जन डॉ. Michael Valente: \"पांच मिनट ही सचमुच अधिकतम होनी चाहिए।\" Harvard के गैस्ट्रोएंटेरोलॉजिस्ट डॉ. Trisha Pasricha: \"अगर जादू पांच मिनट में नहीं हो रहा, तो होगा ही नहीं।\""
+            "value" : "विभिन्न संस्थानों के कई डॉक्टर स्वतंत्र रूप से एक ही संख्या पर पहुंचे।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diversi medici di istituzioni differenti sono arrivati in modo indipendente allo stesso numero. Il chirurgo colorettale della Cleveland Clinic, dott. Michael Valente: «Cinque minuti dovrebbero davvero essere il massimo». La gastroenterologa di Harvard, dott.ssa Trisha Pasricha: «Se la magia non avviene entro cinque minuti, non avverrà»."
+            "value" : "Diversi medici di istituzioni differenti sono arrivati in modo indipendente allo stesso numero."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "異なる機関の複数の医師が、独立して同じ数字にたどり着きました。Cleveland Clinicの大腸外科医Michael Valente医師：「5分が本当に上限であるべきです。」Harvardの消化器内科医Trisha Pasricha医師：「5分以内に起きないなら、それは起きません。」"
+            "value" : "異なる機関の複数の医師が、独立して同じ数字にたどり着きました。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "여러 기관의 여러 의사가 독립적으로 같은 숫자에 도달했습니다. Cleveland Clinic 대장항문외과의 Michael Valente 박사: \"5분이 정말 최대치여야 합니다.\" Harvard 소화기내과의 Trisha Pasricha 박사: \"5분 안에 일어나지 않으면, 일어나지 않습니다.\""
+            "value" : "여러 기관의 여러 의사가 독립적으로 같은 숫자에 도달했습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vários médicos de instituições diferentes chegaram, de forma independente, ao mesmo número. O cirurgião colorretal da Cleveland Clinic, Dr. Michael Valente: \"Cinco minutos deveria mesmo ser o máximo.\" A gastroenterologista de Harvard, Dra. Trisha Pasricha: \"Se a mágica não acontece em cinco minutos, não vai acontecer.\""
+            "value" : "Vários médicos de instituições diferentes chegaram, de forma independente, ao mesmo número."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Несколько врачей из разных учреждений независимо пришли к одному и тому же числу. Колоректальный хирург Cleveland Clinic доктор Michael Valente: «Пять минут действительно должны быть максимумом». Гастроэнтеролог Harvard доктор Trisha Pasricha: «Если за пять минут чуда не случилось, оно не случится»."
+            "value" : "Несколько врачей из разных учреждений независимо пришли к одному и тому же числу."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Farklı kurumlardan birçok doktor bağımsız olarak aynı sayıya ulaştı. Cleveland Clinic kolorektal cerrahı Dr. Michael Valente: \"Beş dakika gerçekten azami süre olmalı.\" Harvard gastroenteroloğu Dr. Trisha Pasricha: \"Sihir beş dakika içinde olmuyorsa, hiç olmayacak.\""
+            "value" : "Farklı kurumlardan birçok doktor bağımsız olarak aynı sayıya ulaştı."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "来自不同机构的多位医生各自独立地得出了相同的数字。克利夫兰诊所结直肠外科医生 Michael Valente：“五分钟确实应该是上限。”哈佛胃肠科医生 Trisha Pasricha：“如果五分钟内没有动静，那就不会有了。”"
+            "value" : "来自不同机构的多位医生各自独立地得出了相同的数字。"
           }
         }
       }
@@ -11401,6 +11856,82 @@
         }
       }
     },
+    "Not medical advice. If you have bleeding, pain, or symptoms that do not go away, talk with a qualified healthcare professional." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه ليست نصيحة طبية. إذا كان لديك نزيف أو ألم أو أعراض لا تزول، فتحدّث مع أخصائي رعاية صحية مؤهل."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine medizinische Beratung. Bei Blutungen, Schmerzen oder Beschwerden, die nicht verschwinden, wende dich an eine qualifizierte medizinische Fachperson."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No es consejo médico. Si tienes sangrado, dolor o síntomas que no desaparecen, habla con un profesional de la salud cualificado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne remplace pas un avis médical. En cas de saignements, de douleur ou de symptômes qui persistent, parlez-en à un professionnel de santé qualifié."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह चिकित्सकीय सलाह नहीं है। अगर आपको रक्तस्राव, दर्द या ऐसे लक्षण हैं जो ठीक नहीं होते, तो किसी योग्य स्वास्थ्य पेशेवर से बात करें।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è un consiglio medico. Se hai sanguinamento, dolore o sintomi che non passano, parla con un professionista sanitario qualificato."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "医学的なアドバイスではありません。出血、痛み、治まらない症状がある場合は、資格のある医療専門家に相談してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의학적 조언이 아닙니다. 출혈, 통증, 또는 가라앉지 않는 증상이 있다면 자격을 갖춘 의료 전문가와 상담하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isto não é aconselhamento médico. Se você tiver sangramento, dor ou sintomas que não passam, converse com um profissional de saúde qualificado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это не медицинская рекомендация. Если у вас кровотечение, боль или симптомы, которые не проходят, обратитесь к квалифицированному медицинскому специалисту."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tıbbi tavsiye değildir. Kanama, ağrı veya geçmeyen belirtileriniz varsa nitelikli bir sağlık uzmanıyla konuşun."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本内容不构成医疗建议。如果你有出血、疼痛或持续不退的症状，请咨询有资质的医疗专业人员。"
+          }
+        }
+      }
+    },
     "Notification permission has already been requested." : {
       "localizations" : {
         "ar" : {
@@ -11931,6 +12462,158 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "圆角卡片中的数字倒计时"
+          }
+        }
+      }
+    },
+    "of non-phone users exceeded 5 min" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من غير مستخدمي الهاتف تجاوزوا 5 دقائق"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "der Nicht-Handynutzer überschritten 5 Min."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de los usuarios sin móvil superaron los 5 min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "des non-utilisateurs de téléphone ont dépassé 5 min"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोन इस्तेमाल न करने वालों ने 5 मिनट से ज़्यादा समय लिया"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "di chi non usa il telefono ha superato i 5 min"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スマホを使わない人のうち、5分を超えた割合"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "휴대폰을 쓰지 않는 사용자 중 5분을 넘긴 비율"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dos usuários sem celular passaram de 5 min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "тех, кто не пользуется телефоном, превысили 5 мин"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "telefon kullanmayanlar 5 dakikayı aştı"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "的非手机使用者超过 5 分钟"
+          }
+        }
+      }
+    },
+    "of phone users exceeded 5 min per visit" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من مستخدمي الهاتف تجاوزوا 5 دقائق في الزيارة الواحدة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "der Handynutzer überschritten 5 Min. pro Toilettengang"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de los usuarios de móvil superaron los 5 min por visita"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "des utilisateurs de téléphone ont dépassé 5 min par passage"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोन इस्तेमाल करने वालों ने प्रति बार 5 मिनट से ज़्यादा समय लिया"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "di chi usa il telefono ha superato i 5 min per volta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スマホを使う人のうち、1回5分を超えた割合"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "휴대폰 사용자 중 한 번에 5분을 넘긴 비율"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dos usuários de celular passaram de 5 min por visita"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пользователей телефона превысили 5 мин за один визит"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "telefon kullananlar ziyaret başına 5 dakikayı aştı"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "的手机使用者每次超过 5 分钟"
           }
         }
       }
@@ -12853,6 +13536,82 @@
         }
       }
     },
+    "Phone use on the toilet is linked to a 46% higher risk of hemorrhoids." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استخدام الهاتف على المرحاض مرتبط بارتفاع خطر الإصابة بالبواسير بنسبة 46%."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handynutzung auf der Toilette geht mit einem um 46 % höheren Hämorrhoiden-Risiko einher."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar el móvil en el inodoro se asocia con un 46 % más de riesgo de hemorroides."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’usage du téléphone aux toilettes est associé à un risque d’hémorroïdes plus élevé de 46 %."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शौचालय में फ़ोन के उपयोग का संबंध बवासीर के 46% अधिक जोखिम से पाया गया है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’uso del telefono sul water è associato a un rischio di emorroidi più alto del 46%."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トイレでのスマホ使用は、痔のリスクが46%高いことと関連しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변기에서 휴대폰을 사용하면 치질 위험이 46% 더 높은 것과 관련이 있어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O uso do celular no vaso está associado a um risco 46% maior de hemorroidas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использование телефона на унитазе связано с риском геморроя выше на 46%."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuvalette telefon kullanımı, hemoroit riskinde %46 artışla ilişkili."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如厕时使用手机与痔疮风险升高 46% 相关。"
+          }
+        }
+      }
+    },
     "Phone-Free" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -13703,7 +14462,6 @@
       }
     },
     "Recommended" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13775,6 +14533,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "推荐"
+          }
+        }
+      }
+    },
+    "Recommended: %lld min. Max: %lld min." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موصى به: %lld دقيقة. الحد الأقصى: %lld دقيقة."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empfohlen: %lld Min. Maximum: %lld Min."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recomendado: %lld min. Máximo: %lld min."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommandé: %lld min. Maximum: %lld min."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुशंसित: %lld मिनट। अधिकतम: %lld मिनट।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consigliato: %lld min. Massimo: %lld min."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "推奨：%lld分。最大：%lld分。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추천: %lld분. 최대: %lld분."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recomendado: %lld min. Máximo: %lld min."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рекомендуемый: %lld мин. Максимум: %lld мин."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önerilen: %lld dk. Maksimum: %lld dk."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "推荐：%lld 分钟。最长：%lld 分钟。"
           }
         }
       }
@@ -15767,6 +16601,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        }
+      }
+    },
+    "Several doctors from different institutions arrived at five minutes as the maximum." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توصّل عدة أطباء من مؤسسات مختلفة إلى خمس دقائق كحدّ أقصى."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehrere Ärzte verschiedener Einrichtungen kamen auf fünf Minuten als Maximum."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varios médicos de distintas instituciones llegaron a cinco minutos como máximo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plusieurs médecins de différentes institutions sont arrivés à cinq minutes au maximum."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभिन्न संस्थानों के कई डॉक्टर अधिकतम पांच मिनट पर पहुंचे।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diversi medici di istituzioni differenti sono arrivati a cinque minuti come massimo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "異なる機関の複数の医師が、上限は5分という結論に達しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 기관의 여러 의사가 최대 5분이라는 결론에 도달했습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vários médicos de instituições diferentes chegaram a cinco minutos como o máximo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несколько врачей из разных учреждений пришли к пяти минутам как максимуму."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farklı kurumlardan birçok doktor azami süre olarak beş dakikaya ulaştı."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "来自不同机构的多位医生得出的上限都是五分钟。"
           }
         }
       }
@@ -18608,6 +19518,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最好的计时器，是你真正会用的那个。"
+          }
+        }
+      }
+    },
+    "The published research behind these numbers." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأبحاث المنشورة وراء هذه الأرقام."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die veröffentlichte Forschung hinter diesen Zahlen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La investigación publicada detrás de estas cifras."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les recherches publiées derrière ces chiffres."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इन आंकड़ों के पीछे प्रकाशित शोध।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La ricerca pubblicata alla base di questi numeri."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これらの数字の根拠となる公開済みの研究。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 수치의 근거가 된 발표된 연구예요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pesquisa publicada por trás destes números."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опубликованные исследования, на которых основаны эти цифры."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sayıların dayandığı yayımlanmış araştırmalar."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这些数字背后已发表的研究。"
           }
         }
       }

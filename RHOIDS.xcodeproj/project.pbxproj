@@ -94,6 +94,7 @@
 		544E3356D4CBCEC75DED52DC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F603D80A145D20360EE6F7E7 /* HomeView.swift */; };
 		546467631D523C3096E47CD2 /* AppToastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568950D62FF1DEBD86E40851 /* AppToastTests.swift */; };
 		569703DFEE11E746F2F4BC8F /* TimerQuip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE47E3539393BF8D57B2592 /* TimerQuip.swift */; };
+		57E5AE49ECE6EA2B410DEE64 /* ScienceTopicPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8847BF13E7C72860BF1696 /* ScienceTopicPages.swift */; };
 		5820070B7808529002E29D89 /* RHOIDSShieldAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 617EED26DE08EF1C0A4F0A46 /* RHOIDSShieldAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		58B2121F6AE92074E23BD78A /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE39CD6321E168768567F0 /* DurationFormatter.swift */; };
 		58BCC1086D104955C720C9ED /* BrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3EB7FA33CA2FE4E0EF49B /* BrandColor.swift */; };
@@ -122,6 +123,7 @@
 		7453F2307DDC4EA6444928F1 /* PresetTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D069E9DBF779DF1AA9E6F15 /* PresetTimer.swift */; };
 		772D2FF0241BF1EA3CF67474 /* LiveActivityTimerRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA00680A05292685AF71C25 /* LiveActivityTimerRangeTests.swift */; };
 		7730D4B843F386260DE7EC9A /* TimerOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453C9E0DDB2582FFD2006A3 /* TimerOutcome.swift */; };
+		773ADB0E961ABEA53C061945 /* ScienceContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFB263E9DEBD9D993758A52 /* ScienceContentTests.swift */; };
 		77420FD14EC82EE3B6FAF435 /* NotificationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E747FE5E595DB530F43C136 /* NotificationServiceTests.swift */; };
 		776D23129DD2D6DED367390D /* AlarmSoundCategoryIntegrityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D80CE8C036BE87DB0B25E0 /* AlarmSoundCategoryIntegrityTests.swift */; };
 		78C63641BF5C8E5F4DFD0F39 /* digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7DF4FA8F6788AA9E54EF /* digital.caf */; };
@@ -184,6 +186,7 @@
 		AFC8DEF1A76B099E0D633CCF /* TimerQuipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF73AFB577B0AA2562CE084 /* TimerQuipTests.swift */; };
 		AFDD3D74CEE09052143CA7EA /* RHOIDSWatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 81844C5102C3F688F2C260D3 /* RHOIDSWatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B0FCAC8066106A1E7B4339CF /* PresetPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A747E530A8753E87F3FF6 /* PresetPreferences.swift */; };
+		B10E061A9F506CEE8DC63034 /* ScienceContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9DDF11D4A05072A450B78 /* ScienceContent.swift */; };
 		B2259A3743BE77ABB82308C8 /* SharedStateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD9EAB5C155ED82F5CFA55 /* SharedStateServiceTests.swift */; };
 		B2DFB616E0BCE995F325A234 /* TimerComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E6F262A705A3D14DC65BA /* TimerComplication.swift */; settings = {COMPILER_FLAGS = "-DTESTING"; }; };
 		B312D0E373F90FE784C87153 /* WatchTimerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612A8413D8E47B32C7D63900 /* WatchTimerViewModelTests.swift */; };
@@ -333,21 +336,20 @@
 		0AC87C1644702D79ED22A174 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
+			dstPath = RepoFiles/Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
+				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5063E541EE2740EEDC69E9E5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDS;
+			dstPath = RepoFiles/RHOIDS.xcodeproj;
 			dstSubfolderSpec = 7;
 			files = (
-				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
-				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
+				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,31 +392,32 @@
 		9EB7C689D8B8FF553B949737 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/RHOIDS.xcodeproj;
+			dstPath = RepoFiles/Sources/RHOIDSWidget;
 			dstSubfolderSpec = 7;
 			files = (
-				948934A6233438F06BCA77CF /* project.pbxproj in CopyFiles */,
+				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
+				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A7C9A9796908F641C96E4AE0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources;
+			dstPath = RepoFiles/Sources/RHOIDS;
 			dstSubfolderSpec = 7;
 			files = (
-				46D85033591F9A14635D8A26 /* Localizable.xcstrings in CopyFiles */,
+				0C6D4EB180E6245F1DE2109E /* Info.plist in CopyFiles */,
+				4372D96D259B63EFDAA04DC5 /* RHOIDS.entitlements in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B6DB2D127531AE30E4FB664D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = RepoFiles/Sources/RHOIDSWidget;
+			dstPath = RepoFiles/Sources/RHOIDSWidget/LiveActivity;
 			dstSubfolderSpec = 7;
 			files = (
-				2183A18A15C5FA2D86D97148 /* Info.plist in CopyFiles */,
-				6211CF0251FDB4B23EC73F8A /* RHOIDSWidget.entitlements in CopyFiles */,
+				0B621261EC359726E2A8206C /* RHOIDSLiveActivityWidget.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +572,8 @@
 		8AA00680A05292685AF71C25 /* LiveActivityTimerRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityTimerRangeTests.swift; sourceTree = "<group>"; };
 		8B395874165F838B1F9A228B /* TimerServiceAdoptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceAdoptionTests.swift; sourceTree = "<group>"; };
 		8C1ADBC57BAE099EDDDA1477 /* OnboardingFocusModePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFocusModePageView.swift; sourceTree = "<group>"; };
+		8CD9DDF11D4A05072A450B78 /* ScienceContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceContent.swift; sourceTree = "<group>"; };
+		8F8847BF13E7C72860BF1696 /* ScienceTopicPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceTopicPages.swift; sourceTree = "<group>"; };
 		8FEC7B9ACEC81EBE1CF3677C /* RHOIDSWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHOIDSWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		975BD55F962EEFE016275121 /* StopTimerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTimerIntent.swift; sourceTree = "<group>"; };
 		9B08D9B8BF919A59B869CA70 /* PresetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetRow.swift; sourceTree = "<group>"; };
@@ -630,6 +635,7 @@
 		DEDD64E0196ECE8963EC73A7 /* WarningMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMode.swift; sourceTree = "<group>"; };
 		DF2377810A95FBD4EE91083B /* PresetTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetTimerTests.swift; sourceTree = "<group>"; };
 		DFD3AEDDFB2416848781CFD6 /* WatchTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerView.swift; sourceTree = "<group>"; };
+		DFFB263E9DEBD9D993758A52 /* ScienceContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceContentTests.swift; sourceTree = "<group>"; };
 		E18B10A0F1832E387A7ADBC1 /* DialTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialTimerView.swift; sourceTree = "<group>"; };
 		E3B756119256B4AE0F3B3E5F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E3D8E1CE674999D5AACC7A0F /* OnboardingNotificationPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNotificationPageView.swift; sourceTree = "<group>"; };
@@ -951,6 +957,7 @@
 				87C0A8705B41A171D5EE00AA /* HomeViewModelTests.swift */,
 				745DCFA21FC6D02943604B75 /* OnboardingPageTests.swift */,
 				7A8D4847E317F0A70695617D /* OnboardingPermissionTests.swift */,
+				DFFB263E9DEBD9D993758A52 /* ScienceContentTests.swift */,
 				1EA5C8CDA20CE29C27EEDD82 /* TimerCountdownTextTests.swift */,
 				3F9204D351B554F726914FED /* TimerViewModelCompletionTests.swift */,
 				6382D4FAC8B002EA8DE2E276 /* TimerViewModelProgressTests.swift */,
@@ -1283,6 +1290,8 @@
 				6C6D626FCB1A58467699E9E6 /* AboutView.swift */,
 				27AACACED768DCC5ECF79D34 /* FocusLockAppPickerView.swift */,
 				5346D3483236D36A5FDDF4CC /* FocusLockSettingsView.swift */,
+				8CD9DDF11D4A05072A450B78 /* ScienceContent.swift */,
+				8F8847BF13E7C72860BF1696 /* ScienceTopicPages.swift */,
 				2E4C2C72721037D44CDAA1AB /* ScienceView.swift */,
 				9E2F2865ED34E8F60870E281 /* SettingsView.swift */,
 				DAD109888B09A9826A7D24F1 /* SoundPicker.swift */,
@@ -1783,6 +1792,7 @@
 				7EAE2BC4366DC2009CD5B329 /* PresetTimerTests.swift in Sources */,
 				6CA6D2E625988DDFD148ED47 /* RepoFile.swift in Sources */,
 				42BD6E5BD8537507722F0FA4 /* ReviewPromptServiceTests.swift in Sources */,
+				773ADB0E961ABEA53C061945 /* ScienceContentTests.swift in Sources */,
 				B55678998AA1226C3ADC7519 /* ScreenTimeServiceTests.swift in Sources */,
 				D98B07EB59D72FC3F87F90E1 /* SharedStateKeysTests.swift in Sources */,
 				B2259A3743BE77ABB82308C8 /* SharedStateServiceTests.swift in Sources */,
@@ -1903,6 +1913,8 @@
 				4AC223D80B4A35EB1EB2A875 /* ReviewPromptService.swift in Sources */,
 				D44AD333B570CD8EC13348E1 /* RingTimerView.swift in Sources */,
 				361F8A2AAAF3EED4F3FAA37C /* RootView.swift in Sources */,
+				B10E061A9F506CEE8DC63034 /* ScienceContent.swift in Sources */,
+				57E5AE49ECE6EA2B410DEE64 /* ScienceTopicPages.swift in Sources */,
 				5398F97047CAE1BD1F8C91B7 /* ScienceView.swift in Sources */,
 				EE2BA98F50CBBA1D7A96D3CC /* ScreenTimeService.swift in Sources */,
 				E055319CFECD8CB85E880AED /* SettingsView.swift in Sources */,
@@ -2326,7 +2338,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2346,7 +2358,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2396,7 +2408,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HD39MR492X;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2410,7 +2422,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
