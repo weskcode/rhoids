@@ -15,7 +15,7 @@ struct ScienceView: View {
                 } label: {
                     ScienceTopicRow(
                         title: "The 5-minute rule",
-                        subtitle: "Doctors from different institutions agree on five minutes as the maximum.",
+                        subtitle: "Several doctors from different institutions arrived at five minutes as the maximum.",
                         systemImage: "timer"
                     )
                 }
@@ -35,7 +35,7 @@ struct ScienceView: View {
                 } label: {
                     ScienceTopicRow(
                         title: "Your phone is the problem",
-                        subtitle: "Phone use is linked to a 46% higher risk.",
+                        subtitle: "Phone use on the toilet is linked to a 46% higher risk of hemorrhoids.",
                         systemImage: "iphone"
                     )
                 }

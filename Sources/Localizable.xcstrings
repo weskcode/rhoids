@@ -6103,82 +6103,6 @@
         }
       }
     },
-    "Doctors from different institutions agree on five minutes as the maximum." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "اتفق أطباء من مؤسسات مختلفة على خمس دقائق كحدّ أقصى."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ärzte verschiedener Einrichtungen sind sich einig: Fünf Minuten sind das Maximum."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Médicos de distintas instituciones coinciden en que cinco minutos es el máximo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Des médecins de différentes institutions s’accordent sur cinq minutes au maximum."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "विभिन्न संस्थानों के डॉक्टर अधिकतम पांच मिनट पर सहमत हैं।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Medici di istituzioni diverse concordano su cinque minuti come massimo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "異なる機関の医師が、上限は5分で一致しています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "여러 기관의 의사들이 최대 5분이라는 데 의견을 같이합니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Médicos de instituições diferentes concordam que cinco minutos é o máximo."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Врачи из разных учреждений сходятся на пяти минутах как максимуме."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Farklı kurumlardan doktorlar azami süre olarak beş dakikada anlaşıyor."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "来自不同机构的医生一致认为，五分钟是上限。"
-          }
-        }
-      }
-    },
     "Doctors say 3 to 5 minutes max on the toilet." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -9239,7 +9163,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果五分钟内没有动静，那就不会有了。"
+            "value" : "如果五分钟内没有出现奇迹，那就不会出现了。"
           }
         }
       }
@@ -10550,7 +10474,6 @@
       }
     },
     "Max" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13613,78 +13536,78 @@
         }
       }
     },
-    "Phone use is linked to a 46% higher risk." : {
+    "Phone use on the toilet is linked to a 46% higher risk of hemorrhoids." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "استخدام الهاتف مرتبط بارتفاع الخطر بنسبة 46%."
+            "value" : "استخدام الهاتف على المرحاض مرتبط بارتفاع خطر الإصابة بالبواسير بنسبة 46%."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Handynutzung geht mit einem um 46 % höheren Risiko einher."
+            "value" : "Handynutzung auf der Toilette geht mit einem um 46 % höheren Hämorrhoiden-Risiko einher."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar el móvil se asocia con un 46 % más de riesgo."
+            "value" : "Usar el móvil en el inodoro se asocia con un 46 % más de riesgo de hemorroides."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’usage du téléphone est associé à un risque plus élevé de 46 %."
+            "value" : "L’usage du téléphone aux toilettes est associé à un risque d’hémorroïdes plus élevé de 46 %."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ोन के उपयोग का संबंध 46% अधिक जोखिम से पाया गया है।"
+            "value" : "शौचालय में फ़ोन के उपयोग का संबंध बवासीर के 46% अधिक जोखिम से पाया गया है।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’uso del telefono è associato a un rischio più alto del 46%."
+            "value" : "L’uso del telefono sul water è associato a un rischio di emorroidi più alto del 46%."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スマホの使用は、46%高いリスクと関連しています。"
+            "value" : "トイレでのスマホ使用は、痔のリスクが46%高いことと関連しています。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "휴대폰 사용은 46% 더 높은 위험과 관련이 있어요."
+            "value" : "변기에서 휴대폰을 사용하면 치질 위험이 46% 더 높은 것과 관련이 있어요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O uso do celular está associado a um risco 46% maior."
+            "value" : "O uso do celular no vaso está associado a um risco 46% maior de hemorroidas."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Использование телефона связано с риском выше на 46%."
+            "value" : "Использование телефона на унитазе связано с риском геморроя выше на 46%."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Telefon kullanımı %46 daha yüksek riskle ilişkili."
+            "value" : "Tuvalette telefon kullanımı, hemoroit riskinde %46 artışla ilişkili."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用手机与风险升高 46% 相关。"
+            "value" : "如厕时使用手机与痔疮风险升高 46% 相关。"
           }
         }
       }
@@ -14539,7 +14462,6 @@
       }
     },
     "Recommended" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -16679,6 +16601,82 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        }
+      }
+    },
+    "Several doctors from different institutions arrived at five minutes as the maximum." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توصّل عدة أطباء من مؤسسات مختلفة إلى خمس دقائق كحدّ أقصى."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehrere Ärzte verschiedener Einrichtungen kamen auf fünf Minuten als Maximum."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varios médicos de distintas instituciones llegaron a cinco minutos como máximo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plusieurs médecins de différentes institutions sont arrivés à cinq minutes au maximum."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभिन्न संस्थानों के कई डॉक्टर अधिकतम पांच मिनट पर पहुंचे।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diversi medici di istituzioni differenti sono arrivati a cinque minuti come massimo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "異なる機関の複数の医師が、上限は5分という結論に達しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 기관의 여러 의사가 최대 5분이라는 결론에 도달했습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vários médicos de instituições diferentes chegaram a cinco minutos como o máximo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несколько врачей из разных учреждений пришли к пяти минутам как максимуму."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farklı kurumlardan birçok doktor azami süre olarak beş dakikaya ulaştı."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "来自不同机构的多位医生得出的上限都是五分钟。"
           }
         }
       }

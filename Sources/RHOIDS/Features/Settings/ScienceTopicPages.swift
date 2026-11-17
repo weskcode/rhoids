@@ -25,6 +25,8 @@ struct FiveMinuteRulePage: View {
                     Text("RHOIDS sets the Recommended timer at 3 minutes (a comfortable buffer) and the Max at 5 (the clinical ceiling).")
                         .fontWeight(.medium)
                 }
+            } header: {
+                Text("The 5-minute rule")
             }
         }
         .navigationTitle("The 5-minute rule")
@@ -41,6 +43,8 @@ struct ToiletSeatPage: View {
 
                     Text("Hunching forward over a phone makes it worse. Dr. Kalakota at Houston Methodist explains that the posture changes the angle where the rectum meets the anus, increasing pressure on the blood vessels even further.")
                 }
+            } header: {
+                Text("Why the toilet seat is different")
             }
         }
         .navigationTitle("Why the toilet seat is different")
@@ -69,6 +73,8 @@ struct PhonePage: View {
 
                     Text("The researchers controlled for straining, fiber intake, and exercise. Phone use, not straining, was the independent predictor. The most common activities? Reading news and scrolling social media.")
                 }
+            } header: {
+                Text("Your phone is the problem")
             }
         }
         .navigationTitle("Your phone is the problem")
@@ -95,6 +101,8 @@ struct TimerValuesPage: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+            } header: {
+                Text("Timer values")
             }
         }
         .navigationTitle("Timer values")
@@ -128,6 +136,8 @@ struct ReferencesPage: View {
                         }
                     }
                 }
+            } header: {
+                Text("References")
             }
         }
         .navigationTitle("References")
@@ -151,12 +161,12 @@ private struct ScienceProse<Content: View>: View {
 
 /// A doctor's words with a brand rule down the left edge and the speaker underneath.
 private struct ScienceQuote: View {
-    let quote: LocalizedStringKey
+    let quote: LocalizedStringResource
     let attribution: LocalizedStringKey
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.xs) {
-            Text(quote)
+            Text(verbatim: quotationMarks.open + String(localized: quote) + quotationMarks.close)
                 .font(.headline)
             Text(attribution)
                 .font(.caption)
@@ -170,6 +180,13 @@ private struct ScienceQuote: View {
                 .accessibilityHidden(true)
         }
         .accessibilityElement(children: .combine)
+    }
+
+    /// The old paragraph put the doctors' words in quotation marks. The marks follow the
+    /// language the app shows, so French gets « » and German gets „ “.
+    private var quotationMarks: (open: String, close: String) {
+        let locale = Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en")
+        return (locale.quotationBeginDelimiter ?? "\u{201C}", locale.quotationEndDelimiter ?? "\u{201D}")
     }
 }
 

@@ -20,6 +20,8 @@ struct ScienceContentTests {
     @Test func `Phone-use shares are valid gauge values and phone users are the larger share`() {
         let phone = ScienceContent.phoneUsersOverFiveMinutes
         let nonPhone = ScienceContent.nonPhoneUsersOverFiveMinutes
+        #expect(phone == 0.37, "Ramprasad et al., PLOS One, 2025: 37% of phone users exceeded 5 min")
+        #expect(nonPhone == 0.07, "Ramprasad et al., PLOS One, 2025: 7% of non-phone users exceeded 5 min")
         #expect((0...1).contains(phone))
         #expect((0...1).contains(nonPhone))
         #expect(phone > nonPhone)
