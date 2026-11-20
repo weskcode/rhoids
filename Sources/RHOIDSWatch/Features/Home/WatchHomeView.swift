@@ -91,6 +91,8 @@ struct WatchHomeView: View {
                     Text("\(selectedPreset.name) \u{00B7} \(selectedPreset.formattedDuration)")
                         .font(.caption2)
                         .foregroundStyle(.white.opacity(0.7))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
             }
             .frame(maxWidth: .infinity)

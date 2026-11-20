@@ -12,8 +12,17 @@ import SwiftUI
 /// - W-AC-04: Animations respect Reduce Motion
 struct WatchTimerView: View {
     @Bindable var viewModel: WatchTimerViewModel
-    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+    @Environment(\.isLuminanceReduced) private var systemLuminanceReduced
     @Environment(\.dismiss) private var dismiss
+
+    private var isLuminanceReduced: Bool {
+#if DEBUG
+        // Screenshot automation: force the Always On look to check that the
+        // layout does not shift when the screen dims.
+        if ProcessInfo.processInfo.environment["RHOIDS_DEMO_AOD"] == "1" { return true }
+#endif
+        return systemLuminanceReduced
+    }
 
     var body: some View {
         Group {
