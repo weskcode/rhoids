@@ -28,6 +28,21 @@ struct WatchTimerView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            // Native bottom bar keeps the button clear of the screen edge.
+            // Hidden in Always On (W-AO-01), but the item stays in place so
+            // the ring does not shift when the screen dims (W-AO-05).
+            ToolbarItem(placement: .bottomBar) {
+                if viewModel.isComplete {
+                    doneButton
+                } else {
+                    stopButton
+                        .opacity(isLuminanceReduced ? 0 : 1)
+                        .allowsHitTesting(!isLuminanceReduced)
+                        .accessibilityHidden(isLuminanceReduced)
+                }
+            }
+        }
         .onChange(of: viewModel.isComplete) { _, complete in
             if complete {
                 // Stay on screen briefly then allow dismiss
@@ -43,7 +58,7 @@ struct WatchTimerView: View {
     // MARK: - Timer Content
 
     private var timerContent: some View {
-        VStack(spacing: 8) {
+        Group {
             if viewModel.isComplete {
                 completionContent
             } else {
@@ -56,9 +71,7 @@ struct WatchTimerView: View {
     // MARK: - Active Timer
 
     private var activeTimerContent: some View {
-        VStack(spacing: 8) {
-            Spacer(minLength: 0)
-
+        VStack(spacing: 4) {
             // Ring + Countdown (W-AO-01: dims in AOD)
             WatchRingView(
                 progress: viewModel.progress,
@@ -72,24 +85,15 @@ struct WatchTimerView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-
-            Spacer(minLength: 0)
-
-            // Stop button - hidden in Always On (W-AO-01)
-            if !isLuminanceReduced {
-                stopButton
-            }
         }
     }
 
     // MARK: - Completion
 
     private var completionContent: some View {
-        VStack(spacing: 12) {
-            Spacer(minLength: 0)
-
+        VStack(spacing: 6) {
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 44))
+                .font(.system(size: 36))
                 .foregroundStyle(.brand)
                 .accessibilityHidden(true)
 
@@ -98,21 +102,23 @@ struct WatchTimerView: View {
                 .accessibilityAddTraits(.isHeader)
 
             Text(viewModel.completionQuip)
-                .font(.caption)
+                .font(.footnote)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-                .lineLimit(2)
-
-            Spacer(minLength: 0)
-
-            Button(action: { dismiss() }) {
-                Text("Done")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.brand)
+                .lineLimit(3)
+                .minimumScaleFactor(0.85)
+                .fixedSize(horizontal: false, vertical: true)
         }
+    }
+
+    private var doneButton: some View {
+        Button(action: { dismiss() }) {
+            Text("Done")
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(.brand)
     }
 
     // MARK: - Stop Button
@@ -150,7 +156,7 @@ struct WatchRingView: View {
             Circle()
                 .stroke(
                     Color(.darkGray).opacity(isLuminanceReduced ? 0.2 : 0.3),
-                    lineWidth: 8
+                    lineWidth: 7
                 )
 
             // Progress ring - trims from the leading edge so it drains clockwise
@@ -158,7 +164,7 @@ struct WatchRingView: View {
                 .trim(from: progress, to: 1)
                 .stroke(
                     Color.accentColor.opacity(isLuminanceReduced ? 0.3 : 1.0),
-                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 7, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(
@@ -171,15 +177,16 @@ struct WatchRingView: View {
                 if endDate > Date() {
                     // End date is in the future - show live countdown
                     Text(timerInterval: Date()...endDate, countsDown: true)
-                        .font(.system(size: 32, weight: .light, design: .rounded))
+                        .font(.system(size: 30, weight: .light, design: .rounded))
                         .monospacedDigit()
+                        .padding(.horizontal, 12)
                         .minimumScaleFactor(0.6)
                         .lineLimit(1)
                         .contentTransition(.numericText())
                 } else {
                     // End date is in the past or invalid - show 0:00
                     Text("0:00")
-                        .font(.system(size: 32, weight: .light, design: .rounded))
+                        .font(.system(size: 30, weight: .light, design: .rounded))
                         .monospacedDigit()
                 }
 
@@ -191,7 +198,8 @@ struct WatchRingView: View {
                 }
             }
         }
-        .frame(width: 130, height: 130)
+        .aspectRatio(1, contentMode: .fit)
+        .containerRelativeFrame(.horizontal) { width, _ in width * 0.5 }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Timer progress")
         .accessibilityValue("\(Int((1 - progress) * 100)) percent remaining")

@@ -19,15 +19,9 @@ struct WatchCustomDurationView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        VStack(spacing: 12) {
-            Spacer(minLength: 0)
-
-            Text("Set Duration")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
+        VStack(spacing: 4) {
             Text("\(Int(minutes))")
-                .font(.system(size: 52, weight: .light, design: .rounded))
+                .font(.system(size: 56, weight: .light, design: .rounded))
                 .monospacedDigit()
                 .contentTransition(.numericText())
                 .animation(reduceMotion ? nil : .snappy(duration: 0.15), value: Int(minutes))
@@ -35,18 +29,21 @@ struct WatchCustomDurationView: View {
             Text(Int(minutes) == 1 ? "minute" : "minutes")
                 .font(.body)
                 .foregroundStyle(.secondary)
-
-            Spacer(minLength: 0)
-
-            Button(action: { startCustomTimer() }) {
-                Label("Start", systemImage: "play.fill")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle("Set Duration")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Button(action: { startCustomTimer() }) {
+                    Label("Start", systemImage: "play.fill")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.brand)
+                .accessibilityLabel("Start \(Int(minutes)) minute timer")
+                .accessibilityHint("Double-tap to begin countdown")
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.brand)
-            .accessibilityLabel("Start \(Int(minutes)) minute timer")
-            .accessibilityHint("Double-tap to begin countdown")
         }
         .focused($isCrownFocused)
         .digitalCrownRotation(
