@@ -77,6 +77,13 @@ final class WatchTimerViewModel {
             case .completed(_, _):
                 isComplete = true
                 completionQuip = TimerQuip.randomCompletion().body
+#if DEBUG
+                // Screenshot automation: pin the quip so captures are repeatable.
+                if let index = ProcessInfo.processInfo.environment["RHOIDS_DEMO_QUIP"].flatMap(Int.init),
+                   TimerQuip.completionQuips.indices.contains(index) {
+                    completionQuip = TimerQuip.completionQuips[index].body
+                }
+#endif
 
             case .cancelled:
                 isCancelled = true

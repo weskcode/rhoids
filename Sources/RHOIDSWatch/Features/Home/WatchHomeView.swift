@@ -14,6 +14,9 @@ struct WatchHomeView: View {
     @State private var selectedPreset: PresetTimer = .recommended
     @State private var timerVM: WatchTimerViewModel?
     @State private var showCustomPicker = false
+#if DEBUG
+    @State private var demoLaunched = false
+#endif
 
     @AppStorage(PresetPreferences.defaultPresetKey) private var defaultPresetID = ""
     @AppStorage(UserPreferences.hapticsEnabledKey) private var hapticsEnabled = true
@@ -25,11 +28,8 @@ struct WatchHomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 8) {
                     heroStartButton
-
-                    Divider()
-                        .padding(.vertical, 4)
 
                     presetList
 
@@ -60,8 +60,20 @@ struct WatchHomeView: View {
 #if DEBUG
             // Screenshot automation: start the selected preset on launch.
             // Enable with SIMCTL_CHILD_RHOIDS_DEMO_TIMER=1 xcrun simctl launch …
-            if ProcessInfo.processInfo.environment["RHOIDS_DEMO_TIMER"] == "1" {
-                startTimer()
+            let env = ProcessInfo.processInfo.environment
+            guard !demoLaunched else { return }
+            demoLaunched = true
+            // Wait for the first frame so the push does not block scene activation.
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(2))
+                if let seconds = env["RHOIDS_DEMO_SECONDS"].flatMap(TimeInterval.init) {
+                    // A short run so the Time's Up screen can be captured.
+                    startTimer(duration: seconds)
+                } else if env["RHOIDS_DEMO_TIMER"] == "1" {
+                    startTimer()
+                } else if env["RHOIDS_DEMO_SCREEN"] == "custom" {
+                    showCustomPicker = true
+                }
             }
 #endif
         }
@@ -71,21 +83,20 @@ struct WatchHomeView: View {
 
     private var heroStartButton: some View {
         Button(action: { startTimer() }) {
-            VStack(spacing: 4) {
-                Image(systemName: "play.fill")
-                    .font(.title2)
-
-                Text("START")
+            VStack(spacing: 2) {
+                Label("START", systemImage: "play.fill")
                     .font(.headline)
 
                 if selectedPreset.duration > 0 {
                     Text("\(selectedPreset.name) \u{00B7} \(selectedPreset.formattedDuration)")
                         .font(.caption2)
                         .foregroundStyle(.white.opacity(0.7))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
+            .padding(.vertical, 8)
         }
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: 14))
@@ -133,8 +144,8 @@ struct WatchHomeView: View {
 
     // MARK: - Actions
 
-    private func startTimer() {
-        let duration = selectedPreset.duration
+    private func startTimer(duration: TimeInterval? = nil) {
+        let duration = duration ?? selectedPreset.duration
         guard duration > 0 else { return }
 
         let endDate = Date().addingTimeInterval(duration)
