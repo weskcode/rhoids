@@ -24,13 +24,13 @@ Requires iOS 26.0 or later and watchOS 26.0 or later.
 
 ## Screenshots
 
-| iPhone | Bathroom mode | Live Activity |
+| Timer | Lock | Choose |
 |---|---|---|
-| <img src="AppStore/Screenshots/iphone-6.9/en-US/01_OnTime.png" alt="RHOIDS timer presets on iPhone" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/02_BathroomMode.png" alt="RHOIDS Phone-Free and Limited Scrolling settings" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/03_LiveActivity.png" alt="RHOIDS Live Activity on the iPhone Lock Screen" width="240"> |
+| <img src="AppStore/Screenshots/iphone-6.9/en-US/01_Hero.png" alt="RHOIDS timer presets on iPhone" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/02_Lock.png" alt="RHOIDS blocks chosen apps when the timer ends" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/03_Choose.png" alt="RHOIDS Blocked Apps picker with the Social category selected" width="240"> |
 
-| Widgets | Apple Watch | Private history |
-|---|---|---|
-| <img src="AppStore/Screenshots/iphone-6.9/en-US/06_Widgets.png" alt="RHOIDS Home Screen widgets" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/07_AppleWatch.png" alt="RHOIDS on Apple Watch" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/10_PrivateHistory.png" alt="Private on-device RHOIDS history" width="240"> |
+| Research | Privacy |
+|---|---|
+| <img src="AppStore/Screenshots/iphone-6.9/en-US/04_Research.png" alt="The Science hub in RHOIDS" width="240"> | <img src="AppStore/Screenshots/iphone-6.9/en-US/05_Privacy.png" alt="Private on-device RHOIDS history" width="240"> |
 
 The UI in these images comes from real app and simulator captures. Only the device frames and captions are marketing artwork. The full iPhone set is in [`AppStore/Screenshots/iphone-6.9`](AppStore/Screenshots/iphone-6.9), and the Apple Watch captures are in [`AppStore/Screenshots/masters-1320x2868/Watch`](AppStore/Screenshots/masters-1320x2868/Watch).
 

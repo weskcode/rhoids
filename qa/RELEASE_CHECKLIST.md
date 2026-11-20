@@ -82,7 +82,7 @@ Confirm these items in App Store Connect:
 - Coffee Tip is the only product currently configured in App Store Connect. Verify it loads and purchases successfully in the sandbox. The other four configured product identifiers are unavailable; adding products requires separate approval.
 - App privacy answers match the shipped binary: no tracking and no collected data.
 - The hosted privacy-policy URL shows the current text from `PRIVACY.md`.
-- The ten iPhone screenshots are assigned to the intended screenshot slot and accepted without conversion errors.
+- The five iPhone screenshots in `AppStore/Screenshots/iphone-6.9/en-US/` are assigned to the intended screenshot slot and accepted without conversion errors. Upload them before submitting the version: Apple locks the screenshots once a version is released.
 - Four Apple Watch screenshots (416 x 496) are assigned to the Series 10 slot. App Review requires a Watch screenshot because the build embeds the Watch app.
 - App name, subtitle, description, categories, age rating, support URL, and copyright are current. The age-rating fields `socialMedia` and `socialMediaAgeRestricted` remain unanswered.
 - Export compliance, signing, provisioning, Family Controls entitlement approval, and App Review notes are complete.
