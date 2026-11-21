@@ -80,9 +80,9 @@ iPhone:
 
 - Current English upload set: `AppStore/Screenshots/iphone-6.9/en-US/`
 - Exact size: 1320 × 2868 portrait, opaque RGB PNG with an sRGB profile
-- Maximum: 10 screenshots
+- Maximum: 10 screenshots (the current set has 5)
 
-The ten images are ordered by filename and were verified in App Store Connect for version 1.1.2. Use the 6.9-inch iPhone slot for these assets. The four retained Watch screenshots remain in `AppStore/Screenshots/masters-1320x2868/Watch/`.
+The five images are ordered by filename. They are attached to the 1.1.5 draft in App Store Connect. Version 1.1.4 is live with an earlier set, and Apple locks a released version's screenshots, so this set goes live when 1.1.5 is released. Creating a version copies the previous version's screenshots into it, so delete the carried-over ones from the new version's set. Use the 6.9-inch iPhone slot (`APP_IPHONE_67` in `asc`) for these assets. The upload rejects PNGs with an alpha channel. The four retained Watch screenshots remain in `AppStore/Screenshots/masters-1320x2868/Watch/`.
 
 Raw captures and the rendering pipeline are kept outside the public repository.
 
